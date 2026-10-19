@@ -1,0 +1,8 @@
+User-agent: meta-externalagent
+Disallow: /news/
+
+User-agent: *
+Disallow: /private/
+
+User-agent: meta-externalagent
+Disallow: /

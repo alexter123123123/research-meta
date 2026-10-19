@@ -1,0 +1,37 @@
+# Bot sets (spec §2). Tokens are lowercase product tokens as used in robots.txt.
+META_TOKENS:
+  - meta-externalagent
+  - meta-externalads
+  - meta-webindexer
+  - meta-externalfetcher
+  - facebookexternalhit
+LEGACY_META:
+  - facebookbot
+  - facebot
+  - facebookcatalog
+PEER_AI_TRAINING:
+  - gptbot
+  - claudebot
+  - anthropic-ai
+  - google-extended
+  - ccbot
+  - bytespider
+  - applebot-extended
+  - cohere-ai
+  - amazonbot
+PEER_AI_SEARCH:
+  - oai-searchbot
+  - chatgpt-user
+  - claude-searchbot
+  - claude-user
+  - perplexitybot
+  - perplexity-user
+CLASSIC_SEARCH:
+  - googlebot
+  - bingbot
+# Subset used for M5 ("Meta gap")
+M5_PEERS:
+  - gptbot
+  - claudebot
+  - google-extended
+  - ccbot

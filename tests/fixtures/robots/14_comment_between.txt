@@ -1,0 +1,5 @@
+User-agent: meta-externalagent
+# block Meta's training crawler
+
+# added 2026-10-16
+Disallow: /

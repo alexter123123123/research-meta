@@ -1,0 +1,14 @@
+# BEGIN Cloudflare Managed content
+
+User-Agent: *
+Content-signal: search=yes,ai-train=no
+Allow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+# END Cloudflare Managed Content
+
+# our own rules
+User-agent: meta-externalads
+Disallow: /

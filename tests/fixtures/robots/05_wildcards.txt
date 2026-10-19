@@ -1,0 +1,4 @@
+User-agent: meta-externalads
+Disallow: /*.html$
+Disallow: /*/print
+Disallow: /news$

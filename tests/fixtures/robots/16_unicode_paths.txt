@@ -1,0 +1,3 @@
+User-agent: meta-externalagent
+Disallow: /nachrichten/über-uns
+Disallow: /caf%C3%A9/

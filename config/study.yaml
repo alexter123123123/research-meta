@@ -1,0 +1,60 @@
+study:
+  name: meta-crawler-study
+  frame_version: "1.0"
+  random_seed: 20261030
+  timezone: UTC
+
+identity:
+  # Honest, verifiable identity. The URL must resolve publicly before any live run.
+  user_agent: "MetaCrawlerStudy/1.0 (+https://github.com/alexter123123123/research-meta)"
+  confirmed: true
+
+snapshots:
+  T0: {cutoff: "2026-10-01T23:59:59Z", window_start: "2026-09-01T00:00:00Z", source: wayback}
+  T1: {cutoff: "2026-10-14T23:59:59Z", window_start: "2026-10-02T00:00:00Z", source: wayback}
+  T2: {date: "2026-10-20", source: live}
+  T3: {date: "2026-10-29", source: live}
+  T4: {date: "2026-11-06", source: live}
+  history_from: "2026-09-01"
+  monitor_until: "2026-11-06"
+
+rate_limits:
+  per_host_concurrency: 1
+  per_host_min_interval_s: 2.0
+  global_concurrency: 25
+  connect_timeout_s: 10
+  read_timeout_s: 20
+  max_retries: 2
+  max_redirects: 5
+  robots_max_bytes: 512000   # 500 KiB, RFC 9309 parsing limit
+
+wayback:
+  min_interval_s: 1.0
+  backoff_start_s: 30
+  backoff_max_s: 600
+  control_sample: 2000
+
+fetch:
+  # direct = our own httpx client (exposes upstream status + final URL, required for RFC 9309).
+  robots_engine: direct
+  homepage_engine: playwright   # headless Chromium; raw HTML also fetched directly
+  # Optional third-party fallback for challenge pages; disabled unless a key is configured.
+  fallback_engine: none          # none | hasdata
+  hasdata_api_key_env: HASDATA_API_KEY
+
+panel:
+  tier_b_target: 1400
+  control_size: 10000
+  min_per_owner_group: 10
+
+analysis:
+  min_n: 20
+  wilson_alpha: 0.05
+
+release:
+  tier_b_rows: false
+
+branding:
+  footer: "Data: HasData"
+  accent: "#E4572E"
+  spokesperson: "[spokesperson]"

@@ -1,0 +1,5 @@
+User-agent: meta-externalagent
+Disallow: /news/
+Allow: /news/
+Disallow: /
+Allow: /2026/

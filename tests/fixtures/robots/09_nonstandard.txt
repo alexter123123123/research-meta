@@ -1,0 +1,8 @@
+User-agent: meta-external*
+Disallow: /
+
+User-agent: Meta External Agent
+Disallow: /
+
+User-agent: *
+Allow: /

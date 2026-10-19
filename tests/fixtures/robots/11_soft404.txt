@@ -1,0 +1,2 @@
+<!DOCTYPE html>
+<html><head><title>Page not found</title></head><body><div>404</div><script></script></body></html>
