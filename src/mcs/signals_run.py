@@ -102,6 +102,8 @@ async def build_signals(cfg: dict, panel_csv: str = "data/panel/panel.csv") -> d
         asig = None
         if arec and arec.get("fetch_status") == "OK":
             asig = parse_ads_txt((load_body(arec["body_path"]) or b"").decode("utf-8", "replace"))
+        if raw_s is None and ren_s is None and dsig is None and asig is None:
+            continue  # nothing observable for this domain: leave it out of M7/M8 denominators
         ids = set()
         for s in (raw_s, ren_s):
             if s:
