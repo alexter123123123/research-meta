@@ -37,3 +37,6 @@
     All exclusions are in `panel_exclusions.csv`.
 11. **Tier A size** is 96 registered domains, below the 120–200 target, because the source
     lists overlap heavily.
+12. **Credit line.** HasData confirmed (19 Oct 2026) that the "Data: HasData" credit on charts
+    is acceptable, given that the methodology says the data was collected without HasData's API.
+    Spokesperson for the factsheet: Roman Milyushkevich, Co-founder and CTO at HasData.
