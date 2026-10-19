@@ -316,11 +316,12 @@ def compute_metrics(snapshot: str, processed_dir: str | Path = "data/processed",
     out["M4"] = {"pairs": [f"{a}->{b}" for a, b in pairs], "by_pair": {}, "clusters": {}}
     for a, b in pairs:
         key = f"{a}->{b}"
+        cp = changes[(changes["from_snapshot"] == a) & (changes["to_snapshot"] == b)]
         out["M4"]["by_pair"][key] = {
-            seg: summarize_pair(changes, a, b, doms, meta + legacy, min_n=min_n)
+            seg: summarize_pair(cp, a, b, doms, meta + legacy, min_n=min_n)
             for seg, doms in segs.items()}
         out["M4"]["clusters"][key] = cluster_summary(
-            changes, verdicts[verdicts["snapshot"] == b], panel, a, b, segs["all_news"])
+            cp, verdicts[verdicts["snapshot"] == b], panel, a, b, segs["all_news"])
     out["coverage"] = _coverage(verdicts, segs, available)
 
     # M11 timeline

@@ -35,6 +35,9 @@ mcs = "mcs.cli:app"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"mcs.site" = ["templates/*.html"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 

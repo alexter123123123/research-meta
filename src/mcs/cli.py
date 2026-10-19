@@ -215,10 +215,12 @@ def analyze(snapshot: str = "T2"):
 def report(snapshot: str = "T2"):
     from mcs.report import charts, factsheet, findings, methodology
     t = time.time()
-    charts.make_all(snapshot)
-    findings.write_findings(snapshot)
-    factsheet.write_factsheet(snapshot)
-    methodology.write_methodology(snapshot)
+    mpath = Path(f"reports/metrics_{snapshot}.json")
+    metrics = json.loads(mpath.read_text())
+    charts.make_charts(metrics)
+    findings.write_findings(metrics)
+    factsheet.write_factsheet(metrics)
+    methodology.write_methodology(metrics=metrics)
     manifest(f"report --snapshot {snapshot}", t, {})
 
 
@@ -226,7 +228,7 @@ def report(snapshot: str = "T2"):
 def site():
     from mcs.site.build import build_site
     t = time.time()
-    build_site()
+    build_site(methodology_url="https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md")
     manifest("site", t, {})
 
 

@@ -5,12 +5,14 @@ from __future__ import annotations
 
 import math
 from collections.abc import Iterable
+from functools import lru_cache
 
 from scipy.stats import binomtest, norm
 
 MISSING_RANK = 1_000_000
 
 
+@lru_cache(maxsize=16)
 def _z(alpha: float) -> float:
     return float(norm.ppf(1 - alpha / 2))
 

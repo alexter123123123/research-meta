@@ -50,21 +50,28 @@ def _tuple(v) -> dict:
 def _live_entries(verdicts: pd.DataFrame, bots: list[str]) -> list[dict]:
     if verdicts is None or verdicts.empty or "source" not in verdicts.columns:
         return []
-    v = verdicts[(verdicts["source"] == "live") & verdicts["bot"].isin(bots)]
+    v = verdicts[(verdicts["source"] == "live") & verdicts["bot"].isin(bots)
+                 & verdicts["snapshot_date"].notna()]
     if v.empty:
         return []
+    v = v.drop_duplicates(["domain", "snapshot", "bot"], keep="last")
+    idx = ["domain", "snapshot"]
+    wide = v.pivot(index=idx, columns="bot", values="verdict")
+    if "in_cf_managed_block" in v.columns:
+        cfw = v.assign(_cf=v["in_cf_managed_block"].fillna(False).astype(bool)).pivot(
+            index=idx, columns="bot", values="_cf")
+    else:
+        cfw = None
+    sd = v.drop_duplicates(idx).set_index(idx)["snapshot_date"]
+    ts = (pd.to_datetime(pd.to_datetime(sd).dt.date, utc=True)
+          + pd.Timedelta(hours=LIVE_HOUR_UTC)).reindex(wide.index)
+    tuples = wide.to_dict("index")
+    cfs = cfw.to_dict("index") if cfw is not None else {}
     out = []
-    has_cf = "in_cf_managed_block" in v.columns
-    for (dom, _snap), g in v.groupby(["domain", "snapshot"], sort=False):
-        sd = g["snapshot_date"].dropna()
-        if sd.empty:
-            continue
-        ts = pd.Timestamp(pd.Timestamp(sd.iloc[0]).date(), tz="UTC") + pd.Timedelta(
-            hours=LIVE_HOUR_UTC)
-        tup = dict(zip(g["bot"], g["verdict"], strict=True))
-        cf = dict(zip(g["bot"], g["in_cf_managed_block"].fillna(False), strict=True)) \
-            if has_cf else {}
-        out.append({"domain": dom, "ts": ts, "tuple": tup, "cf": cf, "prev": None,
+    for key, t in zip(wide.index, ts, strict=True):
+        tup = {b: x for b, x in tuples[key].items() if isinstance(x, str)}
+        cf = {b: bool(x) for b, x in cfs.get(key, {}).items() if x is not None and not pd.isna(x)}
+        out.append({"domain": key[0], "ts": t, "tuple": tup, "cf": cf, "prev": None,
                     "cf_change": None, "source": "live"})
     return out
 

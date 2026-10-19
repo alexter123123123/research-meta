@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from mcs.analyze.common import (
@@ -27,7 +28,7 @@ from mcs.analyze.common import (
 )
 from mcs.analyze.stats import mcnemar_exact, prop_entry
 from mcs.analyze.timeline import build_change_events
-from mcs.parse.verdict import FULL_BLOCK, INDETERMINATE, direction
+from mcs.parse.verdict import FULL_BLOCK, RESTRICTIVENESS
 
 CHANGES_COLUMNS = [
     "domain", "bot", "from_snapshot", "to_snapshot", "from_verdict", "to_verdict", "direction",
@@ -53,32 +54,44 @@ def pairs_for_snapshot(snapshot: str, available: list[str]) -> list[tuple[str, s
     return pairs
 
 
-def _attribution(from_named: bool, to_named: bool, from_cf: bool, to_cf: bool) -> str:
-    if not from_named and not to_named:
-        return "unknown"
-    involved = []
-    if from_named:
-        involved.append(from_cf)
-    if to_named:
-        involved.append(to_cf)
-    return "cf_managed" if all(involved) else "authored"
+def _endpoint_ts(raw: pd.Series, snap_date: pd.Series, end_of_day: bool) -> pd.Series:
+    """Vectorised endpoint time: Wayback timestamp if present, else the snapshot day
+    (start of day for the 'from' side, end of day for the 'to' side)."""
+    raw_s = raw.astype("object").where(raw.notna(), None).astype(str)
+    wb = pd.to_datetime(raw_s.where(raw_s.str.fullmatch(r"\d{14}")), format="%Y%m%d%H%M%S",
+                        errors="coerce", utc=True)
+    other = pd.to_datetime(raw_s.where(~raw_s.str.fullmatch(r"\d{14}") & raw.notna()),
+                           errors="coerce", utc=True, format="ISO8601")
+    day = pd.to_datetime(pd.to_datetime(snap_date, errors="coerce").dt.date, utc=True)
+    if end_of_day:
+        day = day + pd.Timedelta(days=1)
+    return wb.fillna(other).fillna(day)
 
 
-def _endpoint_ts(row_ts, snap_date, end_of_day: bool) -> pd.Timestamp | None:
-    for v in (row_ts,):
-        if v is not None and not (isinstance(v, float) and pd.isna(v)) and str(v) != "":
-            s = str(v)
-            try:
-                if s.isdigit() and len(s) == 14:
-                    return pd.Timestamp(pd.to_datetime(s, format="%Y%m%d%H%M%S"), tz="UTC")
-                t = pd.Timestamp(v)
-                return t.tz_localize("UTC") if t.tzinfo is None else t
-            except (ValueError, TypeError):
-                pass
-    if snap_date is None or (isinstance(snap_date, float) and pd.isna(snap_date)):
-        return None
-    t = pd.Timestamp(pd.Timestamp(snap_date).date(), tz="UTC")
-    return t + pd.Timedelta(days=1) if end_of_day else t
+def _attach_change_dates(out: pd.DataFrame, lo: pd.Series, hi: pd.Series,
+                         events: pd.DataFrame | None) -> pd.DataFrame:
+    """For changed rows, the first timeline event of that domain inside (lo, hi]."""
+    out["change_date"] = pd.Series(pd.NaT, index=out.index, dtype="datetime64[ns, UTC]")
+    out["prev_capture_ts"] = pd.Series(pd.NaT, index=out.index, dtype="datetime64[ns, UTC]")
+    out["bracket_hours"] = float("nan")
+    if events is None or not len(events) or not out["changed"].any():
+        return out
+    ev = events[["domain", "change_ts", "prev_capture_ts", "bracket_hours"]].copy()
+    ev["change_ts"] = pd.to_datetime(ev["change_ts"], utc=True)
+    ev["prev_capture_ts"] = pd.to_datetime(ev["prev_capture_ts"], utc=True)
+    ch = pd.DataFrame({"domain": out["domain"], "lo": lo, "hi": hi})[out["changed"]]
+    keys = ch.drop_duplicates(["domain", "lo", "hi"])
+    mg = keys.merge(ev, on="domain")
+    mg = mg[((mg["change_ts"] > mg["lo"]) | mg["lo"].isna())
+            & ((mg["change_ts"] <= mg["hi"]) | mg["hi"].isna())]
+    if mg.empty:
+        return out
+    first = mg.sort_values("change_ts").drop_duplicates(["domain", "lo", "hi"])
+    ch = ch.reset_index().merge(first, on=["domain", "lo", "hi"], how="left").set_index("index")
+    out.loc[ch.index, "change_date"] = ch["change_ts"]
+    out.loc[ch.index, "prev_capture_ts"] = ch["prev_capture_ts"]
+    out.loc[ch.index, "bracket_hours"] = ch["bracket_hours"].astype(float)
+    return out
 
 
 def compute_changes(verdicts: pd.DataFrame, pairs: list[tuple[str, str]], bots: list[str],
@@ -97,19 +110,13 @@ def compute_changes(verdicts: pd.DataFrame, pairs: list[tuple[str, str]], bots: 
     keep = ["domain", "bot", "verdict", "named", "in_cf_managed_block", "template_cluster",
             "wayback_ts", "snapshot_date"]
     frames = []
-    ev_by_dom = {}
-    if events is not None and len(events):
-        ev = events.copy()
-        ev["change_ts"] = pd.to_datetime(ev["change_ts"], utc=True)
-        ev_by_dom = {d: g.sort_values("change_ts") for d, g in ev.groupby("domain")}
     for a, b in pairs:
         fa = v.loc[v["snapshot"] == a, keep]
         fb = v.loc[v["snapshot"] == b, keep]
         if fa.empty or fb.empty:
             continue
         m = fa.merge(fb, on=["domain", "bot"], suffixes=("_f", "_t"))
-        m = m[(m["verdict_f"] != INDETERMINATE) & (m["verdict_t"] != INDETERMINATE)
-              & m["verdict_f"].notna() & m["verdict_t"].notna()]
+        m = m[m["verdict_f"].isin(RESTRICTIVENESS) & m["verdict_t"].isin(RESTRICTIVENESS)]
         if m.empty:
             continue
         out = pd.DataFrame({
@@ -119,39 +126,23 @@ def compute_changes(verdicts: pd.DataFrame, pairs: list[tuple[str, str]], bots: 
             "from_in_cf": m["in_cf_managed_block_f"], "to_in_cf": m["in_cf_managed_block_t"],
             "template_cluster": m["template_cluster_t"],
         })
-        out["direction"] = [direction(x, y) for x, y in zip(out["from_verdict"],
-                                                             out["to_verdict"], strict=True)]
+        rf = out["from_verdict"].map(RESTRICTIVENESS)
+        rt = out["to_verdict"].map(RESTRICTIVENESS)
+        out["direction"] = np.where(rt > rf, "more_restrictive",
+                                    np.where(rt < rf, "less_restrictive", "same"))
         out["newly_named"] = (~out["from_named"]) & out["to_named"]
         out["changed"] = (out["direction"] != "same") | (out["from_named"] != out["to_named"])
-        out["attribution"] = [
-            _attribution(fn, tn, fc, tc) if ch else None
-            for fn, tn, fc, tc, ch in zip(out["from_named"], out["to_named"], out["from_in_cf"],
-                                          out["to_in_cf"], out["changed"], strict=True)]
+        fn, tn = out["from_named"], out["to_named"]
+        cf_ok = (~fn | out["from_in_cf"]) & (~tn | out["to_in_cf"])
+        attr = np.where(~fn & ~tn, "unknown", np.where(cf_ok, "cf_managed", "authored"))
+        out["attribution"] = pd.Series(attr, index=out.index, dtype=object).where(
+            out["changed"], None)
         # change date from the timeline: first event inside (from_ts, to_ts]
-        cdates, prevs, brackets = [], [], []
-        for row, fts_raw, fsd, tts_raw, tsd in zip(
-                out.itertuples(index=False), m["wayback_ts_f"], m["snapshot_date_f"],
-                m["wayback_ts_t"], m["snapshot_date_t"], strict=True):
-            cd = pv = br = None
-            if row.changed and row.domain in ev_by_dom:
-                lo = _endpoint_ts(fts_raw, fsd, end_of_day=False)
-                hi = _endpoint_ts(tts_raw, tsd, end_of_day=True)
-                g = ev_by_dom[row.domain]
-                sel = g
-                if lo is not None:
-                    sel = sel[sel["change_ts"] > lo]
-                if hi is not None:
-                    sel = sel[sel["change_ts"] <= hi]
-                if len(sel):
-                    e = sel.iloc[0]
-                    cd, pv, br = e["change_ts"], e["prev_capture_ts"], e["bracket_hours"]
-            cdates.append(cd)
-            prevs.append(pv)
-            brackets.append(br)
-        out["change_date"] = pd.to_datetime(pd.Series(cdates, dtype="object"), utc=True)
-        out["prev_capture_ts"] = pd.to_datetime(pd.Series(prevs, dtype="object"), utc=True)
-        out["bracket_hours"] = pd.to_numeric(pd.Series(brackets, dtype="object"),
-                                             errors="coerce")
+        out = out.reset_index(drop=True)
+        m = m.reset_index(drop=True)
+        lo = _endpoint_ts(m["wayback_ts_f"], m["snapshot_date_f"], end_of_day=False)
+        hi = _endpoint_ts(m["wayback_ts_t"], m["snapshot_date_t"], end_of_day=True)
+        out = _attach_change_dates(out, lo, hi, events)
         frames.append(out.reset_index(drop=True))
     if not frames:
         return pd.DataFrame(columns=CHANGES_COLUMNS)
@@ -187,25 +178,24 @@ def domain_change_table(changes: pd.DataFrame, from_s: str, to_s: str) -> pd.Dat
         return pd.DataFrame(columns=["domain", "changed_any", "more_restrictive_any",
                                      "newly_named_any", "attribution", "template_cluster"])
 
-    def attr(s: pd.Series) -> str | None:
-        vals = set(s.dropna())
-        if not vals:
-            return None
-        if "authored" in vals:
-            return "authored"
-        if vals == {"cf_managed"}:
-            return "cf_managed"
-        return "unknown"
-
-    g = c.groupby("domain")
-    out = pd.DataFrame({
-        "changed_any": g["changed"].any(),
-        "more_restrictive_any": g["direction"].agg(lambda s: (s == "more_restrictive").any()),
-        "newly_named_any": g["newly_named"].any(),
-        "attribution": g["attribution"].agg(attr),
-        "template_cluster": g["template_cluster"].agg(
-            lambda s: s.dropna().iloc[0] if s.notna().any() else None),
-    }).reset_index()
+    c = c.assign(
+        _more=c["direction"] == "more_restrictive",
+        _auth=c["attribution"] == "authored",
+        _cf=c["attribution"] == "cf_managed",
+        _att=c["attribution"].notna(),
+    )
+    g = c.groupby("domain", sort=False)
+    agg = g.agg(changed_any=("changed", "any"), more_restrictive_any=("_more", "any"),
+                newly_named_any=("newly_named", "any"), _auth=("_auth", "any"),
+                _ncf=("_cf", "sum"), _natt=("_att", "sum"),
+                template_cluster=("template_cluster", "first"))
+    attribution = np.where(agg["_natt"] == 0, None,
+                           np.where(agg["_auth"], "authored",
+                                    np.where(agg["_ncf"] == agg["_natt"], "cf_managed",
+                                             "unknown")))
+    out = agg.assign(attribution=attribution).reset_index()[
+        ["domain", "changed_any", "more_restrictive_any", "newly_named_any", "attribution",
+         "template_cluster"]]
     return out
 
 
