@@ -184,7 +184,7 @@ def write_verdicts(df: pd.DataFrame, cfg: dict) -> pd.DataFrame:
     robots = _robots_rows(df)
     live = robots[robots.source != "wayback"]
     for snap, g in live.groupby("snapshot"):
-        if snap.startswith("SMOKE"):
+        if snap.startswith(("SMOKE", "DRY")):
             continue
         g = g.sort_values("fetched_at").drop_duplicates("domain", keep="last")
         date = g.fetched_at.min()[:10]
@@ -219,7 +219,7 @@ def write_history(df: pd.DataFrame) -> pd.DataFrame:
     meta_bots = b["META_TOKENS"] + b["LEGACY_META"]
     probes = json.loads(PROBES_FILE.read_text()) if PROBES_FILE.exists() else {}
     robots = _robots_rows(df)
-    robots = robots[~robots.snapshot.str.startswith("SMOKE")]
+    robots = robots[~robots.snapshot.str.startswith(("SMOKE", "DRY"))]
     out = []
     for dom, g in robots.groupby("domain"):
         evs = []

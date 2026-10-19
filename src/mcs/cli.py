@@ -97,14 +97,14 @@ def fetch_live(label: str = typer.Option(..., help="T2, T3, T4 or Dyyyymmdd"),
 
 
 @app.command("render")
-def render(limit: int = 0):
+def render(label: str = "T2", limit: int = 0):
     """Rendered homepage (headless Chromium) for news domains whose T2 robots allow us."""
     c = cfg()
     _require_identity(c)
     from mcs.fetch.render import render_domains
     from mcs.fetch.store import FetchLog
     t = time.time()
-    rows = FetchLog("T2").read()
+    rows = FetchLog(label).read()
     allowed = [(r["domain"], f"https://{r['host']}/") for r in rows
                if r["resource"] == "homepage" and r["fetch_status"] != "DISALLOWED_FOR_US"]
     if limit:

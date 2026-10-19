@@ -31,6 +31,9 @@ PANEL_COLUMNS = ["domain", "panel", "tier", "country", "brands", "owner_group", 
 UNKNOWN = chains_mod.UNKNOWN
 
 
+CONTENT_FARM_GROUPS = {"VUGA"}
+
+
 def _now() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
@@ -187,6 +190,20 @@ def build_panel(config_path: str = "config/study.yaml", liveness: bool = True) -
     meta["chain_lists"] = chain_res.log
     cands, b_excl = tier_b_candidates(wd_rows, set(tier_a), chain_res)
     exclusions += b_excl
+    # Quality filters (lead review, 19 Oct): batch-created content-farm items and foreign-ccTLD
+    # editions mislabelled as US/UK are not regional/local publishers.
+    generic_cc = {"uk", "us", "io", "co", "tv", "fm", "me", "ai", "ly", "cc", "ws", "to", "gg"}
+    for d in list(cands):
+        last = d.rsplit(".", 1)[-1]
+        reason = None
+        if cands[d]["owner_group"] in CONTENT_FARM_GROUPS:
+            reason = f"content-farm network (owner {cands[d]['owner_group']})"
+        elif len(last) == 2 and last not in generic_cc:
+            reason = f"foreign ccTLD .{last} despite Wikidata country {cands[d]['country']}"
+        if reason:
+            exclusions.append({"domain": d, "source_list": cands[d]["source_list"],
+                               "reason": reason})
+            del cands[d]
     # chain lists may add missing dailies (only when the list gives a domain)
     added = 0
     for d, (title, group) in chain_res.added_domains.items():

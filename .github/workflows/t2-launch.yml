@@ -9,6 +9,9 @@ on:
       limit:
         description: "Limit domains (0 = all; use e.g. 20 for a dry run)"
         default: "0"
+      label:
+        description: "Snapshot label (T2 for the real run; DRY for a test)"
+        default: "T2"
 concurrency: { group: live-fetch, cancel-in-progress: false }
 permissions: { contents: write }
 jobs:
@@ -19,14 +22,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - name: Fetch live T2 (robots, ads.txt, homepages, DNS)
-        run: mcs fetch-live --label T2 --with-signals --limit ${{ inputs.limit || 0 }}
+        run: mcs fetch-live --label ${{ inputs.label || 'T2' }} --with-signals --limit ${{ inputs.limit || 0 }}
       - name: Commit raw evidence
         if: always()
         run: 'scripts/commit_data.sh "data: T2 live fetch"'
       - name: Render homepages (headless Chromium)
         run: |
           pip install playwright && python -m playwright install --with-deps chromium
-          mcs render --limit ${{ inputs.limit || 0 }}
+          mcs render --label ${{ inputs.label || 'T2' }} --limit ${{ inputs.limit || 0 }}
       - name: Parse + verdicts + signals
         run: |
           mcs parse
