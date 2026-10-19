@@ -1,0 +1,18 @@
+name: probe-network
+on:
+  push:
+    branches: [claude/quirky-dirac-xnqcz2]
+    paths: [.github/workflows/probe-network.yml]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wayback CDX + id_ fetch
+        run: |
+          UA="MetaCrawlerStudy/1.0 (+https://github.com/alexter123123123/research-meta)"
+          curl -s -A "$UA" -m 60 -w "\ncdx %{http_code} %{time_total}s\n" "https://web.archive.org/cdx/search/cdx?url=nytimes.com/robots.txt&from=20260901&output=json&limit=3&fl=timestamp,original,statuscode,digest"
+          sleep 2
+          curl -s -A "$UA" -m 60 -o /dev/null -w "id_ %{http_code} %{time_total}s\n" "https://web.archive.org/web/20261001000000id_/https://www.nytimes.com/robots.txt"
+          curl -s -A "$UA" -m 30 -o /dev/null -w "dns.google %{http_code}\n" "https://dns.google/resolve?name=nytimes.com&type=TXT"
