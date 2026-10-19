@@ -1,0 +1,12 @@
+{
+ "url": "https://theguardian.com/",
+ "final_url": "https://www.theguardian.com/us",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:56:43Z",
+ "headers": {
+  "content-type": "text/html; charset=UTF-8",
+  "etag": "W/\"hash-6392146078391641035\"",
+  "date": "Mon, 19 Oct 2026 17:56:42 GMT"
+ },
+ "sha256": "e41266f864b2dc8c3b687c6b94f47376803a18ddf487b982ea776ae71b85d4d7"
+}

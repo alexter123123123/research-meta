@@ -1,0 +1,13 @@
+{
+ "url": "https://datawrapper.dwcdn.net/ev9rt/2/dataset.csv",
+ "final_url": "https://datawrapper.dwcdn.net/ev9rt/2/dataset.csv",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:46:12Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 17:46:12 GMT",
+  "content-type": "application/octet-stream",
+  "last-modified": "Thu, 24 Sep 2026 19:48:42 GMT",
+  "etag": "\"8612f130651ea0a5ed18260074e094e0\""
+ },
+ "sha256": "b9a63b2bc51639279af926a03fda04d1dca03a809a894a08bdfafd6c0053c52e"
+}

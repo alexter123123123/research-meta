@@ -1,0 +1,1 @@
+{"url": "https://tranco-list.eu/robots.txt", "status": 200, "fetched_at": "2026-10-19T17:48:09Z", "body": "User-agent: ia_archiver\nAllow: /list/\n\nUser-agent: *\nDisallow: /list/\n\nUser-agent: *\nDisallow: /daily_list_id\n\nUser-agent: *\nDisallow: /api"}

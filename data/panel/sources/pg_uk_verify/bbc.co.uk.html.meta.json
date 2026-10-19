@@ -1,0 +1,11 @@
+{
+ "url": "https://bbc.co.uk/",
+ "final_url": "https://www.bbc.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:56:40Z",
+ "headers": {
+  "content-type": "text/html",
+  "date": "Mon, 19 Oct 2026 17:56:40 GMT"
+ },
+ "sha256": "29439a6bd544d5c48b75a1509e8cbbd387ab32f94bf066b886cf26ce6b084e80"
+}
