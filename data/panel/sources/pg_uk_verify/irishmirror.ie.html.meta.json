@@ -1,0 +1,11 @@
+{
+ "url": "https://irishmirror.ie/",
+ "final_url": "https://www.irishmirror.ie/",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:02Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "date": "Mon, 19 Oct 2026 18:00:02 GMT"
+ },
+ "sha256": "20b94f46132ec1cc92bbcaa2f5fe948e9f4785f0e6648ab3985ba269d4277963"
+}

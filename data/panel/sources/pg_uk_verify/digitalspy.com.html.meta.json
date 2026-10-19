@@ -1,0 +1,12 @@
+{
+ "url": "https://digitalspy.com/",
+ "final_url": "https://www.digitalspy.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:45Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "\"m8pk56x652c4b2\"",
+  "date": "Mon, 19 Oct 2026 17:59:45 GMT"
+ },
+ "sha256": "1b8ab07aaa687378a08e75860d9dddc8deeec30e01e867530c17adfdf32eb2b2"
+}

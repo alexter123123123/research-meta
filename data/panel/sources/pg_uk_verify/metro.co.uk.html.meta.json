@@ -1,0 +1,11 @@
+{
+ "url": "https://metro.co.uk/",
+ "final_url": "https://metro.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:58:59Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 17:58:59 GMT",
+  "content-type": "text/html; charset=UTF-8"
+ },
+ "sha256": "db96dbb0d6982c8ba3b78cb8f24a0ae4c864e250ab9c16630fa0237a588b8d0a"
+}

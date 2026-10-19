@@ -1,0 +1,11 @@
+{
+ "url": "https://which.co.uk/",
+ "final_url": "https://www.which.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:50Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "date": "Mon, 19 Oct 2026 17:59:50 GMT"
+ },
+ "sha256": "8eb32c298d3f00e4461010e631c14755893c42a5983e1ca99fa5ad9d092567b7"
+}

@@ -1,0 +1,11 @@
+{
+ "url": "https://express.co.uk/",
+ "final_url": "https://www.express.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:57:45Z",
+ "headers": {
+  "content-type": "text/html; charset=UTF-8",
+  "date": "Mon, 19 Oct 2026 17:55:55 GMT"
+ },
+ "sha256": "c96137dd84011bc46d459b937d9d845bca1dced187880dad396676d841d24511"
+}

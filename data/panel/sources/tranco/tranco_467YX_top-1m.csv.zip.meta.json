@@ -1,0 +1,14 @@
+{
+ "url": "https://tranco-list.eu/top-1m.csv.zip",
+ "final_url": "https://tranco-list.eu/download/daily/top-1m.csv.zip",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:48Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:00:47 GMT",
+  "content-type": "application/zip",
+  "content-disposition": "Attachment;filename=top-1m.csv.zip",
+  "etag": "\"18dfc0022f7e1b40-9458b0\"",
+  "last-modified": "Sun, 18 Oct 2026 22:24:53 GMT"
+ },
+ "sha256": "43de41bd508401042555d591ac868b348e047cfa1ceb2d6140784c09d190e66a"
+}

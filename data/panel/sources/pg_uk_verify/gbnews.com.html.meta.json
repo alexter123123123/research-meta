@@ -1,0 +1,12 @@
+{
+ "url": "https://gbnews.com/",
+ "final_url": "https://www.gbnews.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:38Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "W/\"707c34dab62fd5968e0981375b28ca1e\"",
+  "date": "Mon, 19 Oct 2026 17:59:38 GMT"
+ },
+ "sha256": "06fe8a05906305892f76cbd319a5c83efc96e21b552489ffaaf456fc0127f4b6"
+}

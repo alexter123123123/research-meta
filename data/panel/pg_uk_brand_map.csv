@@ -1,0 +1,51 @@
+brand,domain,note
+BBC,bbc.co.uk,curated; verified 2026-10-19: homepage title 'BBC - Home' matches 'BBC'
+The Guardian,theguardian.com,"curated; verified 2026-10-19: homepage title 'Latest news, sport and opinion from the Guardian' matches 'Guardian'"
+The Sun,thesun.co.uk,curated from knowledge; title check not possible (RobotsDisallowed)
+Mirror,mirror.co.uk,curated; verified 2026-10-19: homepage title 'The Mirror: The Heart of Britain' matches 'Mirror'
+The Independent,independent.co.uk,curated from knowledge; title check not possible (HTTP 429)
+Sky News,news.sky.com,curated from knowledge; title check not possible (HTTP 403)
+Yahoo!,uk.yahoo.com,curated from knowledge; title check not possible (HTTP 429)
+Daily Express,express.co.uk,"curated; verified 2026-10-19: homepage title 'Latest UK and World News, Sport and Comment | Express.co.uk' matches 'Express'"
+Daily Mail,dailymail.co.uk,curated from knowledge; title check not possible (HTTP 403)
+The Telegraph,telegraph.co.uk,curated from knowledge; title check not possible (HTTP 402)
+ITV,itv.com,curated from knowledge; title check not possible (RobotsDisallowed)
+Money Saving Expert,moneysavingexpert.com,"curated; verified 2026-10-19: homepage title 'Money Saving Expert: Credit Cards, Shopping, Bank Charges, Cheap Fligh' matches 'MoneySavingExpert'"
+Times & Sunday Times,thetimes.com,curated from knowledge; title check not possible (RobotsDisallowed)
+Metro,metro.co.uk,"curated; verified 2026-10-19: homepage title 'Metro.co.uk: News, Sport, Showbiz, Celebrities from Metro' matches 'Metro'"
+Good Food (Previously BBC Good Food),bbcgoodfood.com,curated; verified 2026-10-19: homepage title 'Good Food | Recipes and cooking tips | Good Food' matches 'Good Food'
+Manchester Evening News,manchestereveningnews.co.uk,"curated; verified 2026-10-19: homepage title 'Manchester Evening News: Number one for news, opinion, sport & celebri' matches 'Manchester Evening News'"
+The Standard,standard.co.uk,"curated; verified 2026-10-19: homepage title 'London news, sport and culture | The Standard | London Evening Standar' matches 'Standard'"
+Daily Star,dailystar.co.uk,curated; verified 2026-10-19: homepage title 'The Daily Star: News with a Wink' matches 'Daily Star'
+Birmingham Live,birminghammail.co.uk,"curated; verified 2026-10-19: homepage title 'Birmingham Live - Birmingham news, features, information and sport' matches 'Birmingham'"
+New York Times,nytimes.com,curated from knowledge; title check not possible (HTTP 403)
+Liverpool Echo,liverpoolecho.co.uk,curated; verified 2026-10-19: homepage title 'Liverpool Echo: Latest Liverpool and Merseyside news sports and whats ' matches 'Liverpool Echo'
+Wales Online,walesonline.co.uk,"curated; verified 2026-10-19: homepage title 'WalesOnline: News, sport, weather and events from across Wales' matches 'Wales'"
+The i Paper,inews.co.uk,curated; verified 2026-10-19: homepage title 'The i Paper - Impartial news & intelligent debate' matches 'i Paper'
+Oxfordmail,oxfordmail.co.uk,"curated; verified 2026-10-19: homepage title 'Oxford News, Sport, Events | Oxford Mail' matches 'Oxford Mail'"
+Channel4,channel4.com,curated; verified 2026-10-19: homepage title 'Channel 4 | Stream & Watch Live TV' matches 'Channel 4'
+Hello! Magazine,hellomagazine.com,curated; verified 2026-10-19: homepage title 'HELLO! US Edition - Latest news and Photos' matches 'HELLO'
+Good Housekeeping,goodhousekeeping.com,"curated; verified 2026-10-19: homepage title 'Good Housekeeping: Trusted Home Advice, Product Reviews & Recipes' matches 'Good Housekeeping'"
+Daily Record,dailyrecord.co.uk,"curated; verified 2026-10-19: homepage title 'Daily Record & Sunday Mail - Scottish News, Sport, Politics and Celeb ' matches 'Daily Record'"
+Radio Times,radiotimes.com,"curated; verified 2026-10-19: homepage title 'Radio Times | TV, film and entertainment news | Radio Times' matches 'Radio Times'"
+GB News,gbnews.com,curated; verified 2026-10-19: homepage title 'Home | GB News' matches 'GB News'
+Examiner Live,examinerlive.co.uk,"curated; WARNING homepage title 'YorkshireLive - Yorkshire News, Sport, Events & more' / site 'Yorkshire Live' does not contain 'Examiner'"
+People.com,people.com,curated from knowledge; title check not possible (HTTP 402)
+Digital Spy,digitalspy.com,"curated; verified 2026-10-19: homepage title 'Digital Spy - TV, Movies and Entertainment News' matches 'Digital Spy'"
+Cosmopolitan,cosmopolitan.com,"curated; verified 2026-10-19: homepage title ""Cosmopolitan.com - The Women's Magazine for Dating Advice, Relationshi"" matches 'Cosmopolitan'"
+Which?,which.co.uk,"curated; verified 2026-10-19: homepage title 'Which? | Expert testing, reviews and advice - Which?' matches 'Which?'"
+Substack,substack.com,curated; verified 2026-10-19: homepage title 'Substack' matches 'Substack'
+Healthline Media,healthline.com,curated; verified 2026-10-19: homepage title 'Healthline: Medical information and health advice you can trust.' matches 'Healthline'
+Forbes,forbes.com,curated; verified 2026-10-19: homepage title 'Forbes' matches 'Forbes'
+MyLondon,mylondon.news,"curated; verified 2026-10-19: homepage title 'MyLondon - The latest London news, sport, entertainment and more' matches 'MyLondon'"
+Irish Mirror,irishmirror.ie,"curated; verified 2026-10-19: homepage title 'Irish Mirror: the latest news, showbiz, football and sport' matches 'Irish Mirror'"
+Reuters News,reuters.com,curated from knowledge; title check not possible (RobotsDisallowed)
+Chronicle Live,chroniclelive.co.uk,"curated; verified 2026-10-19: homepage title 'Chronicle Live: Number one for news, opinion, sport & celebrity news' matches 'Chronicle'"
+Screenrant,screenrant.com,"curated; verified 2026-10-19: homepage title 'ScreenRant: Movie News, Movie Reviews, Movie Trailers, TV News' matches 'Screen Rant'"
+Herald Scotland,heraldscotland.com,"curated; verified 2026-10-19: homepage title 'Scotland News, Politics, Sport, Events and Comment - The Herald' matches 'Herald'"
+Financial Times,ft.com,curated from knowledge; title check not possible (HTTP 403)
+Indiatimes,indiatimes.com,"curated; verified 2026-10-19: homepage title 'Indiatimes: Latest in Lifestyle, Health, Fashion, and Wellness' matches 'India Times'"
+IGN,ign.com,"curated; verified 2026-10-19: homepage title 'Video Game News, Reviews, and Walkthroughs - IGN' matches 'IGN'"
+TechRadar,techradar.com,curated; verified 2026-10-19: homepage title 'TechRadar | the technology experts' matches 'TechRadar'
+The Scotsman,scotsman.com,curated from knowledge; title check not possible (HTTP 403)
+LBC,lbc.co.uk,curated; verified 2026-10-19: homepage title 'Latest Breaking UK and World News & Opinion | LBC' matches 'LBC'

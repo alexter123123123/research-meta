@@ -1,0 +1,11 @@
+{
+ "url": "https://healthline.com/",
+ "final_url": "https://www.healthline.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:55Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "date": "Mon, 19 Oct 2026 17:59:55 GMT"
+ },
+ "sha256": "c8f09f61fa7ff1dcf134d2322b21694e93ac96a9a6b6adbdaeacd339b61e3f3b"
+}

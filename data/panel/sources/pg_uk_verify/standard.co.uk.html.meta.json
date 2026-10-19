@@ -1,0 +1,11 @@
+{
+ "url": "https://standard.co.uk/",
+ "final_url": "https://www.standard.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:06Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 17:59:06 GMT",
+  "content-type": "text/html; charset=utf-8"
+ },
+ "sha256": "a4158c964bcf98e493bbc289619cfa8cfe5131238ac312143150f4c5df9e0441"
+}

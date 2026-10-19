@@ -1,0 +1,13 @@
+{
+ "url": "https://heraldscotland.com/",
+ "final_url": "https://www.heraldscotland.com",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:11Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:00:11 GMT",
+  "content-type": "text/html; charset=UTF-8",
+  "etag": "\"4182e891dbe30213145c5e7a304d119f\"",
+  "last-modified": "Mon, 19 Oct 2026 17:59:13 GMT"
+ },
+ "sha256": "5250c9f81a1098e324dfb7538f9bdc0a27a921918bc992f9625616b6e06e59b6"
+}

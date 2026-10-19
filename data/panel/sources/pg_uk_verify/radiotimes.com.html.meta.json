@@ -1,0 +1,12 @@
+{
+ "url": "https://radiotimes.com/",
+ "final_url": "https://www.radiotimes.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:36Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "bea8e50eb95f8467b39e572d2eb7b60bad36c332",
+  "date": "Mon, 19 Oct 2026 17:59:36 GMT"
+ },
+ "sha256": "4a1ab0f1b1ebebc3b2e4cfaa4da65c504c6c6cbb85aede2c3027341b603fdd99"
+}

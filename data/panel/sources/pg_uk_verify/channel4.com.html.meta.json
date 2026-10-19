@@ -1,0 +1,12 @@
+{
+ "url": "https://channel4.com/",
+ "final_url": "https://www.channel4.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:26Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "W/\"2888-HRz3CcUxyTBxZWPrxgVeMuuVL7w\"",
+  "date": "Mon, 19 Oct 2026 17:59:26 GMT"
+ },
+ "sha256": "2d339f51ab7f30cf16079e7e2ee27e9295d567595f02e83aaa436ec0de987ff5"
+}

@@ -1,0 +1,12 @@
+{
+ "url": "https://cosmopolitan.com/",
+ "final_url": "https://www.cosmopolitan.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:48Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "\"75f0ujcem1evym\"",
+  "date": "Mon, 19 Oct 2026 17:59:48 GMT"
+ },
+ "sha256": "960ec588f67afda0c2662da6e6a679f74b422299ecf3eb4686bcc7c4c75acf09"
+}

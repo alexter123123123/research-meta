@@ -1,0 +1,29 @@
+# Tier B sample-frame query (SPEC §4.2)
+# run_at (UTC): 2026-10-19T18:00:43Z
+# endpoint: https://qlever.dev/api/wikidata (QLever public Wikidata mirror), GET, Accept: application/sparql-results+json
+# Why not query.wikidata.org: its robots.txt has 'User-agent: *  Disallow: /sparql'
+#   (checked at build time: disallowed=False); our
+#   politeness rules require obeying robots.txt, so the identical graph pattern is run on QLever.
+#   QLever evaluates the full wdt:P31/wdt:P279* closure in one query; no splitting/paging needed.
+#   Labels: rdfs:label filtered to English (QLever has no wikibase:label SERVICE).
+# mirror index: {"name-index": "Complete Wikidata, TTL from https://dumps.wikimedia.org/wikidatawiki/entities (latest-all.ttl.bz2 from 10.08.2026 munged, latest-lexemes.ttl.bz2 from 07.08.2026), updated LIVE", "git-hash-index": "d974266", "git-hash-server": "d974266", "num-triples-normal": 17839434022, "name-text-index": ""}
+# result: 5102 rows / 3043 items; sha256 e6582b76bf6f91b3a0de3d12a1bb05c9e79551a95e5f8bfbbe1a8f48617e78e8
+# timestamp written: 2026-10-19T18:00:43Z
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?item ?itemLabel ?cls ?country ?website ?owner ?ownerLabel ?ownerParentLabel ?parent ?parentLabel WHERE {
+  VALUES ?cls { wd:Q11032 wd:Q1153191 wd:Q1193236 }   # newspaper, online newspaper, news website
+  VALUES ?country { wd:Q30 wd:Q145 }                  # United States, United Kingdom
+  ?item wdt:P31/wdt:P279* ?cls .
+  ?item wdt:P17 ?country .
+  ?item wdt:P856 ?website .
+  FILTER NOT EXISTS { ?item wdt:P576 ?dissolved }
+  OPTIONAL { ?item rdfs:label ?itemLabel . FILTER(LANG(?itemLabel) = "en") }
+  OPTIONAL { ?item wdt:P127 ?owner .
+             OPTIONAL { ?owner rdfs:label ?ownerLabel . FILTER(LANG(?ownerLabel) = "en") }
+             OPTIONAL { ?owner wdt:P749 ?ownerParent .
+                        ?ownerParent rdfs:label ?ownerParentLabel . FILTER(LANG(?ownerParentLabel) = "en") } }
+  OPTIONAL { ?item wdt:P749 ?parent .
+             OPTIONAL { ?parent rdfs:label ?parentLabel . FILTER(LANG(?parentLabel) = "en") } }
+}

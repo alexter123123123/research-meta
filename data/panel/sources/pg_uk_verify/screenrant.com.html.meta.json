@@ -1,0 +1,11 @@
+{
+ "url": "https://screenrant.com/",
+ "final_url": "https://screenrant.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:08Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:00:08 GMT",
+  "content-type": "text/html; charset=UTF-8"
+ },
+ "sha256": "cfca4921aacea4845119125a197b2430c6939141ca2aec2d5edc9139b9bb2e38"
+}

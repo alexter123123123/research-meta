@@ -1,0 +1,11 @@
+{
+ "url": "https://dailystar.co.uk/",
+ "final_url": "https://www.dailystar.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:09Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "date": "Mon, 19 Oct 2026 17:59:09 GMT"
+ },
+ "sha256": "ea99857ca0f8489cf367364043a1103b4c028816167e981b34fe791bb34e85f9"
+}

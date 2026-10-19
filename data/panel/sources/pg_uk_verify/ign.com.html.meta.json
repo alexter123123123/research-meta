@@ -1,0 +1,12 @@
+{
+ "url": "https://ign.com/",
+ "final_url": "https://www.ign.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:18Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "\"nkzcb57i1r6x6q\"",
+  "date": "Mon, 19 Oct 2026 18:00:18 GMT"
+ },
+ "sha256": "21978ca97d6c443579dd56617cd943db5cc6e7aee989bb3457b150f264ddbe5d"
+}

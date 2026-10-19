@@ -1,0 +1,12 @@
+{
+ "url": "https://hellomagazine.com/",
+ "final_url": "https://www.hellomagazine.com/us/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:28Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "W/\"cgcsblqjnvb74k\"",
+  "date": "Mon, 19 Oct 2026 17:59:28 GMT"
+ },
+ "sha256": "a40214d01cb5ffba09aaca08eafbc968dcc76d13f2faa71096ed763d9e0c196c"
+}

@@ -1,0 +1,13 @@
+{
+ "url": "https://oxfordmail.co.uk/",
+ "final_url": "https://www.oxfordmail.co.uk",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:23Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 17:59:23 GMT",
+  "content-type": "text/html; charset=UTF-8",
+  "etag": "\"20af60ed38568f368273f56640b16345\"",
+  "last-modified": "Mon, 19 Oct 2026 17:57:50 GMT"
+ },
+ "sha256": "95362c8f4000732e9d62bb7ea75b1f445b40176c83d95a7ced0c390e68d82e53"
+}

@@ -1,0 +1,19 @@
+{
+    "git-hash-index": "d974266",
+    "git-hash-server": "d974266",
+    "name-index": "Complete Wikidata, TTL from https://dumps.wikimedia.org/wikidatawiki/entities (latest-all.ttl.bz2 from 10.08.2026 munged, latest-lexemes.ttl.bz2 from 07.08.2026), updated LIVE",
+    "name-text-index": "",
+    "num-entity-occurrences": 0,
+    "num-objects-internal": 0,
+    "num-objects-normal": 3865849914,
+    "num-permutations": 6,
+    "num-predicates-internal": 4097344,
+    "num-predicates-normal": 66439,
+    "num-subjects-internal": 0,
+    "num-subjects-normal": 2266654010,
+    "num-text-records": 0,
+    "num-triples-internal": 7801587333,
+    "num-triples-normal": 17839434022,
+    "num-word-occurrences": 0,
+    "version-server": "latest-master-60-gd9742662a"
+}

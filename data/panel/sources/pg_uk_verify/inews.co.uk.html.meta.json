@@ -1,0 +1,11 @@
+{
+ "url": "https://inews.co.uk/",
+ "final_url": "https://inews.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:21Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 17:59:21 GMT",
+  "content-type": "text/html; charset=UTF-8"
+ },
+ "sha256": "ab05aea05f102bef1379201852a6abe03269ad05aba108ad805e4df4fdc2a240"
+}

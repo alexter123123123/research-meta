@@ -1,0 +1,11 @@
+{
+ "url": "https://forbes.com/",
+ "final_url": "https://www.forbes.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:58Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "date": "Mon, 19 Oct 2026 17:59:58 GMT"
+ },
+ "sha256": "6e800449dceb2a7addb1b076aa040989aaa109f9df537e660e0f0175ecac5b59"
+}

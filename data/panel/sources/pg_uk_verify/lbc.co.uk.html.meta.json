@@ -1,0 +1,11 @@
+{
+ "url": "https://lbc.co.uk/",
+ "final_url": "https://www.lbc.co.uk/",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:25Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:00:25 GMT",
+  "content-type": "text/html"
+ },
+ "sha256": "c702aabd4402c864bcbb4112e9321453f9522409eb635e212bed6391a9d395be"
+}

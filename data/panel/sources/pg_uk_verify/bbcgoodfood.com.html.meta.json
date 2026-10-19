@@ -1,0 +1,12 @@
+{
+ "url": "https://bbcgoodfood.com/",
+ "final_url": "https://www.bbcgoodfood.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:02Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "303805eee45b9bf39700209555bfdaa2986fc526",
+  "date": "Mon, 19 Oct 2026 17:59:02 GMT"
+ },
+ "sha256": "2d4eb2c6eeaad03d1ddeaf179c46c12c88068bdd3d164914b303acddbd47099c"
+}

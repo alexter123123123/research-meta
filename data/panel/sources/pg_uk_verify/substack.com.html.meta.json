@@ -1,0 +1,11 @@
+{
+ "url": "https://substack.com/",
+ "final_url": "https://substack.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T17:59:53Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 17:59:53 GMT",
+  "content-type": "text/html; charset=utf-8"
+ },
+ "sha256": "1f7ad74cec6c33103d9e9fad1a5460932bb29450a43a45108215d5c8fb3902f5"
+}

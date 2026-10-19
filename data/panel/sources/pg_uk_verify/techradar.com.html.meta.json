@@ -1,0 +1,12 @@
+{
+ "url": "https://techradar.com/",
+ "final_url": "https://www.techradar.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:20Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "last-modified": "Mon, 19 Oct 2026 17:59:10 GMT",
+  "date": "Mon, 19 Oct 2026 18:00:20 GMT"
+ },
+ "sha256": "159811bf87b28b052353d44deedafd1383748ee3741c8a41d4e6e29649f839fc"
+}

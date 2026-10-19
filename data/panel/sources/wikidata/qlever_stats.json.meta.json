@@ -1,0 +1,11 @@
+{
+ "url": "https://qlever.dev/api/wikidata?cmd=stats",
+ "final_url": "https://qlever.dev/api/wikidata?cmd=stats",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:43Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:00:43 GMT",
+  "content-type": "application/json"
+ },
+ "sha256": "506fde092d0a26ca7e832c92149db1f82a64b2faab58979d1717a1a9153bae7f"
+}

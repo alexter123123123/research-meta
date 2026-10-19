@@ -1,0 +1,12 @@
+{
+ "url": "https://indiatimes.com/",
+ "final_url": "https://www.indiatimes.com/",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:00:15Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "etag": "W/\"1f9ea-MTaKN9Y+46g1mSj4M4U7ZM+jyoI\"",
+  "date": "Mon, 19 Oct 2026 18:00:15 GMT"
+ },
+ "sha256": "872f4218943fdd178601b423d65b68d77d017a24222fef058322b689375bce6e"
+}
