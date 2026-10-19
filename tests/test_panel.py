@@ -190,3 +190,26 @@ def test_sampler_no_sampling_below_target():
     country, owner = {"a.com": "US", "b.com": "GB"}, {"a.com": "X", "b.com": "Y"}
     res = stratified_sample(country, owner, n=1400, seed=1)
     assert res.selected == ["a.com", "b.com"] and not res.sampled
+
+
+# ---------------------------------------------------------------- liveness drop rule
+def test_liveness_definitive_vs_transient():
+    from mcs.panel.liveness import is_definitive_failure, is_transient_failure
+    dead = [
+        {"ok": False, "liveness_method": "dns", "error": "dns: [Errno -2] Name or service not known"},
+        {"ok": False, "liveness_method": "dns", "error": "dns: [Errno -5] No address associated with hostname"},
+        {"ok": False, "liveness_method": "homepage", "status": 404, "error": "404 at root"},
+        {"ok": False, "liveness_method": "unreachable",
+         "error": "https robots: ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed"},
+    ]
+    transient = [
+        {"ok": False, "liveness_method": "unreachable", "error": "https robots: PoolTimeout: ; http robots: PoolTimeout: "},
+        {"ok": False, "liveness_method": "error", "error": "dns: [Errno -3] Temporary failure in name resolution"},
+        {"ok": False, "liveness_method": "unreachable", "error": "https robots: ReadTimeout: ; http robots: ConnectTimeout: "},
+        {"ok": False, "liveness_method": "unreachable", "error": "https robots: ConnectError: ; http robots: ConnectError: "},
+    ]
+    for r in dead:
+        assert is_definitive_failure(r) and not is_transient_failure(r), r
+    for r in transient:
+        assert is_transient_failure(r) and not is_definitive_failure(r), r
+    assert not is_transient_failure({"ok": True, "liveness_method": "homepage"})

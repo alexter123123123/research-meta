@@ -210,18 +210,30 @@ def build_panel(config_path: str = "config/study.yaml", liveness: bool = True) -
     meta["tier_b_candidates_pre_liveness"] = len(b_domains)
     live: dict[str, dict] = {}
     if liveness:
-        from mcs.panel.liveness import check_domains
-        print(f"[panel] liveness for {len(b_domains)} Tier B candidates", flush=True)
-        live = check_domains(b_domains, ua, rl)
-        if any(r.get("liveness_method") == "error" for r in live.values()):
-            print("[panel] liveness: second pass for inconclusive domains", flush=True)
-            live = check_domains(b_domains, ua, rl)
-        inconclusive = [d for d in b_domains if live[d].get("liveness_method") == "error"]
-        for d in inconclusive:  # not proven dead (spec drops only DNS failure / 404): keep
-            live[d] = dict(live[d], ok=True, error="inconclusive (kept): " + live[d].get("error", ""))
+        from mcs.panel.liveness import check_domains, is_transient_failure, recheck_transient
+        print(f"[panel] liveness pass 1 for {len(b_domains)} Tier B candidates", flush=True)
+        pass1 = check_domains(b_domains, ua, rl)
+        transient = [d for d in b_domains if is_transient_failure(pass1[d])]
+        print(f"[panel] liveness pass 2 (concurrency 5) for {len(transient)} transient failures", flush=True)
+        pass2 = recheck_transient(transient, ua, rl, concurrency=5) if transient else {}
+        live = {}
+        unverified = []
+        for d in b_domains:
+            rec = dict(pass2.get(d, pass1[d]))
+            rec["pass"] = 2 if d in pass2 else 1
+            rec["pass1_method"] = pass1[d].get("liveness_method")
+            rec["pass1_error"] = (pass1[d].get("error") or "")[:200] if d in pass2 else ""
+            if d in pass2 and is_transient_failure(rec):
+                # still only transient/local failures: keep; T2 (GitHub Actions) classifies them
+                rec.update(ok=True, liveness_method="unverified",
+                           error="unverified after 2 passes (transient/local failures only): "
+                                 + (rec.get("error") or ""))
+                unverified.append(d)
+            live[d] = rec
         with (OUT / "liveness.csv").open("w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=["domain", "ok", "final_url", "status", "error",
-                                               "liveness_method", "robots_status", "checked_at"],
+                                               "liveness_method", "robots_status", "checked_at",
+                                               "pass", "pass1_method", "pass1_error"],
                                extrasaction="ignore")
             w.writeheader()
             for d in b_domains:
@@ -231,13 +243,20 @@ def build_panel(config_path: str = "config/study.yaml", liveness: bool = True) -
         dropped = [d for d in b_domains if not live[d].get("ok")]
         for d in dropped:
             r = live[d]
-            why = {"dns": "does not resolve", "unreachable": "no HTTP response (https/http)",
+            why = {"dns": "does not resolve (NXDOMAIN/no address)",
+                   "unreachable": "TLS certificate failure (https), no usable http",
                    "homepage": "404 at root"}.get(r.get("liveness_method"), r.get("liveness_method"))
             exclusions.append({"domain": d, "source_list": cands[d]["source_list"],
                                "reason": f"liveness: {why} ({r.get('error', '')[:120]})"})
         b_domains = [d for d in b_domains if live[d].get("ok")]
         meta["liveness"] = {"checked": len(live), "dropped": len(dropped),
-                            "inconclusive_kept": len(inconclusive),
+                            "pass2_rechecked": len(transient),
+                            "pass2_recovered": sum(1 for d in pass2 if pass2[d].get("ok")),
+                            "unverified_kept": len(unverified),
+                            "drop_rule": "drop only definitive outcomes: NXDOMAIN/no address, 404 at root, "
+                                         "persistent TLS certificate failure; transient failures "
+                                         "(pool/connect/read timeouts, temporary DNS, proxy errors) are "
+                                         "rechecked at concurrency 5 and kept as 'unverified' if still failing",
                             "by_method": dict(Counter(r.get("liveness_method") for r in live.values())),
                             "dropped_by_method": dict(Counter(live[d].get("liveness_method") for d in dropped))}
     else:

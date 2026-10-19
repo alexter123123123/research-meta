@@ -8,7 +8,7 @@
 #   Labels: rdfs:label filtered to English (QLever has no wikibase:label SERVICE).
 # mirror index: {"name-index": "Complete Wikidata, TTL from https://dumps.wikimedia.org/wikidatawiki/entities (latest-all.ttl.bz2 from 10.08.2026 munged, latest-lexemes.ttl.bz2 from 07.08.2026), updated LIVE", "git-hash-index": "d974266", "git-hash-server": "d974266", "num-triples-normal": 17839434022, "name-text-index": ""}
 # result: 5102 rows / 3043 items; sha256 e6582b76bf6f91b3a0de3d12a1bb05c9e79551a95e5f8bfbbe1a8f48617e78e8
-# timestamp written: 2026-10-19T18:05:16Z
+# timestamp written: 2026-10-19T18:12:12Z
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>

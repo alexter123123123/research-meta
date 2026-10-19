@@ -18,6 +18,7 @@ so reruns do not refetch.
 from __future__ import annotations
 
 import asyncio
+import contextvars
 import json
 import socket
 import time
@@ -31,21 +32,56 @@ from mcs.panel.http import SOURCES, AsyncHostPacer, _no_cookie_jar, robots_from_
 CACHE = SOURCES / "liveness" / "results.jsonl"
 
 
+_CLIENT: contextvars.ContextVar[httpx.AsyncClient] = contextvars.ContextVar("liveness_client")
+
+# Outcomes that prove a domain dead; everything else that failed is transient/local.
+DEFINITIVE_MARKERS = ("Name or service not known", "No address associated with hostname",
+                      "404 at root", "CERTIFICATE_VERIFY_FAILED", "certificate verify failed")
+
+
+def is_definitive_failure(rec: dict) -> bool:
+    if rec.get("ok"):
+        return False
+    if rec.get("liveness_method") == "dns":
+        return any(m in rec.get("error", "") for m in DEFINITIVE_MARKERS[:2])
+    if rec.get("liveness_method") == "homepage" and rec.get("status") == 404:
+        return True
+    if rec.get("liveness_method") == "unreachable":
+        # a TLS certificate failure on https (with http also failing) is definitive
+        return "CERTIFICATE_VERIFY_FAILED" in rec.get("error", "") or \
+            "certificate verify failed" in rec.get("error", "")
+    return False
+
+
+def is_transient_failure(rec: dict) -> bool:
+    return not rec.get("ok") and not is_definitive_failure(rec)
+
+
 class Checker:
-    def __init__(self, user_agent: str, rl: dict):
+    def __init__(self, user_agent: str, rl: dict, concurrency: int | None = None,
+                 pool_timeout: float = 30.0):
         self.ua = user_agent
         self.token = ua_token(user_agent)
-        self.pacer = AsyncHostPacer(float(rl.get("per_host_min_interval_s", 2.0)),
-                                    int(rl.get("global_concurrency", 25)))
+        self.concurrency = int(concurrency or rl.get("global_concurrency", 25))
+        self.pacer = AsyncHostPacer(float(rl.get("per_host_min_interval_s", 2.0)), self.concurrency)
         self.max_redirects = int(rl.get("max_redirects", 5))
-        self.client = httpx.AsyncClient(
-            headers={"User-Agent": user_agent},
-            timeout=httpx.Timeout(float(rl.get("read_timeout_s", 20)),
-                                  connect=float(rl.get("connect_timeout_s", 10))),
-            follow_redirects=False, cookies=_no_cookie_jar(),
-            limits=httpx.Limits(max_connections=50, max_keepalive_connections=0),
-        )
+        self.timeout = httpx.Timeout(float(rl.get("read_timeout_s", 20)),
+                                     connect=float(rl.get("connect_timeout_s", 10)),
+                                     pool=pool_timeout)
         self.robots_cache: dict[str, tuple] = {}  # scheme://host -> (RobotsResult, status)
+
+    def new_client(self) -> httpx.AsyncClient:
+        """A fresh client per domain check: no pool shared across domains (avoids the pool
+        saturation / PoolTimeout seen with one long-lived client behind the proxy)."""
+        return httpx.AsyncClient(
+            headers={"User-Agent": self.ua}, timeout=self.timeout, follow_redirects=False,
+            cookies=_no_cookie_jar(),
+            limits=httpx.Limits(max_connections=4, max_keepalive_connections=2),
+        )
+
+    @property
+    def client(self) -> httpx.AsyncClient:
+        return _CLIENT.get()
 
     async def _get(self, url: str) -> httpx.Response:
         host = urlsplit(url).hostname or ""
@@ -107,6 +143,14 @@ class Checker:
         return None, err
 
     async def check(self, domain: str) -> dict:
+        async with self.new_client() as client:
+            tok = _CLIENT.set(client)
+            try:
+                return await self._check(domain)
+            finally:
+                _CLIENT.reset(tok)
+
+    async def _check(self, domain: str) -> dict:
         rec = {"domain": domain, "ok": False, "final_url": "", "status": None, "error": "",
                "liveness_method": "", "robots_status": None, "robots_url": "",
                "checked_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
@@ -163,13 +207,13 @@ class Checker:
         return rec
 
     async def aclose(self):
-        await self.client.aclose()
+        pass
 
 
-def load_cache() -> dict[str, dict]:
+def load_cache(path: Path = CACHE) -> dict[str, dict]:
     out = {}
-    if CACHE.exists():
-        for line in CACHE.read_text().splitlines():
+    if path.exists():
+        for line in path.read_text().splitlines():
             if line.strip():
                 d = json.loads(line)
                 if d.get("liveness_method") != "error":  # transient checker errors are retried
@@ -177,11 +221,12 @@ def load_cache() -> dict[str, dict]:
     return out
 
 
-async def _run(domains: list[str], user_agent: str, rl: dict, progress_every: int = 100) -> dict[str, dict]:
-    cache = load_cache()
+async def _run(domains: list[str], user_agent: str, rl: dict, progress_every: int = 100,
+               cache_path: Path = CACHE, concurrency: int | None = None) -> dict[str, dict]:
+    cache = load_cache(cache_path)
     todo = [d for d in domains if d not in cache]
-    CACHE.parent.mkdir(parents=True, exist_ok=True)
-    chk = Checker(user_agent, rl)
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    chk = Checker(user_agent, rl, concurrency=concurrency)
     done = 0
     t0 = time.time()
     q: asyncio.Queue = asyncio.Queue()
@@ -190,7 +235,7 @@ async def _run(domains: list[str], user_agent: str, rl: dict, progress_every: in
 
     async def worker():
         nonlocal done
-        with CACHE.open("a") as fh:
+        with cache_path.open("a") as fh:
             while True:
                 try:
                     d = q.get_nowait()
@@ -210,7 +255,7 @@ async def _run(domains: list[str], user_agent: str, rl: dict, progress_every: in
                     print(f"[liveness] {done}/{len(todo)} in {time.time() - t0:.0f}s", flush=True)
 
     # Distinct domains are distinct hosts; the pacer still serialises per host.
-    n_workers = int(rl.get("global_concurrency", 25))
+    n_workers = chk.concurrency
     try:
         await asyncio.gather(*(worker() for _ in range(n_workers)))
     finally:
@@ -218,5 +263,14 @@ async def _run(domains: list[str], user_agent: str, rl: dict, progress_every: in
     return {d: cache[d] for d in domains}
 
 
+CACHE_PASS2 = SOURCES / "liveness" / "results_pass2.jsonl"
+
+
 def check_domains(domains: list[str], user_agent: str, rl: dict) -> dict[str, dict]:
     return asyncio.run(_run(domains, user_agent, rl))
+
+
+def recheck_transient(domains: list[str], user_agent: str, rl: dict, concurrency: int = 5) -> dict[str, dict]:
+    """Second pass for transient failures: low concurrency, fresh clients, generous pool timeout."""
+    return asyncio.run(_run(domains, user_agent, rl, progress_every=25, cache_path=CACHE_PASS2,
+                            concurrency=concurrency))
