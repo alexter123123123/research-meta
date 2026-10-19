@@ -1,0 +1,13 @@
+name: ci
+on:
+  push:
+    paths: ["src/**", "tests/**", "pyproject.toml", ".github/workflows/ci.yml"]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pytest -q

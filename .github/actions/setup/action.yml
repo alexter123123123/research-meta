@@ -1,0 +1,15 @@
+name: setup
+description: Python + package install + git identity
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: pip
+    - shell: bash
+      run: pip install -e ".[dev]"
+    - shell: bash
+      run: |
+        git config user.name "mcs-bot"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

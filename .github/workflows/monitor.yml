@@ -1,0 +1,36 @@
+# Daily monitor (spec §5, §13): 06:00 UTC, 21 Oct -> 6 Nov 2026. T3 = 29 Oct, T4 = 6 Nov.
+name: monitor
+on:
+  schedule:
+    - cron: "0 6 * 10,11 *"
+  workflow_dispatch:
+    inputs:
+      label: { description: "Snapshot label override (e.g. T3)", default: "" }
+concurrency: { group: live-fetch, cancel-in-progress: false }
+permissions: { contents: write, pages: write, id-token: write }
+jobs:
+  monitor:
+    environment: { name: github-pages }
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Date window guard
+        id: guard
+        run: |
+          d=$(date -u +%Y%m%d)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || { [ "$d" -ge 20261021 ] && [ "$d" -le 20261106 ]; }; then
+            echo "run=true" >> "$GITHUB_OUTPUT"; else echo "run=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.guard.outputs.run == 'true'
+        uses: actions/checkout@v4
+      - if: steps.guard.outputs.run == 'true'
+        uses: ./.github/actions/setup
+      - if: steps.guard.outputs.run == 'true'
+        name: Monitor
+        run: mcs monitor --label "${{ inputs.label }}"
+      - if: always() && steps.guard.outputs.run == 'true'
+        run: 'scripts/commit_data.sh "data: daily monitor $(date -u +%F)"'
+      - if: success() && steps.guard.outputs.run == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with: { path: site }
+      - if: success() && steps.guard.outputs.run == 'true'
+        uses: actions/deploy-pages@v4

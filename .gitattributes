@@ -1,0 +1,5 @@
+# append-only logs written by concurrent Actions jobs: merge by union
+data/manifest.jsonl merge=union
+data/raw/fetches/*.jsonl merge=union
+*.parquet binary
+*.gz binary

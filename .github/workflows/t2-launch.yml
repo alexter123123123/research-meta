@@ -1,0 +1,43 @@
+# T2 live snapshot (spec §5): Tue 20 Oct 2026 06:00 UTC. Hosts, robots.txt, ads.txt for
+# news + control; homepage (raw + rendered) and DNS TXT for news. Then parse + signals.
+name: t2-launch
+on:
+  schedule:
+    - cron: "0 6 20 10 *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Limit domains (0 = all; use e.g. 20 for a dry run)"
+        default: "0"
+concurrency: { group: live-fetch, cancel-in-progress: false }
+permissions: { contents: write }
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Fetch live T2 (robots, ads.txt, homepages, DNS)
+        run: mcs fetch-live --label T2 --with-signals --limit ${{ inputs.limit || 0 }}
+      - name: Commit raw evidence
+        if: always()
+        run: 'scripts/commit_data.sh "data: T2 live fetch"'
+      - name: Render homepages (headless Chromium)
+        run: |
+          pip install playwright && python -m playwright install --with-deps chromium
+          mcs render --limit ${{ inputs.limit || 0 }}
+      - name: Parse + verdicts + signals
+        run: |
+          mcs parse
+          mcs signals || echo "signals step failed (see log)"
+      - name: Commit
+        if: always()
+        run: 'scripts/commit_data.sh "data: T2 render, parse, signals"'
+      - name: Upload homepage HTML (not stored in git)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepages-T2
+          path: data/raw/homepage
+          retention-days: 90

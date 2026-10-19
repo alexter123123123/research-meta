@@ -1,0 +1,49 @@
+# Wayback baselines + version history (spec §6.5, §6.6, §8.3). Single connection, <=1 req/s.
+# Jobs run sequentially (never in parallel) to stay polite to web.archive.org.
+# Resumable: re-run the workflow to continue where a timed-out job stopped.
+name: wayback
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [t2-launch]
+    types: [completed]
+concurrency: { group: wayback, cancel-in-progress: false }
+permissions: { contents: write }
+jobs:
+  news-history:
+    # after a scheduled (full) T2 run, or on manual dispatch; never after a dry run
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.event == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: mcs fetch-wayback-history --from 2026-09-01 --panel news --deadline-min 320
+      - if: always()
+        run: 'scripts/commit_data.sh "data: wayback history (news)"'
+  homepages-and-docs:
+    needs: news-history
+    if: always() && needs.news-history.result != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: ./.github/actions/setup
+      - run: git pull -q --rebase origin ${{ github.ref_name }}
+      - run: mcs fetch-wayback-homepages
+      - run: mcs meta-docs-history
+      - if: always()
+        run: 'scripts/commit_data.sh "data: wayback homepages + Meta docs history"'
+  control-history:
+    needs: homepages-and-docs
+    if: always() && needs.homepages-and-docs.result != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: git pull -q --rebase origin ${{ github.ref_name }}
+      - run: mcs fetch-wayback-history --from 2026-09-01 --panel control --deadline-min 320
+      - if: always()
+        run: 'scripts/commit_data.sh "data: wayback history (control sample)"'
