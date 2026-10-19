@@ -24,7 +24,7 @@ jobs:
       - name: Fetch live T2 (robots, ads.txt, homepages, DNS)
         run: mcs fetch-live --label ${{ inputs.label || 'T2' }} --with-signals --limit ${{ inputs.limit || 0 }}
       - name: Commit raw evidence
-        if: always()
+        if: always() && (inputs.label || 'T2') == 'T2'
         run: 'scripts/commit_data.sh "data: T2 live fetch"'
       - name: Render homepages (headless Chromium)
         run: |
@@ -34,8 +34,12 @@ jobs:
         run: |
           mcs parse
           mcs signals || echo "signals step failed (see log)"
+          if [ "${{ inputs.label || 'T2' }}" != "T2" ]; then
+            mcs analyze --snapshot ${{ inputs.label }} && mcs report --snapshot ${{ inputs.label }} && mcs site
+            ls -la reports reports/charts site/data; head -60 reports/findings.md
+          fi
       - name: Commit
-        if: always()
+        if: always() && (inputs.label || 'T2') == 'T2'
         run: 'scripts/commit_data.sh "data: T2 render, parse, signals"'
       - name: Upload homepage HTML (not stored in git)
         if: always()
