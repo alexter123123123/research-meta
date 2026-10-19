@@ -137,7 +137,7 @@ def select_wayback_snapshot(wb: pd.DataFrame, cutoff: str, window_start: str) ->
         r = g.iloc[-1]
         meta = _wb_meta(r)
         last_ts = meta.get("last_ts") or r.wayback_ts
-        evidence = last_ts if last_ts <= c else c
+        evidence = min(last_ts, c)
         if evidence < w:
             continue
         age = (datetime.strptime(c, "%Y%m%d%H%M%S")
@@ -283,7 +283,7 @@ def parse_all(cfg: dict) -> dict:
     write_groups(df)
     v = write_verdicts(df, cfg)
     h = write_history(df)
-    dis = v[v.protego_agree == False]  # noqa: E712
+    dis = v[v.protego_agree == False]
     dis.to_csv(PROC / "parser_disagreements.csv", index=False)
     return {"fetches": len(df), "verdict_rows": len(v), "history_rows": len(h),
             "protego_disagreements": len(dis)}

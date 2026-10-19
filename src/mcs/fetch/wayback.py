@@ -240,8 +240,8 @@ async def history_for_domain(wb: Wayback, log: FetchLog, domain: str, canonical:
                 st = "UNAVAILABLE_4XX"
             else:
                 st = _status_of(str(cap.get("status")))
-        from mcs.fetch.live import classify_robots
         from mcs.fetch.direct import Response
+        from mcs.fetch.live import classify_robots
         if st == "OK" and body is not None:
             st, chal = classify_robots(Response(requested_url="", status=200, body=body,
                                                 headers={"content-type":

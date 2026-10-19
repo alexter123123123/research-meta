@@ -4,21 +4,21 @@ from __future__ import annotations
 
 import re
 
-_CF_BEGIN = re.compile(r"#\s*begin\s+cloudflare\s+managed\s+content", re.I)
-_CF_END = re.compile(r"#\s*end\s+cloudflare\s+managed\s+content", re.I)
+_CF_BEGIN = re.compile(r"#\s*begin\s+cloudflare\s+managed\s+content", re.IGNORECASE)
+_CF_END = re.compile(r"#\s*end\s+cloudflare\s+managed\s+content", re.IGNORECASE)
 
 GENERATORS = [
-    ("cloudflare", re.compile(r"cloudflare\s+managed", re.I)),
-    ("yoast", re.compile(r"yoast", re.I)),
-    ("rank_math", re.compile(r"rank\s*math", re.I)),
-    ("wordpress_vip", re.compile(r"wordpress\s*vip|wpvip", re.I)),
-    ("wordpress", re.compile(r"wp-admin|wordpress", re.I)),
-    ("arc_xp", re.compile(r"\barc\s*xp\b|arcpublishing|/pf/api/", re.I)),
-    ("brightspot", re.compile(r"brightspot", re.I)),
-    ("drupal", re.compile(r"drupal|/core/misc/|/node/add", re.I)),
-    ("blox_townnews", re.compile(r"townnews|bloxcms|/tncms/", re.I)),
-    ("gannett", re.compile(r"gannett|usatoday network", re.I)),
-    ("lee", re.compile(r"lee enterprises", re.I)),
+    ("cloudflare", re.compile(r"cloudflare\s+managed", re.IGNORECASE)),
+    ("yoast", re.compile(r"yoast", re.IGNORECASE)),
+    ("rank_math", re.compile(r"rank\s*math", re.IGNORECASE)),
+    ("wordpress_vip", re.compile(r"wordpress\s*vip|wpvip", re.IGNORECASE)),
+    ("wordpress", re.compile(r"wp-admin|wordpress", re.IGNORECASE)),
+    ("arc_xp", re.compile(r"\barc\s*xp\b|arcpublishing|/pf/api/", re.IGNORECASE)),
+    ("brightspot", re.compile(r"brightspot", re.IGNORECASE)),
+    ("drupal", re.compile(r"drupal|/core/misc/|/node/add", re.IGNORECASE)),
+    ("blox_townnews", re.compile(r"townnews|bloxcms|/tncms/", re.IGNORECASE)),
+    ("gannett", re.compile(r"gannett|usatoday network", re.IGNORECASE)),
+    ("lee", re.compile(r"lee enterprises", re.IGNORECASE)),
 ]
 
 

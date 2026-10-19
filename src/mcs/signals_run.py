@@ -12,7 +12,12 @@ from mcs.fetch.ratelimit import HostLimiter
 from mcs.fetch.store import FetchLog, FetchRecord, load_body, save_body
 from mcs.signals.adstxt import parse_ads_txt
 from mcs.signals.gtm import gtm_has_meta_pixel, gtm_url
-from mcs.signals.homepage import combine_signals, extract_homepage_signals, parse_dns_txt, write_signals
+from mcs.signals.homepage import (
+    combine_signals,
+    extract_homepage_signals,
+    parse_dns_txt,
+    write_signals,
+)
 
 
 def _latest(rows: list[dict], resource: str) -> dict[str, dict]:

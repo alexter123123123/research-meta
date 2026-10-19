@@ -7,7 +7,7 @@ import re
 
 from mcs.parse.robots import decode_body, split_lines
 
-_SITEMAP = re.compile(r"^\s*(sitemaps?|site-map)\s*:", re.I)
+_SITEMAP = re.compile(r"^\s*(sitemaps?|site-map)\s*:", re.IGNORECASE)
 
 
 def body_hash(body: bytes) -> str:

@@ -10,9 +10,9 @@ BASE_PROBES = ["/", "/news/"]
 SYNTHETIC = "/2026/10/example-article-slug/"
 MAX_ARTICLES = 3
 
-_ARTICLE = re.compile(r"/20\d\d/|/[^/]*(?:-[^/-]+){4,}[^/]*/?$|\.(?:html?|ece|amp)$", re.I)
-_EXCLUDE = re.compile(r"/(?:tag|tags|author|authors|search|live)(?:/|$)", re.I)
-_HREF = re.compile(r"""<a\b[^>]*?\bhref\s*=\s*["']([^"'#]+)""", re.I)
+_ARTICLE = re.compile(r"/20\d\d/|/[^/]*(?:-[^/-]+){4,}[^/]*/?$|\.(?:html?|ece|amp)$", re.IGNORECASE)
+_EXCLUDE = re.compile(r"/(?:tag|tags|author|authors|search|live)(?:/|$)", re.IGNORECASE)
+_HREF = re.compile(r"""<a\b[^>]*?\bhref\s*=\s*["']([^"'#]+)""", re.IGNORECASE)
 
 
 def is_article_path(path: str) -> bool:

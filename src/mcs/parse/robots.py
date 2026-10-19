@@ -29,8 +29,8 @@ OTHER_KNOWN = {
 KNOWN_FIELDS = UA_FIELDS | ALLOW_FIELDS | DISALLOW_FIELDS | SITEWIDE_FIELDS | OTHER_KNOWN
 _MAX_WORDS = max(len(f.split()) for f in KNOWN_FIELDS)
 
-_HTML_RE = re.compile(rb"^\s*(<!doctype\s+html|<html|<head|<body|<\?xml)", re.I)
-_HTML_ANY_RE = re.compile(rb"<(html|head|body|script|div|meta)\b", re.I)
+_HTML_RE = re.compile(rb"^\s*(<!doctype\s+html|<html|<head|<body|<\?xml)", re.IGNORECASE)
+_HTML_ANY_RE = re.compile(rb"<(html|head|body|script|div|meta)\b", re.IGNORECASE)
 
 
 @dataclass
@@ -236,7 +236,7 @@ def _pattern_regex(pattern: str) -> re.Pattern:
         pattern = pattern[:-1]
     parts = [re.escape(x) for x in pattern.split("*")]
     rx = ".*".join(parts)
-    return re.compile(rx + ("$" if anchored else ""), re.S)
+    return re.compile(rx + ("$" if anchored else ""), re.DOTALL)
 
 
 def rule_matches(pattern: str, path: str) -> bool:

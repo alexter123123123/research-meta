@@ -9,7 +9,7 @@ _MARKERS = re.compile(
     rb"px-captcha|_incapsula_|incapsula incident|captcha-delivery|geo\.captcha-delivery|"
     rb"datadome|perimeterx|g-recaptcha|h-captcha|hcaptcha\.com|"
     rb"access denied</title>|request unsuccessful\. incapsula|akamai.{0,40}reference #",
-    re.I,
+    re.IGNORECASE,
 )
 
 
