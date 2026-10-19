@@ -3,7 +3,7 @@ BBC,bbc.co.uk,curated; verified 2026-10-19: homepage title 'BBC - Home' matches 
 The Guardian,theguardian.com,"curated; verified 2026-10-19: homepage title 'Latest news, sport and opinion from the Guardian' matches 'Guardian'"
 The Sun,thesun.co.uk,curated from knowledge; title check not possible (RobotsDisallowed)
 Mirror,mirror.co.uk,curated; verified 2026-10-19: homepage title 'The Mirror: The Heart of Britain' matches 'Mirror'
-The Independent,independent.co.uk,curated from knowledge; title check not possible (HTTP 429)
+The Independent,independent.co.uk,"curated; verified 2026-10-19: homepage title 'The Independent | Latest news and features from US, UK and worldwide' matches 'Independent'"
 Sky News,news.sky.com,curated from knowledge; title check not possible (HTTP 403)
 Yahoo!,uk.yahoo.com,curated from knowledge; title check not possible (HTTP 429)
 Daily Express,express.co.uk,"curated; verified 2026-10-19: homepage title 'Latest UK and World News, Sport and Comment | Express.co.uk' matches 'Express'"
@@ -29,7 +29,7 @@ Good Housekeeping,goodhousekeeping.com,"curated; verified 2026-10-19: homepage t
 Daily Record,dailyrecord.co.uk,"curated; verified 2026-10-19: homepage title 'Daily Record & Sunday Mail - Scottish News, Sport, Politics and Celeb ' matches 'Daily Record'"
 Radio Times,radiotimes.com,"curated; verified 2026-10-19: homepage title 'Radio Times | TV, film and entertainment news | Radio Times' matches 'Radio Times'"
 GB News,gbnews.com,curated; verified 2026-10-19: homepage title 'Home | GB News' matches 'GB News'
-Examiner Live,examinerlive.co.uk,"curated; WARNING homepage title 'YorkshireLive - Yorkshire News, Sport, Events & more' / site 'Yorkshire Live' does not contain 'Examiner'"
+Examiner Live,examinerlive.co.uk,"curated; verified 2026-10-19: homepage title 'YorkshireLive - Yorkshire News, Sport, Events & more' matches 'Examiner|YorkshireLive'"
 People.com,people.com,curated from knowledge; title check not possible (HTTP 402)
 Digital Spy,digitalspy.com,"curated; verified 2026-10-19: homepage title 'Digital Spy - TV, Movies and Entertainment News' matches 'Digital Spy'"
 Cosmopolitan,cosmopolitan.com,"curated; verified 2026-10-19: homepage title ""Cosmopolitan.com - The Women's Magazine for Dating Advice, Relationshi"" matches 'Cosmopolitan'"

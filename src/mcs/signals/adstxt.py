@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import re
 
-_HTML_RE = re.compile(r"<\s*(!doctype|html|head|body|script|div|meta|title)\b", re.I)
+_HTML_RE = re.compile(r"<\s*(!doctype|html|head|body|script|div|meta|title)\b", re.IGNORECASE)
 
 
 def looks_like_html(text: str) -> bool:
     """Soft-404 / challenge detection: an HTML document served instead of ads.txt."""
-    head = (text or "").lstrip("﻿ \t\r\n")[:2048]
+    head = (text or "").lstrip("\ufeff \t\r\n")[:2048]
     return bool(_HTML_RE.search(head))
 
 
@@ -23,7 +23,7 @@ def parse_ads_txt(text: str | None) -> dict:
         out["adstxt_html"] = True
         return out
     for raw in text.replace("\r\n", "\n").replace("\r", "\n").split("\n"):
-        line = raw.split("#", 1)[0].strip().lstrip("﻿")
+        line = raw.split("#", 1)[0].strip().lstrip("\ufeff")
         if not line or "," not in line:
             continue
         fields = [f.strip() for f in line.split(",")]

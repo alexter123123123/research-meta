@@ -139,6 +139,8 @@ class PoliteClient:
                                  "ts": time.time()})
                 if (r.status_code >= 500 or r.status_code == 429) and attempt < self.max_retries:
                     ra = r.headers.get("retry-after", "")
+                    if ra.isdigit() and float(ra) > 120:
+                        return r  # server asks us to stay away for long: give up, don't hammer
                     extra = float(ra) if ra.isdigit() else (2 ** attempt) * 5 + random.random()
                     attempt += 1
                     continue
@@ -180,7 +182,8 @@ class PoliteClient:
 
     # -- cached fetch -----------------------------------------------------------
     def get(self, url: str, cache_name: str, headers: dict | None = None,
-            timeout: float | None = None, check_robots: bool = True) -> tuple[bytes, dict]:
+            timeout: float | None = None, check_robots: bool = True,
+            cache_errors: bool = False) -> tuple[bytes, dict]:
         """Return (body, meta) from cache or network. Raises RobotsDisallowed / httpx errors."""
         path = SOURCES / cache_name
         meta_path = path.with_name(path.name + ".meta.json")
@@ -195,7 +198,7 @@ class PoliteClient:
                             if k.lower() in ("content-type", "last-modified", "etag",
                                              "content-disposition", "date")},
                 "sha256": hashlib.sha256(r.content).hexdigest()}
-        if r.status_code == 200:
+        if r.status_code == 200 or cache_errors:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(r.content)
             meta_path.write_text(json.dumps(meta, indent=1))

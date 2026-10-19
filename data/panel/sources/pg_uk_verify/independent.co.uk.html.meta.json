@@ -1,0 +1,12 @@
+{
+ "url": "https://independent.co.uk/",
+ "final_url": "https://www.independent.co.uk/us",
+ "status": 200,
+ "fetched_at": "2026-10-19T18:01:48Z",
+ "headers": {
+  "content-type": "text/html; charset=utf-8",
+  "date": "Mon, 19 Oct 2026 18:01:48 GMT",
+  "etag": "W/\"45ecd-01FuyZ9Vz4Kbl7I0XWJhlfFgQNU-gzip\""
+ },
+ "sha256": "c513a864a1d7aa1b99a51a76eeffd574325eaa3281a428c1d162bb112dfdb3d8"
+}

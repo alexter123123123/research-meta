@@ -80,7 +80,7 @@ UK_BRAND_MAP: dict[str, tuple[str, str]] = {
     "Daily Record": ("dailyrecord.co.uk", "Daily Record"),
     "Radio Times": ("radiotimes.com", "Radio Times"),
     "GB News": ("gbnews.com", "GB News"),
-    "Examiner Live": ("examinerlive.co.uk", "Examiner"),
+    "Examiner Live": ("examinerlive.co.uk", "Examiner|YorkshireLive"),
     "People.com": ("people.com", "People"),
     "Digital Spy": ("digitalspy.com", "Digital Spy"),
     "Cosmopolitan": ("cosmopolitan.com", "Cosmopolitan"),
@@ -386,5 +386,12 @@ TIER_A_OWNERS = {
     "mensjournal.com": "Arena Group", "usnews.com": "U.S. News & World Report",
     "newsweek.com": "Newsweek Digital", "forbes.com": "Forbes Media",
     "axios.com": "Cox", "breitbart.com": "Breitbart News Network",
-    "newsmax.com": "Newsmax Media", "the-gatewaypundit.com": "independent/unknown",
+    "newsmax.com": "Newsmax Media",
+    # world list (non-US/UK)
+    "ndtv.com": "NDTV (Adani Group)", "hindustantimes.com": "HT Media", "news18.com": "Network18",
+    "indianexpress.com": "Indian Express Group", "thehindu.com": "The Hindu Group",
+    "indiatoday.in": "India Today Group", "india.com": "Zee Media", "oneindia.com": "Greynium",
+    "rediff.com": "Rediff.com India", "cbc.ca": "CBC/Radio-Canada",
+    "abc.net.au": "Australian Broadcasting Corporation", "news.com.au": "News Corp",
+    "euronews.com": "Euronews",
 }

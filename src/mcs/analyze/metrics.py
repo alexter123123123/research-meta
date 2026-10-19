@@ -197,7 +197,7 @@ def compute_metrics(snapshot: str, processed_dir: str | Path = "data/processed",
                 mw[b] = {"share_pct": 100 * weighted_share(FBs.loc[dd, b],
                                                            ranks.reindex(dd).tolist())
                          if len(dd) else None,
-                         "n": int(len(dd)), "suppressed": bool(len(dd) < min_n),
+                         "n": len(dd), "suppressed": bool(len(dd) < min_n),
                          "weight": "1/log10(tranco_rank+10); missing rank = 1e6"}
         m2["any_meta"] = _entry(NMs[meta].any(axis=1), W_det[AGENT], size, n_det, min_n)
         out["M1"][seg], out["M2"][seg], out["M3"][seg] = m1, m2, m3
@@ -369,7 +369,7 @@ def _coverage(verdicts: pd.DataFrame, segs: dict[str, set[str]], available: list
         for seg in ("all_news", "tier_A", "tier_B", "control"):
             m = v["domain"].isin(segs[seg])
             sub = v[m]
-            entry = {"n_segment": len(segs[seg]), "n_present": int(len(sub)),
+            entry = {"n_segment": len(segs[seg]), "n_present": len(sub),
                      "n_determinate": int((sub["verdict"] != INDETERMINATE).sum()),
                      "pct_present": 100 * len(sub) / len(segs[seg]) if segs[seg] else None}
             if age is not None and snap in ("T0", "T1"):
@@ -529,4 +529,4 @@ def write_domain_summary(snapshot: str, panel: pd.DataFrame, S: _Snap, signals: 
     return df
 
 
-__all__ = ["compute_metrics", "evaluate_hypotheses", "write_domain_summary", "CONTROL_SEGMENTS"]
+__all__ = ["CONTROL_SEGMENTS", "compute_metrics", "evaluate_hypotheses", "write_domain_summary"]

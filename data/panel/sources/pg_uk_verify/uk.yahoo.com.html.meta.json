@@ -1,0 +1,11 @@
+{
+ "url": "https://uk.yahoo.com/",
+ "final_url": "https://uk.yahoo.com/",
+ "status": 429,
+ "fetched_at": "2026-10-19T18:05:11Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:05:12 GMT",
+  "content-type": "text/html"
+ },
+ "sha256": "0d24c98db98d3b4a87b9626a026e7d72c99754ab6bd88211a17bc372350b7d89"
+}

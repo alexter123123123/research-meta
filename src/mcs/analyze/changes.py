@@ -217,7 +217,7 @@ def summarize_pair(changes: pd.DataFrame, from_s: str, to_s: str, domains: set[s
     c = changes[(changes["from_snapshot"] == from_s) & (changes["to_snapshot"] == to_s)
                 & changes["domain"].isin(domains)]
     dt = domain_change_table(c, from_s, to_s)
-    n = int(len(dt))
+    n = len(dt)
     meta_c = c[c["bot"].isin(meta_tokens)]
     newly = int(meta_c.groupby("domain")["newly_named"].any().sum()) if len(meta_c) else 0
     out = {
@@ -233,7 +233,7 @@ def summarize_pair(changes: pd.DataFrame, from_s: str, to_s: str, domains: set[s
     }
     for bot in meta_tokens:
         cb = c[c["bot"] == bot]
-        nb = int(len(cb))
+        nb = len(cb)
         fb_from = cb["from_verdict"] == FULL_BLOCK
         fb_to = cb["to_verdict"] == FULL_BLOCK
         b = int((fb_from & ~fb_to).sum())
@@ -274,7 +274,7 @@ def cluster_summary(changes: pd.DataFrame, verdicts_to: pd.DataFrame, panel: pd.
         ch["owner_group"] = ch["domain"].map(owners).fillna(UNKNOWN_OWNER)
         for cl, g in ch.dropna(subset=["template_cluster"]).groupby("template_cluster"):
             clusters.append({
-                "template_cluster": str(cl), "n_changed": int(len(g)),
+                "template_cluster": str(cl), "n_changed": len(g),
                 "cluster_size": int(sizes.get(cl, len(g))),
                 "owner_groups": sorted(set(g["owner_group"])),
                 "attribution": json.dumps(g["attribution"].value_counts().to_dict()),
@@ -282,7 +282,7 @@ def cluster_summary(changes: pd.DataFrame, verdicts_to: pd.DataFrame, panel: pd.
         for (cl, og), g in ch.dropna(subset=["template_cluster"]).groupby(
                 ["template_cluster", "owner_group"]):
             joins.append({"template_cluster": str(cl), "owner_group": og,
-                          "n_changed": int(len(g))})
+                          "n_changed": len(g)})
         # H6 clustering share
         cl_counts = ch["template_cluster"].value_counts()
         og_counts = ch.loc[ch["owner_group"] != UNKNOWN_OWNER, "owner_group"].value_counts()
@@ -297,7 +297,7 @@ def cluster_summary(changes: pd.DataFrame, verdicts_to: pd.DataFrame, panel: pd.
     joins.sort(key=lambda d: -d["n_changed"])
     return {
         "from": from_s, "to": to_s,
-        "n_changed_domains": int(len(changed)),
+        "n_changed_domains": len(changed),
         "n_changed_in_shared_cluster_or_owner": n_clustered,
         "clusters": clusters[:50],
         "cluster_owner_join": joins[:100],

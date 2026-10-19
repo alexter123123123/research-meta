@@ -50,10 +50,16 @@ def run_query(client: PoliteClient) -> tuple[list[dict], dict]:
     """Run (or load cached) query; returns (rows, provenance)."""
     cache = "wikidata/qlever_wikidata_result.json"
     url = ENDPOINT + "?" + urlencode({"query": QUERY})
-    prov: dict = {"endpoint": ENDPOINT, "wdqs_robots_disallows_sparql": None}
-    # Record why WDQS is not used (robots.txt read, never the /sparql path).
+    prov: dict = {"endpoint": ENDPOINT}
+    # Record why WDQS is not used (its robots.txt is read; the /sparql path never is).
     try:
-        prov["wdqs_robots_disallows_sparql"] = not client.allowed("https://query.wikidata.org/sparql")
+        rr = client.robots("https://query.wikidata.org/sparql")
+        prov["wdqs_robots_status"] = rr.status
+        prov["wdqs_robots_note"] = (
+            "robots.txt body observed 2026-10-19: 'User-agent: * / Disallow: /sparql / Disallow: /bigdata'"
+            + ("; at build time Wikimedia answered robots.txt with HTTP 403 to our client "
+               "(robot-policy block), so WDQS is not usable either way" if rr.status == 403 else
+               f"; at build time /sparql allowed for our UA: {rr.can_fetch('https://query.wikidata.org/sparql', client.token)}"))
     except Exception as e:  # pragma: no cover
         prov["wdqs_robots_error"] = repr(e)
     body, meta = client.get(url, cache, headers={"Accept": "application/sparql-results+json"},
@@ -96,8 +102,8 @@ def write_query_file(prov: dict) -> None:
         f"# run_at (UTC): {prov.get('run_at')}",
         f"# endpoint: {prov['endpoint']} (QLever public Wikidata mirror), GET, Accept: application/sparql-results+json",
         "# Why not query.wikidata.org: its robots.txt has 'User-agent: *  Disallow: /sparql'",
-        f"#   (checked at build time: disallowed={prov.get('wdqs_robots_disallows_sparql')}); our",
-        "#   politeness rules require obeying robots.txt, so the identical graph pattern is run on QLever.",
+        f"#   ({prov.get('wdqs_robots_note')}); our politeness rules require obeying",
+        "#   robots.txt, so the identical graph pattern is run on QLever.",
         "#   QLever evaluates the full wdt:P31/wdt:P279* closure in one query; no splitting/paging needed.",
         "#   Labels: rdfs:label filtered to English (QLever has no wikibase:label SERVICE).",
         f"# mirror index: {json.dumps(prov.get('qlever_index'))}",

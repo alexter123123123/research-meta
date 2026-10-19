@@ -1,0 +1,11 @@
+{
+ "url": "https://ft.com/",
+ "final_url": "https://www.ft.com/",
+ "status": 403,
+ "fetched_at": "2026-10-19T18:05:15Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:05:15 GMT",
+  "content-type": "text/html; charset=UTF-8"
+ },
+ "sha256": "c60ec5af48368e427d186f6d19b81b25062abd11a91501252fc5cb7a0f82ae6c"
+}

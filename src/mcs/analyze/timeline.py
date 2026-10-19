@@ -55,7 +55,7 @@ def _live_entries(verdicts: pd.DataFrame, bots: list[str]) -> list[dict]:
         return []
     out = []
     has_cf = "in_cf_managed_block" in v.columns
-    for (dom, snap), g in v.groupby(["domain", "snapshot"], sort=False):
+    for (dom, _snap), g in v.groupby(["domain", "snapshot"], sort=False):
         sd = g["snapshot_date"].dropna()
         if sd.empty:
             continue
@@ -171,7 +171,7 @@ def daily_timeline(events: pd.DataFrame, domains_by_group: dict[str, set[str]],
             "daily_changes": [counts[d] for d in days],
             "daily_cf_managed": [cf[d] for d in days],
             "daily_more_restrictive": [more[d] for d in days],
-            "n_change_events": int(len(sub)),
+            "n_change_events": len(sub),
             "n_domains_changed": int(sub["domain"].nunique()) if len(sub) else 0,
             "median_bracket_hours": float(pd.Series(br).median()) if len(br) else None,
         }

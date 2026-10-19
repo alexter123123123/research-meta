@@ -1,0 +1,11 @@
+{
+ "url": "https://dailymail.co.uk/",
+ "final_url": "https://www.dailymail.com/",
+ "status": 403,
+ "fetched_at": "2026-10-19T18:05:12Z",
+ "headers": {
+  "content-type": "text/html",
+  "date": "Mon, 19 Oct 2026 18:05:12 GMT"
+ },
+ "sha256": "a9537c51c0c9191a71180b521b3805d8681991842979b23db8d4785c87e0028d"
+}

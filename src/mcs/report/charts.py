@@ -12,11 +12,11 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.dates as mdates  # noqa: E402
-import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 
-from mcs.analyze.common import OWNER_PREFIX, load_study  # noqa: E402
+from mcs.analyze.common import OWNER_PREFIX, load_study
 
 log = logging.getLogger(__name__)
 
@@ -176,7 +176,7 @@ def chart_c3(m: dict, out_dir: Path, st: dict) -> list[str]:
     fig, ax = plt.subplots(figsize=(8.5, 4.6))
     fig.subplots_adjust(left=0.40, right=0.95, top=0.8, bottom=0.14)
     ys = list(range(len(steps)))[::-1]
-    for i, ((label, n), y) in enumerate(zip(steps, ys, strict=True)):
+    for i, ((_label, n), y) in enumerate(zip(steps, ys, strict=True)):
         color = st["accent"] if i >= 4 else (DARK_GRAY if i >= 2 else GRAY)
         ax.barh(y, n, color=color, height=0.68)
         ax.text(n + base * 0.01, y, f"{n}  ({100 * n / base:.0f}%)", va="center", fontsize=8,

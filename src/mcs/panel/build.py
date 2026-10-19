@@ -43,7 +43,7 @@ def make_uk_verifier(client: PoliteClient):
     def verify(host: str, expect: str) -> str:
         url = f"https://{host}/"
         try:
-            body, meta = client.get(url, f"pg_uk_verify/{safe_name(host)}.html")
+            body, meta = client.get(url, f"pg_uk_verify/{safe_name(host)}.html", cache_errors=True)
         except Exception as e:
             return f"curated from knowledge; title check not possible ({type(e).__name__})"
         st = meta.get("status")
@@ -57,7 +57,8 @@ def make_uk_verifier(client: PoliteClient):
         final_dom = registered_domain(meta.get("final_url", url))
         exp_dom = registered_domain(host)
         hay = f"{title} {site}".lower()
-        ok = expect.lower() in hay or expect.lower().replace(" ", "") in hay.replace(" ", "")
+        ok = any(x.lower() in hay or x.lower().replace(" ", "") in hay.replace(" ", "")
+                 for x in expect.split("|"))
         redirect = "" if final_dom == exp_dom else f"; WARNING redirects to {final_dom}"
         if ok:
             return (f"curated; verified {meta.get('fetched_at', '')[:10]}: homepage title "
@@ -212,6 +213,12 @@ def build_panel(config_path: str = "config/study.yaml", liveness: bool = True) -
         from mcs.panel.liveness import check_domains
         print(f"[panel] liveness for {len(b_domains)} Tier B candidates", flush=True)
         live = check_domains(b_domains, ua, rl)
+        if any(r.get("liveness_method") == "error" for r in live.values()):
+            print("[panel] liveness: second pass for inconclusive domains", flush=True)
+            live = check_domains(b_domains, ua, rl)
+        inconclusive = [d for d in b_domains if live[d].get("liveness_method") == "error"]
+        for d in inconclusive:  # not proven dead (spec drops only DNS failure / 404): keep
+            live[d] = dict(live[d], ok=True, error="inconclusive (kept): " + live[d].get("error", ""))
         with (OUT / "liveness.csv").open("w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=["domain", "ok", "final_url", "status", "error",
                                                "liveness_method", "robots_status", "checked_at"],
@@ -230,6 +237,7 @@ def build_panel(config_path: str = "config/study.yaml", liveness: bool = True) -
                                "reason": f"liveness: {why} ({r.get('error', '')[:120]})"})
         b_domains = [d for d in b_domains if live[d].get("ok")]
         meta["liveness"] = {"checked": len(live), "dropped": len(dropped),
+                            "inconclusive_kept": len(inconclusive),
                             "by_method": dict(Counter(r.get("liveness_method") for r in live.values())),
                             "dropped_by_method": dict(Counter(live[d].get("liveness_method") for d in dropped))}
     else:

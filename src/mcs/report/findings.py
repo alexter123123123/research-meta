@@ -329,7 +329,7 @@ def render_findings(m: dict, previous: dict | None = None) -> str:
     L.append("")
     L.append("## Headline sentences")
     L.append("")
-    for s in template_sentences(m) or ["(No headline sentence has n≥%d yet.)" % mn]:
+    for s in template_sentences(m) or [f"(No headline sentence has n≥{mn} yet.)"]:
         L.append(f"- {s}")
     L.append("")
     L.append("## The 10 strongest statements")

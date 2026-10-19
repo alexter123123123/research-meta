@@ -1,0 +1,11 @@
+{
+ "url": "https://news.sky.com/",
+ "final_url": "https://news.sky.com/",
+ "status": 403,
+ "fetched_at": "2026-10-19T18:04:52Z",
+ "headers": {
+  "content-type": "text/html",
+  "date": "Mon, 19 Oct 2026 18:04:52 GMT"
+ },
+ "sha256": "a9b77c249995ba47c6ff58c4cf46bf55f98c740c36186d3e529962b887cf9ccb"
+}

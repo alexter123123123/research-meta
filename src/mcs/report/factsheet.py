@@ -30,8 +30,9 @@ def render_factsheet(m: dict, charts_dir: str | Path | None = None,
     study = load_study(config_dir)
     spokesperson = study.get("branding", {}).get("spokesperson", "[spokesperson]")
     footer = study.get("branding", {}).get("footer", "Data: HasData")
-    L = [f"# Factsheet — Meta's crawlers and news publishers' robots.txt "
-         f"({nice_date(m['snapshot_date'])})", ""]
+    title = (f"# Factsheet — Meta's crawlers and news publishers' robots.txt "
+             f"({nice_date(m['snapshot_date'])})")
+    L = [title, ""]
     L.append(f"Snapshot {m['snapshot']}. {m['panel']['n_news']} news domains, "
              f"{m['panel']['n_control']} top-10k control domains. All numbers generated from "
              f"`metrics_{m['snapshot']}.json`. {footer}.")

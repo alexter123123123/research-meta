@@ -89,9 +89,11 @@ class Checker:
         return self.robots_cache[key][0]
 
     @staticmethod
-    async def resolves(host: str) -> tuple[bool, str]:
+    async def resolves(host: str) -> tuple[bool | None, str]:
+        """True = resolves; False = authoritative no-such-name/no-address; None = transient."""
         loop = asyncio.get_running_loop()
-        for attempt in range(2):
+        err = ""
+        for attempt in range(4):
             try:
                 await asyncio.wait_for(loop.getaddrinfo(host, 443, type=socket.SOCK_STREAM), 15)
                 return True, ""
@@ -101,7 +103,8 @@ class Checker:
                 err = f"dns: {e}"
             except asyncio.TimeoutError:
                 err = "dns: timeout"
-        return False, err
+            await asyncio.sleep(2 * (attempt + 1))
+        return None, err
 
     async def check(self, domain: str) -> dict:
         rec = {"domain": domain, "ok": False, "final_url": "", "status": None, "error": "",
@@ -110,8 +113,12 @@ class Checker:
         ok1, e1 = await self.resolves(domain)
         if not ok1:
             ok2, e2 = await self.resolves("www." + domain)
-            if not ok2:
+            if ok2 is False and ok1 is False:
                 rec.update(error=e1, liveness_method="dns")
+                return rec
+            if not ok2:
+                # transient resolver failure: not a verdict; retried on the next run
+                rec.update(error=f"{e1}; www: {e2}", liveness_method="error")
                 return rec
         # robots.txt (https, then http on connection failure)
         robots_resp = None

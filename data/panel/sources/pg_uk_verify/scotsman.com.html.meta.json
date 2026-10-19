@@ -1,0 +1,11 @@
+{
+ "url": "https://scotsman.com/",
+ "final_url": "https://www.scotsman.com/",
+ "status": 403,
+ "fetched_at": "2026-10-19T18:05:16Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:05:16 GMT",
+  "content-type": "text/html; charset=UTF-8"
+ },
+ "sha256": "1d7486e13144acaac37f2ea6d3cb0c103f8952ceae19fd6c06c241af054ffa1a"
+}

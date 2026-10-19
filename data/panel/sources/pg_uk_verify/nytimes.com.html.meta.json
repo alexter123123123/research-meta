@@ -1,0 +1,11 @@
+{
+ "url": "https://nytimes.com/",
+ "final_url": "https://www.nytimes.com/",
+ "status": 403,
+ "fetched_at": "2026-10-19T18:05:14Z",
+ "headers": {
+  "content-type": "text/html;charset=utf-8",
+  "date": "Mon, 19 Oct 2026 18:05:14 GMT"
+ },
+ "sha256": "2bb1aa43dd72addbdd9921abc6cd1a10ce13c6d667ea763c9b7e88925a673de3"
+}

@@ -1,0 +1,11 @@
+{
+ "url": "https://people.com/",
+ "final_url": "https://people.com/",
+ "status": 402,
+ "fetched_at": "2026-10-19T18:05:14Z",
+ "headers": {
+  "date": "Mon, 19 Oct 2026 18:05:14 GMT",
+  "content-type": "text/html"
+ },
+ "sha256": "ca9bc48f27d79d3db3443542466ffda1267c584e3888b839f66c167cf0bea61e"
+}

@@ -33,8 +33,8 @@ IG_EXCLUDE = {
 _DNS_TOKEN = "facebook-domain-verification="
 _QUOTED = re.compile(r'"((?:[^"\\]|\\.)*)"')
 _META_VERIF_RE = re.compile(
-    r"""<meta[^>]+name\s*=\s*["']?facebook-domain-verification["']?[^>]*>""", re.I)
-_CONTENT_RE = re.compile(r"""content\s*=\s*["']([^"']*)["']""", re.I)
+    r"""<meta[^>]+name\s*=\s*["']?facebook-domain-verification["']?[^>]*>""", re.IGNORECASE)
+_CONTENT_RE = re.compile(r"""content\s*=\s*["']([^"']*)["']""", re.IGNORECASE)
 
 
 def _host_kind(host: str) -> str | None:
@@ -64,7 +64,7 @@ def classify_social_link(href: str, page_url: str = "") -> str | None:
     if kind is None:
         return None
     host = (parts.hostname or "").lower()
-    if kind == "fb" and (host.startswith("connect.") or host.startswith("developers.")):
+    if kind == "fb" and host.startswith(("connect.", "developers.")):
         return None
     segs = [s for s in parts.path.split("/") if s]
     first = segs[0].lower() if segs else ""
