@@ -4,6 +4,11 @@
 name: wayback
 on:
   workflow_dispatch:
+    inputs:
+      redo_errors:
+        description: "Re-run domains whose CDX query failed (403 restricted / errors)"
+        type: boolean
+        default: false
   workflow_run:
     workflows: [t2-launch]
     types: [completed]
@@ -18,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - run: mcs fetch-wayback-history --from 2026-09-01 --panel news --deadline-min 320
+      - run: mcs fetch-wayback-history --from 2026-09-01 --panel news --deadline-min 320 ${{ inputs.redo_errors && '--redo-errors' || '' }}
       - if: always()
         run: 'scripts/commit_data.sh "data: wayback history (news)"'
   homepages-and-docs:
@@ -44,6 +49,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: git pull -q --rebase origin ${{ github.ref_name }}
-      - run: mcs fetch-wayback-history --from 2026-09-01 --panel control --deadline-min 320
+      - run: mcs fetch-wayback-history --from 2026-09-01 --panel control --deadline-min 320 ${{ inputs.redo_errors && '--redo-errors' || '' }}
       - if: always()
         run: 'scripts/commit_data.sh "data: wayback history (control sample)"'

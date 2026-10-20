@@ -117,7 +117,7 @@ def render(label: str = "T2", limit: int = 0):
 @app.command("fetch-wayback-history")
 def fetch_wayback_history(frm: str = typer.Option("2026-09-01", "--from"),
                           to: str = typer.Option("", "--to"), panel: str = "news",
-                          deadline_min: int = 0, limit: int = 0):
+                          deadline_min: int = 0, limit: int = 0, redo_errors: bool = False):
     """All distinct robots.txt versions since --from (T0/T1 are derived from these)."""
     c = cfg()
     from mcs.fetch.wayback import run_history
@@ -136,6 +136,7 @@ def fetch_wayback_history(frm: str = typer.Option("2026-09-01", "--from"),
     hosts = json.loads(hosts_f.read_text()) if hosts_f.exists() else {}
     to_ts = (to or datetime.now(UTC).strftime("%Y-%m-%d")).replace("-", "") + "235959"
     res = asyncio.run(run_history(domains, hosts, c, frm.replace("-", ""), to_ts,
+                                  redo_errors=redo_errors,
                                   deadline_s=deadline_min * 60 or None))
     manifest(f"fetch-wayback-history --panel {panel}", t, res)
 

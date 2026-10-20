@@ -51,6 +51,7 @@ class Wayback:
             follow_redirects=True, limits=httpx.Limits(max_connections=1),
         )
         self.requests = 0
+        self.last_cdx_error: str | None = None
         self.digests: dict = json.loads(DIGEST_MAP.read_text()) if DIGEST_MAP.exists() else {}
 
     async def close(self):
@@ -94,7 +95,10 @@ class Wayback:
             "collapse": "digest",
         })
         if resp is None or resp.status_code != 200:
-            return []  # not cached -> retried next run
+            # not cached -> retried next run; remember why for the fetch log
+            self.last_cdx_error = "WAYBACK_RESTRICTED" if (resp is not None and resp.status_code
+                                                            == 403) else "WAYBACK_ERROR"
+            return []
         try:
             data = resp.json() if resp.text.strip() else []
         except ValueError:
@@ -181,6 +185,7 @@ def select_rows(rows: list[dict], canonical: str, domain: str) -> tuple[list[dic
 
 async def history_for_domain(wb: Wayback, log: FetchLog, domain: str, canonical: str,
                              frm: str, to: str, cutoffs: dict[str, str]) -> None:
+    wb.last_cdx_error = None
     rows = await wb.cdx(f"{domain}/robots.txt", frm, to, domain)
     if canonical not in (domain, "www." + domain):
         rows = rows + await wb.cdx(f"{canonical}/robots.txt", frm, to, canonical)
@@ -203,7 +208,7 @@ async def history_for_domain(wb: Wayback, log: FetchLog, domain: str, canonical:
     if not versions:
         log.append(FetchRecord(domain=domain, host=canonical, snapshot="WB", resource="robots",
                                source="wayback", requested_url=f"cdx:{domain}/robots.txt",
-                               fetch_status="NO_CAPTURE"))
+                               fetch_status=wb.last_cdx_error or "NO_CAPTURE"))
         return
 
     def pick(cutoff_ts: str) -> int | None:
@@ -288,12 +293,22 @@ async def history_for_domain(wb: Wayback, log: FetchLog, domain: str, canonical:
 
 
 async def run_history(domains: list[str], hosts: dict[str, str], cfg: dict, frm: str, to: str,
+                      redo_errors: bool = False,
                       deadline_s: float | None = None) -> dict:
     ua = cfg["identity"]["user_agent"]
     wcfg = cfg["wayback"]
     wb = Wayback(ua, wcfg["min_interval_s"], wcfg["backoff_start_s"], wcfg["backoff_max_s"])
     log = FetchLog("WB")
     done = {r["domain"] for r in log.read()}
+    if redo_errors:
+        # Re-run domains whose only record is a CDX failure (no cached CDX answer on disk).
+        recs: dict[str, list[str]] = {}
+        for r in log.read():
+            recs.setdefault(r["domain"], []).append(r["fetch_status"])
+        redo = {d for d, sts in recs.items() if set(sts) <= {"NO_CAPTURE", "WAYBACK_ERROR"}
+                and not (WB_DIR / "cdx" / f"{d}.json").exists()}
+        done -= redo
+        print(f"[wayback] re-running {len(redo)} domains whose CDX query failed", flush=True)
     cutoffs = {k: iso_to_ts(cfg["snapshots"][k]["cutoff"]) for k in ("T0", "T1")}
     t0 = time.time()
     n = 0

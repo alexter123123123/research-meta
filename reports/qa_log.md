@@ -67,3 +67,12 @@ none are on news domains, so the headline Meta metrics are unaffected.
 ## Manual verification (§10.3)
 
 _To be completed before the data freeze (Thu 22 Oct 18:00 UTC)._
+
+## Wayback coverage (news history job, 20 Oct 2026)
+
+- **Captures in 1 Sep–20 Oct 2026:** about 77% of Tier A and about 14% of Tier B domains have at least one robots.txt capture.
+- **The empty results are genuine.** The CDX answered 200 with no rows; e.g. liverpoolecho.co.uk and oxfordmail.co.uk were last captured in April–May 2026. Wayback captures robots.txt only when it crawls a site, so it rarely does so for small local sites.
+- **24 domains are restricted by the Archive** (CDX returns 403 "requires authorization"), e.g. theguardian.com.
+  - These were first mislabelled `NO_CAPTURE`. They are now labelled `WAYBACK_RESTRICTED` and re-run.
+- **Consequence:** the T0/T1→T2 comparison (H2) is effectively a Tier A analysis with a small paired n. The deadline-reaction analysis (T2→T3→T4) rests on our own daily live snapshots of all 1,496 news domains, which do not depend on Wayback.
+- **Common Crawl fallback (§6.5):** not feasible in the time available. Its robots.txt captures sit in a separate subset that is not URL-indexed, so using it means scanning bulk WARC files.
