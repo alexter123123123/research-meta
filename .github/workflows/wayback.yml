@@ -17,7 +17,7 @@ permissions: { contents: write }
 jobs:
   news-history:
     # after a scheduled (full) T2 run, or on manual dispatch; never after a dry run
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.event == 'schedule'
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.event == 'schedule' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 345
     steps:
