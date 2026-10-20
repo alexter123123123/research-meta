@@ -1,0 +1,22 @@
+# Second pass for a live snapshot: re-fetch robots.txt where the outcome was transient
+# (network error, 5xx, 429), with a longer read timeout. Then re-parse.
+name: live-retry
+on:
+  workflow_dispatch:
+    inputs:
+      label: { description: "Snapshot label to retry", default: "T2" }
+concurrency: { group: live-fetch, cancel-in-progress: false }
+permissions: { contents: write }
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: mcs fetch-live --label ${{ inputs.label }} --retry-indeterminate --no-with-ads
+      - if: always()
+        run: 'scripts/commit_data.sh "data: ${{ inputs.label }} retry pass"'
+      - run: mcs parse   # signals are NOT rebuilt here: homepage HTML lives in artifacts, not git
+      - if: always()
+        run: 'scripts/commit_data.sh "data: ${{ inputs.label }} re-parse after retry"'

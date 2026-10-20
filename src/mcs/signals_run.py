@@ -48,6 +48,13 @@ async def build_signals(cfg: dict, panel_csv: str = "data/panel/panel.csv") -> d
     rendered = _latest(FetchLog("RENDER").read(), "homepage_rendered")
     wbhome = _latest(FetchLog("WB_HOME").read(), "homepage_wayback")
 
+    have = [r for r in list(raw.values()) + list(rendered.values()) if r.get("body_path")]
+    missing = sum(1 for r in have if not Path(r["body_path"]).exists())
+    if have and missing > 0.2 * len(have):
+        raise SystemExit(f"signals: {missing}/{len(have)} homepage bodies are missing locally "
+                         "(they live in the homepages-T2 Actions artifact); refusing to overwrite "
+                         "signals.parquet with degraded data.")
+
     per_dom = {}
     need_gtm: set[str] = set()
     for d in news:

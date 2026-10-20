@@ -183,7 +183,11 @@ async def process_domain(client, lim, doh_client, log: FetchLog, snapshot: str, 
         log.append(rec)
 
 
+RETRYABLE = {"NETWORK_ERROR", "UNREACHABLE_5XX", "RATE_LIMITED_429"}
+
+
 async def run_live(domains: list[str], snapshot: str, cfg: dict, *, with_ads: bool,
+                   retry_indeterminate: bool = False,
                    signals_domains: set[str] | None = None, progress_every: int = 250) -> dict:
     rl = cfg["rate_limits"]
     ua = cfg["identity"]["user_agent"]
@@ -191,6 +195,18 @@ async def run_live(domains: list[str], snapshot: str, cfg: dict, *, with_ads: bo
     lim = HostLimiter(rl["per_host_min_interval_s"], rl["global_concurrency"])
     log = FetchLog(snapshot)
     done = log.done_keys()
+    read_timeout = rl["read_timeout_s"]
+    if retry_indeterminate:
+        # Second pass: re-fetch robots.txt only where the latest outcome was transient.
+        last = {}
+        for row in log.read():
+            if row["resource"] == "robots":
+                last[row["domain"]] = row["fetch_status"]
+        retry = {d for d, st in last.items() if st in RETRYABLE}
+        domains = [d for d in domains if d in retry]
+        done = {k for k in done if not (k[0] in retry and k[1] == "robots")}
+        read_timeout = max(read_timeout, 40)
+        print(f"[{snapshot}] retrying robots.txt for {len(domains)} domains", flush=True)
     hosts: dict[str, str] = {}
     for row in log.read():
         if row["resource"] == "host":
@@ -200,7 +216,7 @@ async def run_live(domains: list[str], snapshot: str, cfg: dict, *, with_ads: bo
     t0 = time.time()
     counter = {"n": 0}
 
-    async with make_client(ua, rl["connect_timeout_s"], rl["read_timeout_s"]) as client, \
+    async with make_client(ua, rl["connect_timeout_s"], read_timeout) as client, \
             httpx.AsyncClient(timeout=15, headers={"User-Agent": ua, "accept":
                               "application/dns-json"}) as doh:
 

@@ -73,7 +73,7 @@ def build_panel(no_liveness: bool = False):
 @app.command("fetch-live")
 def fetch_live(label: str = typer.Option(..., help="T2, T3, T4 or Dyyyymmdd"),
                with_signals: bool = False, with_ads: bool | None = None,
-               panel: str = "all", limit: int = 0):
+               panel: str = "all", limit: int = 0, retry_indeterminate: bool = False):
     """Hosts + robots.txt (+ ads.txt on T2/T3) for the panel; homepage + DNS with --with-signals."""
     c = cfg()
     _require_identity(c)
@@ -92,6 +92,7 @@ def fetch_live(label: str = typer.Option(..., help="T2, T3, T4 or Dyyyymmdd"),
     if with_ads is None:
         with_ads = label in ("T2", "T3")
     res = asyncio.run(run_live(domains, label, c, with_ads=with_ads,
+                               retry_indeterminate=retry_indeterminate,
                                signals_domains=news if with_signals else set()))
     manifest(f"fetch-live --label {label}", t, res)
 
@@ -246,6 +247,8 @@ def monitor(label: str = ""):
     label = label or {"2026-10-29": "T3", "2026-11-06": "T4"}.get(
         today.strftime("%Y-%m-%d"), "D" + today.strftime("%Y%m%d"))
     fetch_live(label=label, with_signals=False, with_ads=None, panel="all", limit=0)
+    fetch_live(label=label, with_signals=False, with_ads=False, panel="all", limit=0,
+               retry_indeterminate=True)
     parse_cmd()
     v = pd.read_parquet("data/processed/verdicts.parquet")
     cur = v[(v.snapshot == label) & (v.bot == "meta-externalagent")]
