@@ -132,6 +132,11 @@ def select_wayback_snapshot(wb: pd.DataFrame, cutoff: str, window_start: str) ->
     for _dom, g in wb.groupby("domain"):
         g = g[g.wayback_ts.notna()].sort_values("wayback_ts")
         g = g[g.wayback_ts <= c]
+        # Skip captures that only show the archive's crawler being turned away (challenge/HTML
+        # error page, 401/403): they are not versions of the site's robots.txt.
+        artifact = g.fetch_status.isin(["SOFT_404", "CHALLENGE"]) | (
+            (g.fetch_status == "UNAVAILABLE_4XX") & g.http_status.isin([401, 403]))
+        g = g[~artifact]
         if g.empty:
             continue
         r = g.iloc[-1]
@@ -149,9 +154,32 @@ def select_wayback_snapshot(wb: pd.DataFrame, cutoff: str, window_start: str) ->
     return pd.DataFrame(picks)
 
 
+def effective_status(r, body: bytes | None) -> str:
+    """Re-check the stored fetch outcome at parse time.
+
+    - An HTML body that is really a bot challenge is CHALLENGE (indeterminate), even if it was
+      stored as SOFT_404 before the challenge markers were extended.
+    - For Wayback captures, an HTML body or a 401/403 tells us the *archive's crawler* was turned
+      away or got an error page; it says nothing about the site's rules, so it is INDETERMINATE.
+    """
+    from mcs.fetch.challenge import is_challenge
+
+    st = r.fetch_status
+    if body is not None and st in ("SOFT_404", "OK") and is_challenge(body, r.content_type):
+        return "CHALLENGE"
+    if r.source == "wayback":
+        if st == "SOFT_404":
+            return "WAYBACK_HTML"
+        http = getattr(r, "http_status", None)
+        if st == "UNAVAILABLE_4XX" and http in (401, 403, 401.0, 403.0):
+            return "WAYBACK_BLOCKED"
+    return st
+
+
 def _verdict_rows(r, snapshot: str, bots: list[str], probes: dict, source: str,
                   snapshot_date: str, extra: dict | None = None) -> list[dict]:
     body = load_body(r.body_path) if isinstance(r.body_path, str) else None
+    r = r._replace(fetch_status=effective_status(r, body))
     ps, synth = probes_for(probes, r.domain)
     parsed = parse(body) if body else None
     vs = verdicts_for_body(body, r.fetch_status, bots, ps, parsed)
@@ -240,6 +268,7 @@ def write_history(df: pd.DataFrame) -> pd.DataFrame:
         prev_obs_ts = None
         for ts, prev, r in evs:
             body = load_body(r.body_path) if isinstance(r.body_path, str) else None
+            r = r._replace(fetch_status=effective_status(r, body))
             ps, _ = probes_for(probes, dom)
             vs = verdicts_for_body(body, r.fetch_status, meta_bots, ps)
             out.append({

@@ -206,3 +206,11 @@ def test_protego_agrees_on_standard_files():
                  "07_bom_crlf_tabs.txt", "10_cf_managed.txt", "14_comment_between.txt"]:
         for bot in ("meta-externalagent", "meta-externalads", "gptbot", "facebookexternalhit"):
             assert v(name, bot).protego_agree, (name, bot)
+
+
+def test_challenge_markers_cover_device_verification_pages():
+    from mcs.fetch.challenge import is_challenge
+    page = b"<!DOCTYPE html><html><head><title>Verifying Device</title></head><body>" \
+           b"<div class='text'>Verifying your device, please wait</div></body></html>"
+    assert is_challenge(page, "text/html")
+    assert not is_challenge(b"User-agent: *\nDisallow: /captcha/\n", "text/plain")

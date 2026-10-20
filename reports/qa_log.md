@@ -66,7 +66,49 @@ none are on news domains, so the headline Meta metrics are unaffected.
 
 ## Manual verification (§10.3)
 
-_To be completed before the data freeze (Thu 22 Oct 18:00 UTC)._
+Reviewed on 20 Oct 2026, ~21:00 UTC, with `scripts/qa_view.py`. The script prints every UA group
+naming `*`, Meta/Facebook or GPT tokens, with their rules, next to the parser's verdicts.
+
+### Random samples (seed 20261030; domains with an `OK` robots.txt at T2)
+
+| Sample | n | Agree | Disagree | Notes |
+|---|---|---|---|---|
+| Tier B | 50 | 50 | 0 | Includes the TownNews/BLOX template, the Gannett template, `Allow: /$` plus `Disallow: /` (brownwoodtx.com → `WILDCARD_PARTIAL`), and two separate `*` groups (michiganadvance.com) |
+| Control | 30 | 30 | 0 | Includes naver.com, grok.com (`Allow: /$` exceptions), eatingwell.com and cnet.com (long multi-UA groups), and adweek.com (`MetaInspector`, correctly not treated as a Meta token) |
+| **Total** | **80** | **80** | **0** | **100% agreement (target ≥ 98%)** |
+
+Sample domains are listed in `reports/qa_samples_T2.txt`.
+
+### All Tier A domains whose Meta verdict changed T0/T1 → T2
+
+| Domain | Change | Raw file check | Verdict |
+|---|---|---|---|
+| ft.com | T1 `ALLOWED_DEFAULT` → T2 `FULL_BLOCK` | 14 Oct capture has no Meta groups; live file names `meta-externalagent` and `Meta-ExternalFetcher` | agree, real change after 15 Oct |
+| screenrant.com | T0/T1 `ALLOWED_DEFAULT` → `FULL_BLOCK` | before: only `FacebookBot`; now adds `meta-externalagent` | agree |
+| indianexpress.com | `FULL_BLOCK` → `ALLOWED_DEFAULT` | before: `Meta-ExternalAgent` and `Meta-ExternalFetcher` groups; now no Meta groups | agree, block removed |
+| npr.org | T0 `FULL_BLOCK` → `ALLOWED_DEFAULT` | 1 Oct capture names Meta-ExternalAgent, Fetcher and WebIndexer; live file only `FacebookBot` and `facebookexternalhit` | agree, removed between 1 Oct and 9 Oct |
+| washingtonpost.com | T0 `ALLOWED_DEFAULT` → `FULL_BLOCK` | **artifact:** the 1 Oct capture is an HTTP 403 served to the archive crawler | **disagree → fixed** (see below) |
+| thetimes.com | T0 `ALLOWED_DEFAULT` → `WILDCARD_BLOCK` | **artifact:** the 19 Sep capture is a "Verifying your device" challenge page, stored as a soft-404; the live file is `User-agent: * / Disallow: /` | **disagree → fixed** |
+
+Fixes applied before freeze:
+1. Challenge markers were extended ("verifying your device", "checking your browser", toadmash/monocle …).
+2. Stored HTML bodies are re-checked at parse time.
+3. Archived captures that are HTML pages or 401/403 responses are treated as `INDETERMINATE` (`WAYBACK_HTML` / `WAYBACK_BLOCKED`): they show the archive's crawler being turned away, not the site's rules. Baseline selection skips such captures and takes the latest valid capture in the window.
+
+After re-parsing, washingtonpost.com and thetimes.com no longer show a change. Other Tier B changes
+checked on the raw files: the southernminn.com group (Southern Minn Media) removed its whole
+AI-crawler block between 2 and 20 Oct.
+
+### Nonstandard UA rows
+
+18 at T2, e.g. `PerplexityUser`, `Perplexity‑User` (non-ASCII hyphen), `ChatGPTUser`,
+`Perplexity Bot`, `GPTBot<br/>`. They are correctly not counted as named. Truncated forms such as
+`Meta-External` and `Meta` are now also flagged.
+
+### Protego disagreements
+
+All fall into the three documented categories (prefix families, versioned tokens,
+truncated/generic tokens). None involve a news domain and a Meta token.
 
 ## Wayback coverage (news history job, 20 Oct 2026)
 
