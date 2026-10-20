@@ -40,3 +40,7 @@
 12. **Credit line.** HasData confirmed (19 Oct 2026) that the "Data: HasData" credit on charts
     is acceptable, given that the methodology says the data was collected without HasData's API.
     Spokesperson for the factsheet: Roman Milyushkevich, Co-founder and CTO at HasData.
+13. **T2 start time.** The scheduled 06:00 UTC trigger for T2 did not fire (GitHub dropped the
+    scheduled event). T2 was started manually at 08:31 UTC on 20 Oct 2026, the same day and
+    well inside the 12-hour window. The daily monitor now has an off-the-hour primary schedule
+    (06:07 UTC) and a backup run at 07:37 UTC.

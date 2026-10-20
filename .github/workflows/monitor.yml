@@ -2,7 +2,10 @@
 name: monitor
 on:
   schedule:
-    - cron: "0 6 * 10,11 *"
+    # Off-the-hour primary + a backup 90 min later: GitHub can drop scheduled runs, and
+    # fetch-live is resumable, so the backup only fills gaps if the primary already ran.
+    - cron: "7 6 * 10,11 *"
+    - cron: "37 7 * 10,11 *"
   workflow_dispatch:
     inputs:
       label: { description: "Snapshot label override (e.g. T3)", default: "" }
