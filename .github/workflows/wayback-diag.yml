@@ -1,0 +1,21 @@
+# One-off diagnostic: why do some well-known domains return no robots.txt captures?
+name: wayback-diag
+on: { workflow_dispatch: {} }
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: |
+          UA="MetaCrawlerStudy/1.0 (+https://github.com/alexter123123123/research-meta)"
+          q() { echo "== $1"; curl -s -A "$UA" -m 60 "https://web.archive.org/cdx/search/cdx?$1" | head -5; echo; sleep 2; }
+          q "url=theguardian.com/robots.txt&from=20260901&to=20261020&output=json&limit=5"
+          q "url=www.theguardian.com/robots.txt&from=20260901&to=20261020&output=json&limit=5"
+          q "url=https://www.theguardian.com/robots.txt&output=json&limit=5&from=2026"
+          q "url=theguardian.com/robots.txt&output=json&limit=5&fastLatest=true&from=2025"
+          q "url=theguardian.com/robots.txt&matchType=exact&from=20260901&to=20261019235959&output=json&fl=timestamp,original,statuscode,mimetype,digest,length&collapse=digest&limit=5"
+          q "url=liverpoolecho.co.uk/robots.txt&from=20260901&to=20261020&output=json&limit=5"
+          q "url=liverpoolecho.co.uk/robots.txt&output=json&limit=-3"
+          q "url=nytimes.com/robots.txt&matchType=exact&from=20260901&to=20261019235959&output=json&fl=timestamp,original,statuscode,mimetype,digest,length&collapse=digest&limit=3"
+          q "url=oxfordmail.co.uk/robots.txt&output=json&limit=-3"
+          q "url=theguardian.com/robots.txt&output=json&limit=-3"
