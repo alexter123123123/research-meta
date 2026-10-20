@@ -7,3 +7,5 @@ __pycache__/
 # large/raw caches live in Actions artifacts, not git
 data/raw/homepage/
 data/cache/
+# full domain-level summary incl. Tier B: kept local (release.tier_b_rows=false)
+data/processed/domain_summary.csv
