@@ -47,6 +47,11 @@ def match_mode(raw: str, token: str) -> str | None:
             return NONSTANDARD
     if _alnum(s) == _alnum(token):
         return NONSTANDARD
+    # Truncated token at a word boundary, e.g. "Meta-External", "Meta", "Facebook" — a
+    # substring matcher (Protego) would apply these; RFC 9309 product-token matching would not.
+    a = _alnum(s)
+    if len(a) >= 4 and _alnum(token).startswith(a) and " " not in s.strip():
+        return NONSTANDARD
     if token in s and len(s) > len(token):
         # token embedded in a longer string, e.g. a full UA header
         idx = s.find(token)
