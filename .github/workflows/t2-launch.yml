@@ -2,8 +2,7 @@
 # news + control; homepage (raw + rendered) and DNS TXT for news. Then parse + signals.
 name: t2-launch
 on:
-  schedule:
-    - cron: "0 6 20 10 *"
+  # T2 ran on 20 Oct 2026 (manual dispatch 08:31 UTC); the schedule was removed afterwards.
   workflow_dispatch:
     inputs:
       limit:
