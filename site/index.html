@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta Crawler Tracker</title>
+<meta name="description" content="Daily tracker: how news publishers treat Meta's crawlers in robots.txt.">
+<style>
+:root {
+  --bg: #ffffff; --surface: #f6f6f6; --ink: #1f1f1f; --ink-2: #5c5c5c; --line: #e3e3e3;
+  --accent: #E4572E; --gray: #a6a6a6; --dark-gray: #4d4d4d;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141414; --surface: #1e1e1e; --ink: #ececec; --ink-2: #a9a9a9; --line: #333333;
+    --gray: #6e6e6e; --dark-gray: #b5b5b5;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141414; --surface: #1e1e1e; --ink: #ececec; --ink-2: #a9a9a9; --line: #333333;
+  --gray: #6e6e6e; --dark-gray: #b5b5b5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 6px; }
+h2 { font-size: 1.15rem; margin: 36px 0 6px; }
+.sub, .note { color: var(--ink-2); font-size: .9rem; margin: 0 0 12px; }
+.counters { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px; margin: 20px 0; }
+.counter { background: var(--surface); border-radius: 8px; padding: 14px 16px; }
+.counter .v { font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.counter .l { font-size: .9rem; }
+.counter .n { color: var(--ink-2); font-size: .8rem; }
+.chart { position: relative; height: 420px; }
+.chart.short { height: 300px; }
+input[type=search] { width: 100%; max-width: 360px; padding: 8px 10px; font: inherit;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+.tablewrap { overflow-x: auto; margin-top: 10px; border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: .82rem; }
+th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+th { position: sticky; top: 0; background: var(--surface); font-weight: 600; }
+td.v-FULL_BLOCK, td.v-WILDCARD_BLOCK { color: var(--accent); font-weight: 600; }
+td.v-INDETERMINATE { color: var(--ink-2); }
+footer { margin-top: 40px; padding-top: 12px; border-top: 1px solid var(--line);
+  color: var(--ink-2); font-size: .85rem; }
+a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Who locked the door before 30 October?</h1>
+  <p class="sub">How news publishers treat Meta's crawlers in robots.txt, updated daily.
+    <span id="asof"></span></p>
+
+  <section class="counters" id="counters" aria-label="Headline numbers"></section>
+  <p class="note">"Blocks" means the site's robots.txt disallows every probe URL for that
+    crawler. robots.txt is a request, not an enforcement mechanism. Signals of Meta
+    business-tool use are public proxies only.</p>
+
+  <h2>Which crawlers do sites block?</h2>
+  <p class="sub" id="c1sub"></p>
+  <div class="chart"><canvas id="c1" role="img" aria-label="Bar chart of the share of sites blocking each crawler"></canvas></div>
+
+  <h2>Daily Meta-related robots.txt changes (news sites)</h2>
+  <p class="sub" id="c2sub"></p>
+  <div class="chart short"><canvas id="c2" role="img" aria-label="Timeline of daily Meta-related changes"></canvas></div>
+  <p class="note" id="c2events"></p>
+
+  <h2>Major news brands (Tier A)</h2>
+  <p class="sub">Verdicts at the latest snapshot. Blocked (*) = blocked only by a rule for all bots.</p>
+  <input type="search" id="q" placeholder="Search domain or brand" aria-label="Search domains">
+  <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+
+  <footer>
+    <p><a href="https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md">Methodology</a> ·
+      <a href="data/latest.json">latest.json</a> · <a href="data/history.json">history.json</a></p>
+    <p>Data: HasData</p>
+  </footer>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function () {
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const LABEL = { FULL_BLOCK: "Blocked", PARTIAL_BLOCK: "Partial", ALLOWED_EXPLICIT: "Allowed (named)",
+    WILDCARD_BLOCK: "Blocked (*)", WILDCARD_PARTIAL: "Partial (*)", ALLOWED_DEFAULT: "Allowed",
+    INDETERMINATE: "Unknown" };
+  const pct = (v) => (v === null || v === undefined) ? "n<20" : v.toFixed(0) + "%";
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  fetch("data/latest.json", { cache: "no-store" }).then((r) => r.json()).then(render)
+    .catch(() => { document.getElementById("asof").textContent = "(data unavailable)"; });
+
+  function render(d) {
+    document.getElementById("asof").textContent = "Latest snapshot: " + d.snapshot_date + ".";
+    const cs = document.getElementById("counters");
+    cs.innerHTML = d.counters.map((c) =>
+      `<div class="counter"><div class="v">${c.value_pct === null ? "n<20" : esc(c.display)}</div>` +
+      `<div class="l">${esc(c.label)}</div><div class="n">${esc(c.note)}</div></div>`).join("");
+    if (window.Chart) { drawC1(d.c1); drawC2(d.c2); }
+    drawTable(d.table, d.table_bots);
+  }
+
+  function base() {
+    Chart.defaults.color = css("--ink-2");
+    Chart.defaults.borderColor = css("--line");
+    Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+  }
+
+  function drawC1(c) {
+    base();
+    document.getElementById("c1sub").textContent =
+      `% of sites whose robots.txt blocks each crawler. News n=${c.news_n}, top-10k control n=${c.control_n}.`;
+    new Chart(document.getElementById("c1"), {
+      type: "bar",
+      data: { labels: c.bots, datasets: [
+        { label: "News sites", data: c.news, backgroundColor: css("--accent"), borderRadius: 4 },
+        { label: "Top-10k control", data: c.control, backgroundColor: css("--gray"), borderRadius: 4 } ] },
+      options: { indexAxis: "y", maintainAspectRatio: false,
+        scales: { x: { min: 0, max: 100, ticks: { callback: (v) => v + "%" } }, y: { grid: { display: false } } },
+        plugins: { legend: { position: "top", align: "start" },
+          tooltip: { callbacks: { label: (ctx) => {
+            const n = ctx.datasetIndex === 0 ? c.news_frac[ctx.dataIndex] : c.control_frac[ctx.dataIndex];
+            return `${ctx.dataset.label}: ${pct(ctx.parsed.x)} (${n})`; } } } } }
+    });
+  }
+
+  function drawC2(c) {
+    base();
+    document.getElementById("c2sub").textContent =
+      `${c.n_events} changes on ${c.n_domains_changed} of ${c.n_domains} news domains since ${c.start}. ` +
+      `Dated at first capture of the new version` + (c.median_bracket_hours !== null ? `; median bracket ${c.median_bracket_hours.toFixed(0)} h.` : ".");
+    document.getElementById("c2events").textContent = "Event markers (per press reports): " +
+      c.events.map((e) => `${e.date} ${e.label}`).join(" · ");
+    const evset = new Set(c.events.map((e) => e.date));
+    new Chart(document.getElementById("c2"), {
+      type: "bar",
+      data: { labels: c.dates, datasets: [
+        { label: "Other changes", data: c.other, backgroundColor: css("--accent"), stack: "s" },
+        { label: "Inside a Cloudflare-managed block", data: c.cf, backgroundColor: css("--gray"), stack: "s" } ] },
+      options: { maintainAspectRatio: false,
+        scales: { x: { stacked: true, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
+                       grid: { color: (ctx) => evset.has(c.dates[ctx.index]) ? css("--ink-2") : "transparent" } },
+                  y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } } },
+        plugins: { legend: { position: "top", align: "start" },
+          tooltip: { callbacks: { afterTitle: (items) => {
+            const ev = c.events.filter((e) => e.date === items[0].label);
+            return ev.map((e) => e.label + " (per press reports)").join("\n"); } } } } }
+    });
+  }
+
+  function drawTable(rows, bots) {
+    const thead = document.querySelector("#tbl thead");
+    thead.innerHTML = "<tr><th>Domain</th><th>Brand</th>" +
+      bots.map((b) => `<th>${esc(b)}</th>`).join("") + "<th>Changed since 14 Oct</th></tr>";
+    const tbody = document.querySelector("#tbl tbody");
+    const html = rows.map((r) => {
+      const key = (r.domain + " " + (r.brand || "")).toLowerCase();
+      return `<tr data-k="${esc(key)}"><td>${esc(r.domain)}</td><td>${esc(r.brand)}</td>` +
+        bots.map((b) => { const v = r.verdicts[b]; return `<td class="v-${esc(v)}">${esc(LABEL[v] || "–")}</td>`; }).join("") +
+        `<td>${r.changed_since_T1 === null ? "–" : (r.changed_since_T1 ? "Yes" : "No")}</td></tr>`;
+    }).join("");
+    tbody.innerHTML = html;
+    document.getElementById("q").addEventListener("input", (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      for (const tr of tbody.rows) tr.hidden = q && !tr.dataset.k.includes(q);
+    });
+  }
+})();
+</script>
+</body>
+</html>

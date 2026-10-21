@@ -1,0 +1,1966 @@
+{
+  "snapshot": "D20261021",
+  "snapshot_date": "2026-10-21",
+  "generated_at": "2026-10-21T12:11:01+00:00",
+  "metrics_generated_at": "2026-10-21T12:10:55+00:00",
+  "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
+  "footer": "Data: HasData",
+  "min_n": 20,
+  "counters": [
+    {
+      "id": "agent",
+      "label": "of news sites block meta-externalagent in robots.txt",
+      "value_pct": 40.099361249112846,
+      "display": "40%",
+      "numerator": 565,
+      "denominator": 1409,
+      "note": "565 of 1409 sites"
+    },
+    {
+      "id": "ads_gap",
+      "label": "of those leave meta-externalads (the crawler Meta describes for advertising and business products) unblocked",
+      "value_pct": 98.05309734513274,
+      "display": "98%",
+      "numerator": 554,
+      "denominator": 565,
+      "note": "554 of 565 sites"
+    },
+    {
+      "id": "exposed",
+      "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
+      "value_pct": 50.0,
+      "display": "50%",
+      "numerator": 294,
+      "denominator": 588,
+      "note": "294 of 588 sites"
+    },
+    {
+      "id": "changed",
+      "label": "of news sites changed a Meta crawler rule since 14 Oct",
+      "value_pct": 10.94890510948905,
+      "display": "11%",
+      "numerator": 15,
+      "denominator": 137,
+      "note": "15 of 137 sites with archived robots.txt"
+    }
+  ],
+  "c1": {
+    "bots": [
+      "meta-externalagent",
+      "meta-externalads",
+      "meta-webindexer",
+      "meta-externalfetcher",
+      "facebookexternalhit",
+      "gptbot",
+      "claudebot",
+      "google-extended",
+      "ccbot"
+    ],
+    "news": [
+      40.099361249112846,
+      0.7806955287437899,
+      10.716820440028389,
+      13.626685592618879,
+      0.0,
+      43.50603264726757,
+      41.8736692689851,
+      39.0347764371895,
+      45.06742370475514
+    ],
+    "control": [
+      6.9110240626748745,
+      0.09792949076664802,
+      1.8186905428091773,
+      3.1337437045327365,
+      0.30777839955232233,
+      9.63905987688864,
+      8.365976496922215,
+      7.554560716284275,
+      9.750979294907667
+    ],
+    "news_frac": [
+      "565/1409",
+      "11/1409",
+      "151/1409",
+      "192/1409",
+      "0/1409",
+      "613/1409",
+      "590/1409",
+      "550/1409",
+      "635/1409"
+    ],
+    "control_frac": [
+      "494/7148",
+      "7/7148",
+      "130/7148",
+      "224/7148",
+      "22/7148",
+      "689/7148",
+      "598/7148",
+      "540/7148",
+      "697/7148"
+    ],
+    "news_n": 1409,
+    "control_n": 7148
+  },
+  "c2": {
+    "dates": [
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06",
+      "2026-09-07",
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-28",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-01",
+      "2026-10-02",
+      "2026-10-03",
+      "2026-10-04",
+      "2026-10-05",
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-13",
+      "2026-10-14",
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21"
+    ],
+    "start": "2026-09-01",
+    "end": "2026-10-21",
+    "other": [
+      0,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      1,
+      1,
+      4,
+      1,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0,
+      6,
+      2,
+      2,
+      0,
+      0,
+      1,
+      1,
+      3,
+      2,
+      4,
+      2,
+      0,
+      0,
+      0,
+      6,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      5,
+      7,
+      2,
+      1,
+      0,
+      0,
+      16,
+      2
+    ],
+    "cf": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      3
+    ],
+    "events": [
+      {
+        "date": "2026-10-02",
+        "label": "Meta notice in Business Suite (reported)",
+        "note": "per press reports"
+      },
+      {
+        "date": "2026-10-15",
+        "label": "Nieman Lab report",
+        "note": "per press reports"
+      },
+      {
+        "date": "2026-10-16",
+        "label": "Meta revises clause, removes \"train\"",
+        "note": "per press reports"
+      },
+      {
+        "date": "2026-10-30",
+        "label": "Terms take effect",
+        "note": "per press reports"
+      }
+    ],
+    "n_events": 103,
+    "n_domains_changed": 48,
+    "n_domains": 1496,
+    "median_bracket_hours": 56.70777777777778
+  },
+  "table_bots": [
+    "meta-externalagent",
+    "meta-externalads",
+    "meta-webindexer",
+    "meta-externalfetcher",
+    "facebookexternalhit",
+    "gptbot",
+    "claudebot",
+    "google-extended",
+    "ccbot"
+  ],
+  "table": [
+    {
+      "domain": "abc.net.au",
+      "brand": "abc.net.au",
+      "country": "AU",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "abcnews.com",
+      "brand": "abcnews.com (formerly abcnews.go.com)",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "al.com",
+      "brand": "al.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "FULL_BLOCK",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "aljazeera.com",
+      "brand": "aljazeera.com",
+      "country": "QA",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "apnews.com",
+      "brand": "apnews.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "axios.com",
+      "brand": "axios.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_EXPLICIT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "bbc.co.uk",
+      "brand": "BBC, bbc.com + bbc.co.uk",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "bbc.com",
+      "brand": "bbc.com, bbc.com + bbc.co.uk",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "bbcgoodfood.com",
+      "brand": "Good Food (Previously BBC Good Food)",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "birminghammail.co.uk",
+      "brand": "Birmingham Live",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "bloomberg.com",
+      "brand": "bloomberg.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "breitbart.com",
+      "brand": "breitbart.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_EXPLICIT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "businessinsider.com",
+      "brand": "businessinsider.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "buzzfeed.com",
+      "brand": "buzzfeed.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": true
+    },
+    {
+      "domain": "cbc.ca",
+      "brand": "cbc.ca",
+      "country": "CA",
+      "verdicts": {
+        "meta-externalagent": "INDETERMINATE",
+        "meta-externalads": "INDETERMINATE",
+        "meta-webindexer": "INDETERMINATE",
+        "meta-externalfetcher": "INDETERMINATE",
+        "facebookexternalhit": "INDETERMINATE",
+        "gptbot": "INDETERMINATE",
+        "claudebot": "INDETERMINATE",
+        "google-extended": "INDETERMINATE",
+        "ccbot": "INDETERMINATE"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "cbsnews.com",
+      "brand": "cbsnews.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "channel4.com",
+      "brand": "Channel4",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "chroniclelive.co.uk",
+      "brand": "Chronicle Live",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "cnbc.com",
+      "brand": "cnbc.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "cnn.com",
+      "brand": "cnn.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "cosmopolitan.com",
+      "brand": "Cosmopolitan",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "dailymail.co.uk",
+      "brand": "Daily Mail",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "dailymail.com",
+      "brand": "dailymail.com (formerly dailymail.co.uk)",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "dailyrecord.co.uk",
+      "brand": "Daily Record",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "dailystar.co.uk",
+      "brand": "Daily Star",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "digitalspy.com",
+      "brand": "Digital Spy",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "euronews.com",
+      "brand": "euronews.com",
+      "country": "FR",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "examinerlive.co.uk",
+      "brand": "Examiner Live",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "express.co.uk",
+      "brand": "Daily Express",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_EXPLICIT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "forbes.com",
+      "brand": "forbes.com, Forbes",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "foxnews.com",
+      "brand": "foxnews.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "ft.com",
+      "brand": "Financial Times",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": true
+    },
+    {
+      "domain": "gbnews.com",
+      "brand": "GB News",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "goodhousekeeping.com",
+      "brand": "Good Housekeeping",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "healthline.com",
+      "brand": "Healthline Media",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "hellomagazine.com",
+      "brand": "Hello! Magazine",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "heraldscotland.com",
+      "brand": "Herald Scotland",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "hindustantimes.com",
+      "brand": "hindustantimes.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_EXPLICIT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "huffpost.com",
+      "brand": "huffpost.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "ign.com",
+      "brand": "IGN",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "FULL_BLOCK",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "independent.co.uk",
+      "brand": "independent.co.uk, The Independent",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "india.com",
+      "brand": "india.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "ALLOWED_EXPLICIT",
+        "google-extended": "ALLOWED_EXPLICIT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "indianexpress.com",
+      "brand": "indianexpress.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": true
+    },
+    {
+      "domain": "indiatimes.com",
+      "brand": "indiatimes.com, Indiatimes",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "indiatoday.in",
+      "brand": "indiatoday.in",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "inews.co.uk",
+      "brand": "The i Paper",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "irishmirror.ie",
+      "brand": "Irish Mirror",
+      "country": "IE",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "itv.com",
+      "brand": "ITV",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "INDETERMINATE",
+        "meta-externalads": "INDETERMINATE",
+        "meta-webindexer": "INDETERMINATE",
+        "meta-externalfetcher": "INDETERMINATE",
+        "facebookexternalhit": "INDETERMINATE",
+        "gptbot": "INDETERMINATE",
+        "claudebot": "INDETERMINATE",
+        "google-extended": "INDETERMINATE",
+        "ccbot": "INDETERMINATE"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "ksl.com",
+      "brand": "ksl.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "latimes.com",
+      "brand": "latimes.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "lbc.co.uk",
+      "brand": "LBC",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "liverpoolecho.co.uk",
+      "brand": "Liverpool Echo",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "manchestereveningnews.co.uk",
+      "brand": "Manchester Evening News",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "mensjournal.com",
+      "brand": "mensjournal.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "metro.co.uk",
+      "brand": "Metro",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "mirror.co.uk",
+      "brand": "Mirror",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "moneysavingexpert.com",
+      "brand": "Money Saving Expert",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "ALLOWED_EXPLICIT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_EXPLICIT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "mylondon.news",
+      "brand": "MyLondon",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "nbcnews.com",
+      "brand": "nbcnews.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "PARTIAL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "PARTIAL_BLOCK",
+        "claudebot": "PARTIAL_BLOCK",
+        "google-extended": "PARTIAL_BLOCK",
+        "ccbot": "PARTIAL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "ndtv.com",
+      "brand": "ndtv.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "INDETERMINATE",
+        "meta-externalads": "INDETERMINATE",
+        "meta-webindexer": "INDETERMINATE",
+        "meta-externalfetcher": "INDETERMINATE",
+        "facebookexternalhit": "INDETERMINATE",
+        "gptbot": "INDETERMINATE",
+        "claudebot": "INDETERMINATE",
+        "google-extended": "INDETERMINATE",
+        "ccbot": "INDETERMINATE"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "news.com.au",
+      "brand": "news.com.au",
+      "country": "AU",
+      "verdicts": {
+        "meta-externalagent": "WILDCARD_BLOCK",
+        "meta-externalads": "WILDCARD_BLOCK",
+        "meta-webindexer": "WILDCARD_BLOCK",
+        "meta-externalfetcher": "WILDCARD_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "WILDCARD_BLOCK",
+        "claudebot": "WILDCARD_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "WILDCARD_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "news18.com",
+      "brand": "news18.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "INDETERMINATE",
+        "meta-externalads": "INDETERMINATE",
+        "meta-webindexer": "INDETERMINATE",
+        "meta-externalfetcher": "INDETERMINATE",
+        "facebookexternalhit": "INDETERMINATE",
+        "gptbot": "INDETERMINATE",
+        "claudebot": "INDETERMINATE",
+        "google-extended": "INDETERMINATE",
+        "ccbot": "INDETERMINATE"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "newsmax.com",
+      "brand": "newsmax.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "newsweek.com",
+      "brand": "newsweek.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "npr.org",
+      "brand": "npr.org",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "nypost.com",
+      "brand": "nypost.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "nytimes.com",
+      "brand": "nytimes.com, New York Times",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "FULL_BLOCK",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "oneindia.com",
+      "brand": "oneindia.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "oxfordmail.co.uk",
+      "brand": "Oxfordmail",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "patch.com",
+      "brand": "patch.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "people.com",
+      "brand": "people.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "FULL_BLOCK",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "politico.com",
+      "brand": "politico.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "INDETERMINATE",
+        "meta-externalads": "INDETERMINATE",
+        "meta-webindexer": "INDETERMINATE",
+        "meta-externalfetcher": "INDETERMINATE",
+        "facebookexternalhit": "INDETERMINATE",
+        "gptbot": "INDETERMINATE",
+        "claudebot": "INDETERMINATE",
+        "google-extended": "INDETERMINATE",
+        "ccbot": "INDETERMINATE"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "radiotimes.com",
+      "brand": "Radio Times",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "rediff.com",
+      "brand": "rediff.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "reuters.com",
+      "brand": "reuters.com, Reuters News",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "WILDCARD_BLOCK",
+        "meta-externalads": "ALLOWED_EXPLICIT",
+        "meta-webindexer": "ALLOWED_EXPLICIT",
+        "meta-externalfetcher": "WILDCARD_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "WILDCARD_BLOCK",
+        "claudebot": "WILDCARD_BLOCK",
+        "google-extended": "WILDCARD_BLOCK",
+        "ccbot": "WILDCARD_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "scotsman.com",
+      "brand": "The Scotsman",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "screenrant.com",
+      "brand": "Screenrant",
+      "country": "CA",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": true
+    },
+    {
+      "domain": "sfgate.com",
+      "brand": "sfgate.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "standard.co.uk",
+      "brand": "The Standard",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "techradar.com",
+      "brand": "TechRadar",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "FULL_BLOCK",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "telegraph.co.uk",
+      "brand": "The Telegraph, telegraph.co.uk",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_EXPLICIT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": true
+    },
+    {
+      "domain": "the-sun.com",
+      "brand": "the-sun.com",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "WILDCARD_BLOCK",
+        "meta-externalads": "WILDCARD_BLOCK",
+        "meta-webindexer": "WILDCARD_BLOCK",
+        "meta-externalfetcher": "WILDCARD_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "WILDCARD_BLOCK",
+        "google-extended": "WILDCARD_BLOCK",
+        "ccbot": "WILDCARD_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "theatlantic.com",
+      "brand": "theatlantic.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "thegatewaypundit.com",
+      "brand": "thegatewaypundit.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "ALLOWED_DEFAULT",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "theguardian.com",
+      "brand": "theguardian.com, The Guardian",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "thehill.com",
+      "brand": "thehill.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "thehindu.com",
+      "brand": "thehindu.com",
+      "country": "IN",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "thesun.co.uk",
+      "brand": "The Sun, thesun.co.uk",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "WILDCARD_BLOCK",
+        "meta-externalads": "WILDCARD_BLOCK",
+        "meta-webindexer": "WILDCARD_BLOCK",
+        "meta-externalfetcher": "WILDCARD_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "WILDCARD_BLOCK",
+        "google-extended": "WILDCARD_BLOCK",
+        "ccbot": "WILDCARD_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "thetimes.com",
+      "brand": "Times & Sunday Times",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "WILDCARD_BLOCK",
+        "meta-externalads": "WILDCARD_BLOCK",
+        "meta-webindexer": "WILDCARD_BLOCK",
+        "meta-externalfetcher": "WILDCARD_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "WILDCARD_BLOCK",
+        "google-extended": "WILDCARD_BLOCK",
+        "ccbot": "WILDCARD_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "usatoday.com",
+      "brand": "usatoday.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "FULL_BLOCK",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": true
+    },
+    {
+      "domain": "usnews.com",
+      "brand": "usnews.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "variety.com",
+      "brand": "variety.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "FULL_BLOCK",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "walesonline.co.uk",
+      "brand": "Wales Online",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "FULL_BLOCK",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "washingtonpost.com",
+      "brand": "washingtonpost.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "FULL_BLOCK",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "FULL_BLOCK",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_DEFAULT",
+        "claudebot": "FULL_BLOCK",
+        "google-extended": "ALLOWED_DEFAULT",
+        "ccbot": "FULL_BLOCK"
+      },
+      "changed_since_T1": false
+    },
+    {
+      "domain": "which.co.uk",
+      "brand": "Which?",
+      "country": "GB",
+      "verdicts": {
+        "meta-externalagent": "ALLOWED_DEFAULT",
+        "meta-externalads": "ALLOWED_DEFAULT",
+        "meta-webindexer": "ALLOWED_DEFAULT",
+        "meta-externalfetcher": "ALLOWED_DEFAULT",
+        "facebookexternalhit": "ALLOWED_DEFAULT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "ALLOWED_EXPLICIT",
+        "google-extended": "ALLOWED_EXPLICIT",
+        "ccbot": "ALLOWED_DEFAULT"
+      },
+      "changed_since_T1": null
+    },
+    {
+      "domain": "wsj.com",
+      "brand": "wsj.com",
+      "country": "US",
+      "verdicts": {
+        "meta-externalagent": "WILDCARD_BLOCK",
+        "meta-externalads": "WILDCARD_BLOCK",
+        "meta-webindexer": "WILDCARD_BLOCK",
+        "meta-externalfetcher": "WILDCARD_BLOCK",
+        "facebookexternalhit": "ALLOWED_EXPLICIT",
+        "gptbot": "ALLOWED_EXPLICIT",
+        "claudebot": "WILDCARD_BLOCK",
+        "google-extended": "WILDCARD_BLOCK",
+        "ccbot": "WILDCARD_BLOCK"
+      },
+      "changed_since_T1": false
+    }
+  ],
+  "hypotheses": {
+    "H1": {
+      "text": "Most news publishers (>50%) still do NOT block meta-externalagent days before 30 Oct.",
+      "outcome": "supported"
+    },
+    "H2": {
+      "text": "Few publishers (<5%) changed their Meta rules after 15 Oct.",
+      "outcome": "not supported"
+    },
+    "H3": {
+      "text": "meta-externalads is blocked far less often than meta-externalagent (the ads gap).",
+      "outcome": "supported"
+    },
+    "H4": {
+      "text": "Publishers block OpenAI/Anthropic/Google training bots more often than Meta's (the Meta gap).",
+      "outcome": "supported"
+    },
+    "H5": {
+      "text": "A large share (>50%) of Meta-linked publishers are exposed.",
+      "outcome": "not supported"
+    },
+    "H6": {
+      "text": "Changes cluster by owner group or platform template (chain-level decisions).",
+      "outcome": "not supported"
+    }
+  }
+}
