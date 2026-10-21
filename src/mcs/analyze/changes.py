@@ -111,7 +111,12 @@ def compute_changes(verdicts: pd.DataFrame, pairs: list[tuple[str, str]], bots: 
             "wayback_ts", "snapshot_date"]
     frames = []
     for a, b in pairs:
-        fa = v.loc[v["snapshot"] == a, keep]
+        fa_rows = v[v["snapshot"] == a]
+        if a == "T1" and "t1_carried" in fa_rows.columns:
+            # A T1 carried forward from T0 says nothing about the state just before 15 Oct, so a
+            # change against it may predate the story: exclude carried rows from T1 pairs.
+            fa_rows = fa_rows[~fa_rows["t1_carried"].fillna(False).astype(bool)]
+        fa = fa_rows[keep]
         fb = v.loc[v["snapshot"] == b, keep]
         if fa.empty or fb.empty:
             continue

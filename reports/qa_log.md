@@ -118,3 +118,17 @@ truncated/generic tokens). None involve a news domain and a Meta token.
   - These were first mislabelled `NO_CAPTURE`. They are now labelled `WAYBACK_RESTRICTED` and re-run.
 - **Consequence:** the T0/T1→T2 comparison (H2) is effectively a Tier A analysis with a small paired n. The deadline-reaction analysis (T2→T3→T4) rests on our own daily live snapshots of all 1,496 news domains, which do not depend on Wayback.
 - **Common Crawl fallback (§6.5):** not feasible in the time available. Its robots.txt captures sit in a separate subset that is not URL-indexed, so using it means scanning bulk WARC files.
+
+## Analysis review (21 Oct 2026)
+
+- **H2 / M4 and carried-forward baselines.**
+  - T1 rows carried forward from T0 (no capture in 2–14 Oct) are now excluded from all T1→X change pairs. A change against a carried baseline may predate the 15 Oct story.
+  - Before the fix: 20/231 = 8.7%. After: **15/136 = 11.0%**. H2 remains *not supported*.
+  - The 5 dropped changes (amny.com, cornellsun.com, downtownexpress.com, hcnews.com, screenrant.com) remain visible in the T0→T2 comparison.
+- **Tranco-5k benchmark, re-checked with "domains with an OK robots.txt" as the denominator.**
+  - 9.2% (n=2,861) vs 17.2% in the 7 Sep census; with all determinate outcomes it is 7.5% (n=3,522).
+  - Both are within the 10 pp tolerance but low. Likely reasons:
+    1. Tranco ranks DNS popularity, so the top 5k contains many API/CDN/infrastructure hosts that serve a generic robots.txt.
+    2. The census definition of "blocked" is not documented and may include partial disallows.
+  - No parser issue found (manual QA 80/80).
+- **Wayback control sample** complete: 2,000/2,000 domains processed.
