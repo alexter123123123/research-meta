@@ -1,8 +1,8 @@
 {
   "snapshot": "D20261021",
   "snapshot_date": "2026-10-21",
-  "generated_at": "2026-10-21T12:11:01+00:00",
-  "metrics_generated_at": "2026-10-21T12:10:55+00:00",
+  "generated_at": "2026-10-21T14:06:34+00:00",
+  "metrics_generated_at": "2026-10-21T14:06:25+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -28,11 +28,11 @@
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 50.0,
+      "value_pct": 50.17006802721088,
       "display": "50%",
-      "numerator": 294,
+      "numerator": 295,
       "denominator": 588,
-      "note": "294 of 588 sites"
+      "note": "295 of 588 sites"
     },
     {
       "id": "changed",
@@ -62,21 +62,21 @@
       10.716820440028389,
       13.626685592618879,
       0.0,
-      43.50603264726757,
-      41.8736692689851,
-      39.0347764371895,
-      45.06742370475514
+      43.43506032647267,
+      41.8026969481902,
+      38.963804116394606,
+      44.996451383960256
     ],
     "control": [
-      6.9110240626748745,
-      0.09792949076664802,
-      1.8186905428091773,
-      3.1337437045327365,
-      0.30777839955232233,
-      9.63905987688864,
-      8.365976496922215,
-      7.554560716284275,
-      9.750979294907667
+      6.9432802458787375,
+      0.09779267951941883,
+      1.8161497625034926,
+      3.1573065101983793,
+      0.3213188041352333,
+      9.681475272422464,
+      8.41017043867002,
+      7.585917854149204,
+      9.821179100307349
     ],
     "news_frac": [
       "565/1409",
@@ -84,24 +84,24 @@
       "151/1409",
       "192/1409",
       "0/1409",
-      "613/1409",
-      "590/1409",
-      "550/1409",
-      "635/1409"
+      "612/1409",
+      "589/1409",
+      "549/1409",
+      "634/1409"
     ],
     "control_frac": [
-      "494/7148",
-      "7/7148",
-      "130/7148",
-      "224/7148",
-      "22/7148",
-      "689/7148",
-      "598/7148",
-      "540/7148",
-      "697/7148"
+      "497/7158",
+      "7/7158",
+      "130/7158",
+      "226/7158",
+      "23/7158",
+      "693/7158",
+      "602/7158",
+      "543/7158",
+      "703/7158"
     ],
     "news_n": 1409,
-    "control_n": 7148
+    "control_n": 7158
   },
   "c2": {
     "dates": [
@@ -263,7 +263,7 @@
       0,
       0,
       2,
-      3
+      4
     ],
     "events": [
       {
@@ -287,10 +287,10 @@
         "note": "per press reports"
       }
     ],
-    "n_events": 103,
-    "n_domains_changed": 48,
+    "n_events": 104,
+    "n_domains_changed": 49,
     "n_domains": 1496,
-    "median_bracket_hours": 56.70777777777778
+    "median_bracket_hours": 56.38791666666667
   },
   "table_bots": [
     "meta-externalagent",
@@ -1956,7 +1956,7 @@
     },
     "H5": {
       "text": "A large share (>50%) of Meta-linked publishers are exposed.",
-      "outcome": "not supported"
+      "outcome": "supported"
     },
     "H6": {
       "text": "Changes cluster by owner group or platform template (chain-level decisions).",
