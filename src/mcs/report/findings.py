@@ -154,14 +154,29 @@ def strongest_statements(m: dict, k: int = 10) -> list[dict]:
     if e:
         add("ads_gap", e, f"Ads gap: {pct(e['pct'])} ({frac(e)}; {ci(e)}) of news sites that "
             f"FULL_BLOCK `{AGENT}` in robots.txt do not block `{ADS}`, {ADS_DESC}.",
-            "This share of publishers blocking Meta's AI-training crawler still leaves its "
+            "This share of publishers blocking the crawler Meta's documentation describes for AI training still leaves its "
             "advertising/business crawler open in robots.txt.", "M6.all_news")
+    e = _get(m, "M6", "tier_A")
+    if e:
+        none_block = e["numerator"] == e["denominator"]
+        add("ads_gap_tier_A", e, f"Among major (Tier A) news brands that FULL_BLOCK `{AGENT}` in "
+            f"robots.txt, {pct(e['pct'])} ({frac(e)}; {ci(e)}) do not block `{ADS}`, "
+            f"{ADS_DESC}.",
+            (f"Not one of the {e['denominator']} major news brands that block the crawler "
+             f"Meta's documentation describes for AI training also blocks the one it describes "
+             f"for advertising."
+             if none_block else
+             f"{e['numerator']} of the {e['denominator']} major news brands that block the crawler "
+             f"Meta's documentation describes for AI training leave its advertising crawler "
+             f"open."),
+            "M6.tier_A")
     e = _get(m, "M1", "all_news", AGENT)
     if e:
         add("m1_agent", e, f"{pct(e['pct'])} ({frac(e)}; {ci(e)}) of news sites FULL_BLOCK "
             f"`{AGENT}` in robots.txt.",
-            "This is the share of news sites whose robots.txt asks Meta's AI-training "
-            "crawler to stay out entirely.", f"M1.all_news.{AGENT}")
+            "This is the share of news sites whose robots.txt asks the crawler Meta's documentation "
+            "describes for AI training"
+            " to stay out entirely.", f"M1.all_news.{AGENT}")
     d = _get(m, "M10", "M1", AGENT)
     if d and not d.get("suppressed") and d.get("diff_pp") is not None:
         e = d["news"]
@@ -171,8 +186,11 @@ def strongest_statements(m: dict, k: int = 10) -> list[dict]:
             f"({pct(e['pct'])}, {frac(e)} vs {pct(d['control']['pct'])}, "
             f"{frac(d['control'])}; difference 95% CI {d['diff_ci_low']:.1f} to "
             f"{d['diff_ci_high']:.1f} pp, Newcombe).",
-            "News publishers differ from the general web in how often they block Meta's "
-            "AI-training crawler.", f"M10.M1.{AGENT}")
+            (f"News sites are {e['pct'] / d['control']['pct']:.1f} times as likely as popular "
+             f"websites in general to block the crawler Meta's documentation describes for "
+             f"AI training." if d["control"]["pct"] else
+             "News publishers block this crawler far more often than the general web."),
+            f"M10.M1.{AGENT}")
     e = _get(m, "M5", "all_news")
     if e:
         add("meta_gap", e, f"Meta gap: {pct(e['pct'])} ({frac(e)}; {ci(e)}) of news sites that "
@@ -186,7 +204,7 @@ def strongest_statements(m: dict, k: int = 10) -> list[dict]:
             f"signals of Meta business-tool use (E1/E2/E2b) do not block `{AGENT}` in "
             f"robots.txt.",
             "Among sites with public signs of using Meta's business tools, this share does "
-            "not block Meta's AI-training crawler in robots.txt.",
+            "not block the crawler Meta's documentation describes for AI training in robots.txt.",
             f"M8.all_news.{AGENT}.E1_E2_E2b.of_linked")
     e = _get(m, "M8", "all_news", ADS, "E1_E2_E2b", "of_linked")
     if e:
@@ -214,7 +232,7 @@ def strongest_statements(m: dict, k: int = 10) -> list[dict]:
                 f"(newly FULL_BLOCK: {mc.get('c_newly_blocked', 'n/a')}, stopped: "
                 f"{mc.get('b_blocked_then_not', 'n/a')}; exact McNemar p="
                 f"{mc.get('p_value', float('nan')):.3g}).",
-                "This is how many publishers tightened rules for Meta's AI-training crawler "
+                "This is how many publishers tightened rules for the crawler Meta's documentation describes for AI training "
                 "since the story broke.", f"M4.{pair}.all_news.by_bot.{AGENT}")
     e = _get(m, "M1", "all_news", ADS)
     if e:

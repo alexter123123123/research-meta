@@ -218,7 +218,7 @@ def chart_c4(m: dict, out_dir: Path, st: dict) -> list[str]:
     ax.legend(loc="lower left", bbox_to_anchor=(-0.02, 1.0), ncol=2, frameon=False,
               fontsize=8)
     _frame(fig, ax, "The 'ads gap'",
-           "Sites blocking Meta's AI-training crawler that leave open the crawler Meta "
+           "Sites blocking meta-externalagent (documented by Meta for AI training) that leave open the crawler Meta "
            "describes for advertising and business products.", st)
     return _save(fig, out_dir, "C4_ads_gap")
 
