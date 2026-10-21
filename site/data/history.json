@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T14:06:34+00:00",
+  "generated_at": "2026-10-21T14:50:59+00:00",
   "snapshots": [
     {
       "snapshot": "T0",
@@ -51,12 +51,12 @@
       "date": "2026-10-21",
       "source": "live",
       "has_metrics_report": true,
-      "n_determinate": 1409,
-      "n_indeterminate": 87,
+      "n_determinate": 1410,
+      "n_indeterminate": 86,
       "agent_full_block": 565,
-      "agent_pct": 40.099361249112846,
+      "agent_pct": 40.0709219858156,
       "ads_full_block": 11,
-      "ads_pct": 0.7806955287437899,
+      "ads_pct": 0.7801418439716312,
       "ads_gap": 554,
       "ads_gap_den": 565,
       "ads_gap_pct": 98.05309734513274
