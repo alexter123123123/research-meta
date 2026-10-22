@@ -170,8 +170,10 @@ def effective_status(r, body: bytes | None) -> str:
     st = r.fetch_status
     if body is not None and st in ("SOFT_404", "OK") and is_challenge(body, r.content_type):
         return "CHALLENGE"
-    if r.source != "wayback" and st == "SOFT_404" and r.domain in _LIVE_OK_DOMAINS:
-        return "INCONSISTENT_HTML"
+    if r.source != "wayback" and r.domain in _LIVE_OK_DOMAINS:
+        http = getattr(r, "http_status", None)
+        if st == "SOFT_404" or (st == "UNAVAILABLE_4XX" and http in (401, 403, 401.0, 403.0)):
+            return "INCONSISTENT_HTML"
     if r.source == "wayback":
         if st == "SOFT_404":
             return "WAYBACK_HTML"
@@ -258,6 +260,11 @@ def write_history(df: pd.DataFrame) -> pd.DataFrame:
     probes = json.loads(PROBES_FILE.read_text()) if PROBES_FILE.exists() else {}
     robots = _robots_rows(df)
     robots = robots[~robots.snapshot.str.startswith("SMOKE")]
+    # One observation per live snapshot: retries and late re-runs of the same daily label would
+    # otherwise turn sites that serve inconsistent files into same-day "changes".
+    live = robots[robots.source != "wayback"].sort_values("fetched_at")
+    live = live.drop_duplicates(["domain", "snapshot"], keep="last")
+    robots = pd.concat([robots[robots.source == "wayback"], live])
     out = []
     for dom, g in robots.groupby("domain"):
         evs = []
