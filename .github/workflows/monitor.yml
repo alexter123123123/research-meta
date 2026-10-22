@@ -1,4 +1,4 @@
-# Daily monitor (spec §5, §13): 06:00 UTC, 21 Oct -> 6 Nov 2026. T3 = 29 Oct, T4 = 6 Nov.
+# Daily monitor: 21 Oct -> 20 Nov 2026 (extended from 6 Nov). T3 = 29 Oct, T4 = 6 Nov.
 name: monitor
 on:
   schedule:
@@ -21,7 +21,7 @@ jobs:
         id: guard
         run: |
           d=$(date -u +%Y%m%d)
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || { [ "$d" -ge 20261021 ] && [ "$d" -le 20261106 ]; }; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || { [ "$d" -ge 20261021 ] && [ "$d" -le 20261120 ]; }; then
             echo "run=true" >> "$GITHUB_OUTPUT"; else echo "run=false" >> "$GITHUB_OUTPUT"; fi
       - if: steps.guard.outputs.run == 'true'
         uses: actions/checkout@v4

@@ -190,7 +190,7 @@ def render_methodology(metrics: dict | None = None, panel_meta: dict | None = No
     L.append("- **Snapshots:** T0 = latest capture in [1 Sep, 1 Oct 2026 23:59:59 UTC]; T1 = "
              "latest capture in [2 Oct, 14 Oct 2026 23:59:59 UTC] (T0 carried forward and "
              "flagged if none); T2 = live, 20 Oct 2026 from 06:00 UTC; daily live snapshots "
-             "to 6 Nov 2026; T3 = 29 Oct; T4 = 6 Nov. All times UTC.")
+             "to 20 Nov 2026 (extended from 6 Nov); T3 = 29 Oct; T4 = 6 Nov. All times UTC.")
     L.append("")
     L.append("### Fetch-outcome treatment (RFC 9309)")
     L.append("")

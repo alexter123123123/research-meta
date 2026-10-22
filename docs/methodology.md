@@ -85,7 +85,7 @@ All robots.txt and ads.txt files were fetched with **our own direct HTTP client*
 - **Homepages (news panel, once):** only if our own robots.txt rules allow `/`; rendered with **headless Chromium (Playwright)** and also fetched as raw HTML, and both are scanned. If `/` is disallowed for us, we use the latest Wayback capture within 30 days instead.
 - **DNS:** public TXT records of the registered domain. **GTM:** the public `gtm.js` container for any GTM ID on the homepage.
 - **Baselines and history:** Internet Archive Wayback Machine CDX queries and raw `id_` captures (original bytes, no Wayback banner), at most 1 request/second, single connection, back-off from 30 s doubling to 600 s, cached on disk.
-- **Snapshots:** T0 = latest capture in [1 Sep, 1 Oct 2026 23:59:59 UTC]; T1 = latest capture in [2 Oct, 14 Oct 2026 23:59:59 UTC] (T0 carried forward and flagged if none); T2 = live, 20 Oct 2026 from 06:00 UTC; daily live snapshots to 6 Nov 2026; T3 = 29 Oct; T4 = 6 Nov. All times UTC.
+- **Snapshots:** T0 = latest capture in [1 Sep, 1 Oct 2026 23:59:59 UTC]; T1 = latest capture in [2 Oct, 14 Oct 2026 23:59:59 UTC] (T0 carried forward and flagged if none); T2 = live, 20 Oct 2026 from 06:00 UTC; daily live snapshots to 20 Nov 2026 (extended from 6 Nov); T3 = 29 Oct; T4 = 6 Nov. All times UTC.
 
 ### Fetch-outcome treatment (RFC 9309)
 
@@ -243,6 +243,9 @@ Decided with the study owner during fieldwork; recorded as they happened.
     with a genuine T1 capture, mostly large brands. The Common Crawl fallback in the plan was not
     feasible in the time available: Common Crawl's robots.txt captures are not URL-indexed. The
     deadline analysis (T2→T3→T4) uses our own daily live snapshots of all 1,496 news domains.
+15. **Tracking period extended.** On 22 Oct 2026 the study owner extended daily monitoring and the
+    public tracker from 6 Nov to 20 Nov 2026. T3 (29 Oct) and T4 (6 Nov) are unchanged; daily
+    snapshots after 6 Nov are labelled D2026MMDD.
 
 ## 14. Data-quality decisions made during QA (before data freeze)
 

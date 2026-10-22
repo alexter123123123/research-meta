@@ -222,7 +222,13 @@ def build_site(out_dir: str | Path = "site", reports_dir: str | Path = "reports"
     write_json(history, out / "data" / "history.json")
     html = TEMPLATE.read_text(encoding="utf-8")
     accent = study.get("branding", {}).get("accent", "#E4572E")
-    for k, v in {"{{ACCENT}}": accent, "{{FOOTER}}": footer, "{{METHODOLOGY_URL}}": murl}.items():
+    until = str(study.get("snapshots", {}).get("monitor_until", ""))
+    try:
+        until_txt = datetime.strptime(until, "%Y-%m-%d").strftime("%-d %B %Y")
+    except ValueError:
+        until_txt = until
+    for k, v in {"{{ACCENT}}": accent, "{{FOOTER}}": footer, "{{METHODOLOGY_URL}}": murl,
+                 "{{MONITOR_UNTIL}}": until_txt}.items():
         html = html.replace(k, v)
     (out / "index.html").write_text(html, encoding="utf-8")
     (out / ".nojekyll").write_text("", encoding="utf-8")

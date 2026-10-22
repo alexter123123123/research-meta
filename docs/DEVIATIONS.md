@@ -50,3 +50,6 @@
     with a genuine T1 capture, mostly large brands. The Common Crawl fallback in the plan was not
     feasible in the time available: Common Crawl's robots.txt captures are not URL-indexed. The
     deadline analysis (T2→T3→T4) uses our own daily live snapshots of all 1,496 news domains.
+15. **Tracking period extended.** On 22 Oct 2026 the study owner extended daily monitoring and the
+    public tracker from 6 Nov to 20 Nov 2026. T3 (29 Oct) and T4 (6 Nov) are unchanged; daily
+    snapshots after 6 Nov are labelled D2026MMDD.

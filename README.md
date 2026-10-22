@@ -17,7 +17,7 @@ MetaCrawlerStudy/1.0 (+https://github.com/alexter123123123/research-meta)
 it came from this study.
 
 **What it fetches**
-- `/robots.txt` (and `/ads.txt`) once a day, 20 Oct – 6 Nov 2026.
+- `/robots.txt` (and `/ads.txt`) once a day, 20 Oct – 20 Nov 2026.
 - On news sites only: your homepage, once. We first check your robots.txt allows us, and we
   skip the homepage if it doesn't.
 
@@ -68,7 +68,7 @@ pytest -q
 Scheduled runs live in `.github/workflows/`:
 - `t2-launch` — 20 Oct 06:00 UTC
 - `wayback` — runs after T2
-- `monitor` — daily 06:00 UTC until 6 Nov
+- `monitor` — daily 06:00 UTC until 20 Nov
 
 Methodology: [`docs/methodology.md`](docs/methodology.md). Deviations from the original spec:
 [`docs/DEVIATIONS.md`](docs/DEVIATIONS.md).

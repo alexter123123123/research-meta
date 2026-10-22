@@ -16,7 +16,7 @@ snapshots:
   T3: {date: "2026-10-29", source: live}
   T4: {date: "2026-11-06", source: live}
   history_from: "2026-09-01"
-  monitor_until: "2026-11-06"
+  monitor_until: "2026-11-20"   # extended from 6 Nov (22 Oct 2026)
 
 rate_limits:
   per_host_concurrency: 1
