@@ -1,8 +1,8 @@
 {
   "snapshot": "D20261022",
   "snapshot_date": "2026-10-22",
-  "generated_at": "2026-10-22T13:53:32+00:00",
-  "metrics_generated_at": "2026-10-22T13:53:22+00:00",
+  "generated_at": "2026-10-22T16:00:35+00:00",
+  "metrics_generated_at": "2026-10-22T16:00:26+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -10,11 +10,11 @@
     {
       "id": "agent",
       "label": "of news sites block meta-externalagent in robots.txt",
-      "value_pct": 40.042523033309706,
-      "display": "40%",
+      "value_pct": 40.61826024442847,
+      "display": "41%",
       "numerator": 565,
-      "denominator": 1411,
-      "note": "565 of 1411 sites"
+      "denominator": 1391,
+      "note": "565 of 1391 sites"
     },
     {
       "id": "ads_gap",
@@ -28,20 +28,20 @@
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 50.17006802721088,
+      "value_pct": 49.5697074010327,
       "display": "50%",
-      "numerator": 295,
-      "denominator": 588,
-      "note": "295 of 588 sites"
+      "numerator": 288,
+      "denominator": 581,
+      "note": "288 of 581 sites"
     },
     {
       "id": "changed",
       "label": "of news sites changed a Meta crawler rule since 14 Oct",
-      "value_pct": 14.598540145985401,
-      "display": "15%",
-      "numerator": 20,
-      "denominator": 137,
-      "note": "20 of 137 sites with archived robots.txt"
+      "value_pct": 12.781954887218046,
+      "display": "13%",
+      "numerator": 17,
+      "denominator": 133,
+      "note": "17 of 133 sites with archived robots.txt"
     }
   ],
   "c1": {
@@ -57,51 +57,51 @@
       "ccbot"
     ],
     "news": [
-      40.042523033309706,
-      0.7795889440113395,
-      10.772501771793054,
-      13.607370659107016,
+      40.61826024442847,
+      0.7907979870596693,
+      10.927390366642703,
+      13.803019410496047,
       0.0,
-      42.381289865343724,
-      41.81431608788093,
-      37.91637136782424,
-      43.940467753366406
+      42.99065420560748,
+      42.415528396836805,
+      38.46153846153846,
+      44.572250179726815
     ],
     "control": [
-      7.052264808362369,
-      0.0975609756097561,
-      1.8397212543554007,
-      3.2195121951219514,
-      0.3205574912891986,
-      9.853658536585366,
-      8.515679442508711,
-      7.7073170731707314,
-      9.923344947735192
+      7.077912994824451,
+      0.09791579241852007,
+      1.8464120856063786,
+      3.2312211498111623,
+      0.32172331794656595,
+      9.889495034270528,
+      8.546649881102253,
+      7.7353476010630855,
+      9.959434885998041
     ],
     "news_frac": [
-      "565/1411",
-      "11/1411",
-      "152/1411",
-      "192/1411",
-      "0/1411",
-      "598/1411",
-      "590/1411",
-      "535/1411",
-      "620/1411"
+      "565/1391",
+      "11/1391",
+      "152/1391",
+      "192/1391",
+      "0/1391",
+      "598/1391",
+      "590/1391",
+      "535/1391",
+      "620/1391"
     ],
     "control_frac": [
-      "506/7175",
-      "7/7175",
-      "132/7175",
-      "231/7175",
-      "23/7175",
-      "707/7175",
-      "611/7175",
-      "553/7175",
-      "712/7175"
+      "506/7149",
+      "7/7149",
+      "132/7149",
+      "231/7149",
+      "23/7149",
+      "707/7149",
+      "611/7149",
+      "553/7149",
+      "712/7149"
     ],
-    "news_n": 1411,
-    "control_n": 7175
+    "news_n": 1391,
+    "control_n": 7149
   },
   "c2": {
     "dates": [
@@ -211,8 +211,8 @@
       0,
       0,
       16,
-      3,
-      20
+      1,
+      1
     ],
     "cf": [
       0,
@@ -290,10 +290,10 @@
         "note": "per press reports"
       }
     ],
-    "n_events": 131,
-    "n_domains_changed": 69,
+    "n_events": 106,
+    "n_domains_changed": 50,
     "n_domains": 1496,
-    "median_bracket_hours": 25.746944444444445
+    "median_bracket_hours": 55.085277777777776
   },
   "table_bots": [
     "meta-externalagent",
@@ -1959,7 +1959,7 @@
     },
     "H5": {
       "text": "A large share (>50%) of Meta-linked publishers are exposed.",
-      "outcome": "supported"
+      "outcome": "not supported"
     },
     "H6": {
       "text": "Changes cluster by owner group or platform template (chain-level decisions).",
