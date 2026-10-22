@@ -1,8 +1,8 @@
 {
   "snapshot": "D20261022",
   "snapshot_date": "2026-10-22",
-  "generated_at": "2026-10-22T08:08:01+00:00",
-  "metrics_generated_at": "2026-10-22T08:07:55+00:00",
+  "generated_at": "2026-10-22T12:28:14+00:00",
+  "metrics_generated_at": "2026-10-22T12:28:02+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -10,11 +10,11 @@
     {
       "id": "agent",
       "label": "of news sites block meta-externalagent in robots.txt",
-      "value_pct": 40.184921763869134,
+      "value_pct": 40.0709219858156,
       "display": "40%",
       "numerator": 565,
-      "denominator": 1406,
-      "note": "565 of 1406 sites"
+      "denominator": 1410,
+      "note": "565 of 1410 sites"
     },
     {
       "id": "ads_gap",
@@ -28,20 +28,20 @@
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 50.0,
+      "value_pct": 50.17006802721088,
       "display": "50%",
-      "numerator": 293,
-      "denominator": 586,
-      "note": "293 of 586 sites"
+      "numerator": 295,
+      "denominator": 588,
+      "note": "295 of 588 sites"
     },
     {
       "id": "changed",
       "label": "of news sites changed a Meta crawler rule since 14 Oct",
-      "value_pct": 14.705882352941176,
+      "value_pct": 14.598540145985401,
       "display": "15%",
       "numerator": 20,
-      "denominator": 136,
-      "note": "20 of 136 sites with archived robots.txt"
+      "denominator": 137,
+      "note": "20 of 137 sites with archived robots.txt"
     }
   ],
   "c1": {
@@ -57,51 +57,51 @@
       "ccbot"
     ],
     "news": [
-      40.184921763869134,
-      0.7823613086770982,
-      10.81081081081081,
-      13.655761024182077,
+      40.0709219858156,
+      0.7801418439716312,
+      10.78014184397163,
+      13.617021276595745,
       0.0,
-      42.53200568990043,
-      41.96301564722617,
-      38.051209103840684,
-      44.09672830725462
+      42.4113475177305,
+      41.843971631205676,
+      37.94326241134752,
+      43.97163120567376
     ],
     "control": [
-      7.074944071588367,
-      0.09787472035794184,
-      1.8456375838926173,
-      3.2298657718120807,
-      0.32158836689038034,
-      9.885346756152126,
-      8.543064876957494,
-      7.732102908277405,
-      9.941275167785236
+      7.054231144569915,
+      0.09758817788930713,
+      1.8402342116269343,
+      3.220409870347135,
+      0.3206468702077234,
+      9.85640596682002,
+      8.518053812909521,
+      7.709466053255262,
+      9.926111808169525
     ],
     "news_frac": [
-      "565/1406",
-      "11/1406",
-      "152/1406",
-      "192/1406",
-      "0/1406",
-      "598/1406",
-      "590/1406",
-      "535/1406",
-      "620/1406"
+      "565/1410",
+      "11/1410",
+      "152/1410",
+      "192/1410",
+      "0/1410",
+      "598/1410",
+      "590/1410",
+      "535/1410",
+      "620/1410"
     ],
     "control_frac": [
-      "506/7152",
-      "7/7152",
-      "132/7152",
-      "231/7152",
-      "23/7152",
-      "707/7152",
-      "611/7152",
-      "553/7152",
-      "711/7152"
+      "506/7173",
+      "7/7173",
+      "132/7173",
+      "231/7173",
+      "23/7173",
+      "707/7173",
+      "611/7173",
+      "553/7173",
+      "712/7173"
     ],
-    "news_n": 1406,
-    "control_n": 7152
+    "news_n": 1410,
+    "control_n": 7173
   },
   "c2": {
     "dates": [
@@ -212,7 +212,7 @@
       0,
       16,
       3,
-      19
+      20
     ],
     "cf": [
       0,
@@ -290,10 +290,10 @@
         "note": "per press reports"
       }
     ],
-    "n_events": 130,
+    "n_events": 131,
     "n_domains_changed": 69,
     "n_domains": 1496,
-    "median_bracket_hours": 25.82888888888889
+    "median_bracket_hours": 25.746944444444445
   },
   "table_bots": [
     "meta-externalagent",
@@ -1959,7 +1959,7 @@
     },
     "H5": {
       "text": "A large share (>50%) of Meta-linked publishers are exposed.",
-      "outcome": "not supported"
+      "outcome": "supported"
     },
     "H6": {
       "text": "Changes cluster by owner group or platform template (chain-level decisions).",
