@@ -154,6 +154,9 @@ def select_wayback_snapshot(wb: pd.DataFrame, cutoff: str, window_start: str) ->
     return pd.DataFrame(picks)
 
 
+_LIVE_OK_DOMAINS: set[str] = set()
+
+
 def effective_status(r, body: bytes | None) -> str:
     """Re-check the stored fetch outcome at parse time.
 
@@ -167,6 +170,8 @@ def effective_status(r, body: bytes | None) -> str:
     st = r.fetch_status
     if body is not None and st in ("SOFT_404", "OK") and is_challenge(body, r.content_type):
         return "CHALLENGE"
+    if r.source != "wayback" and st == "SOFT_404" and r.domain in _LIVE_OK_DOMAINS:
+        return "INCONSISTENT_HTML"
     if r.source == "wayback":
         if st == "SOFT_404":
             return "WAYBACK_HTML"
@@ -211,6 +216,11 @@ def write_verdicts(df: pd.DataFrame, cfg: dict) -> pd.DataFrame:
     rows: list[dict] = []
     robots = _robots_rows(df)
     live = robots[robots.source != "wayback"]
+    # A site that served a real robots.txt on some live day but an HTML page on another is
+    # serving inconsistent content (geo-blocks, errors); the HTML day is not evidence that its
+    # rules were removed, so it is indeterminate rather than "soft-404 = allow all".
+    global _LIVE_OK_DOMAINS
+    _LIVE_OK_DOMAINS = set(live.loc[live.fetch_status == "OK", "domain"])
     for snap, g in live.groupby("snapshot"):
         if snap.startswith("SMOKE"):
             continue

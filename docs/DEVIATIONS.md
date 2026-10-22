@@ -44,3 +44,9 @@
     scheduled event). T2 was started manually at 08:31 UTC on 20 Oct 2026, the same day and
     well inside the 12-hour window. The daily monitor now has an off-the-hour primary schedule
     (06:07 UTC) and a backup run at 07:37 UTC.
+14. **Wayback coverage.** robots.txt captures inside the baseline windows exist for about 75% of
+    Tier A domains but only about 13% of Tier B domains. Wayback rarely archives small sites'
+    robots.txt. The before/after comparison against 14 Oct (H2) therefore rests on 136 news domains
+    with a genuine T1 capture, mostly large brands. The Common Crawl fallback in the plan was not
+    feasible in the time available: Common Crawl's robots.txt captures are not URL-indexed. The
+    deadline analysis (T2→T3→T4) uses our own daily live snapshots of all 1,496 news domains.

@@ -214,3 +214,10 @@ def test_challenge_markers_cover_device_verification_pages():
            b"<div class='text'>Verifying your device, please wait</div></body></html>"
     assert is_challenge(page, "text/html")
     assert not is_challenge(b"User-agent: *\nDisallow: /captcha/\n", "text/plain")
+
+
+def test_geo_block_page_is_challenge():
+    from mcs.fetch.challenge import is_challenge
+    page = (b"<html><body><h1>Sorry, you are connecting from a region that is not allowed to "
+            b"browse these sites.  We apologize for the inconvenience.</h1></body></html>")
+    assert is_challenge(page, "text/html")

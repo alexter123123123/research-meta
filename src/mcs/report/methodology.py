@@ -349,5 +349,39 @@ def write_methodology(out_path: str | Path = "docs/methodology.md",
     pm = _panel_meta(Path(panel_meta_path) if panel_meta_path else None)
     out = Path(out_path)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(render_methodology(m, pm, config_dir), encoding="utf-8")
+    text = render_methodology(m, pm, config_dir)
+    dev = out.parent / "DEVIATIONS.md"
+    if dev.exists():
+        body = dev.read_text(encoding="utf-8").split("\n", 1)[-1].strip()
+        text += ("\n\n## 13. Deviations from the study plan\n\n"
+                 "Decided with the study owner during fieldwork; recorded as they happened.\n\n"
+                 + body + "\n")
+    text += ANALYSIS_DECISIONS
+    out.write_text(text, encoding="utf-8")
     return out
+
+
+ANALYSIS_DECISIONS = """
+## 14. Data-quality decisions made during QA (before data freeze)
+
+These were made after manual verification (see `reports/qa_log.md`) and before the data freeze.
+None of them changes a pre-registered hypothesis or its decision rule.
+
+1. **Archived error pages are not robots.txt files.** A Wayback capture that is an HTML page or a
+   401/403 response shows the Internet Archive's crawler being turned away, not the site's rules.
+   Such captures are treated as indeterminate (`WAYBACK_HTML` / `WAYBACK_BLOCKED`). Baseline
+   selection takes the latest *valid* capture in the window. Two false "changes" found in
+   manual QA (washingtonpost.com, thetimes.com) were caused by such captures.
+2. **Bot-challenge detection** was extended (e.g. "Verifying your device", "Checking your
+   browser") and applied to every stored body at parse time.
+3. **Carried-forward baselines are excluded from "after 15 Oct" comparisons.** Where a site had no
+   Wayback capture between 2 and 14 Oct, its 1 Oct state is carried forward as T1
+   (`t1_carried`), as the plan specifies. A change against a carried baseline may predate the
+   15 Oct story, so carried rows are excluded from all T1→later change counts (M4, H2). The
+   change against the 1 Oct baseline is still reported separately (T0→T2).
+4. **Archive-restricted domains.** Some domains (e.g. theguardian.com) cannot be queried in the
+   Wayback CDX API (HTTP 403). They are labelled `WAYBACK_RESTRICTED` and have no baseline.
+5. **Persistent fetch failures.** A second fetch pass with a longer timeout was made for transient
+   failures. Sites that keep refusing data-centre traffic or serve bot challenges stay
+   indeterminate; we do not route around them.
+"""

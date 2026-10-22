@@ -11,7 +11,9 @@ _MARKERS = re.compile(
     rb"access denied</title>|request unsuccessful\. incapsula|akamai.{0,40}reference #|"
     rb"verifying your device|verify you are (a )?human|checking your browser|are you a robot|"
     rb"enable javascript and cookies to continue|toadmash|monocle-enriched|"
-    rb"<title>\s*(attention required|security check|bot verification|just a moment)",
+    rb"<title>\s*(attention required|security check|bot verification|just a moment)|"
+    rb"not allowed to browse|not available in your (region|country)|"
+    rb"connecting from a region|geo-?block",
     re.IGNORECASE,
 )
 

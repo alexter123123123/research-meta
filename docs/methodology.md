@@ -73,6 +73,8 @@ Frozen panel metadata (`data/panel/panel_meta.json`):
 - `http_requests_this_run`: 2
 - `frozen_at`: 2026-10-19T19:00:00Z
 
+Panel size used in `metrics_T2.json`: 1496 news domains (Tier A 96, Tier B 1400), 10000 control domains (114 of which are also news domains).
+
 ## 4. How the data were fetched
 
 All robots.txt and ads.txt files were fetched with **our own direct HTTP client** (Python `httpx`), run from **GitHub Actions runners (Microsoft Azure data centres in the US)**. It exposes the upstream HTTP status and the final URL after redirects, which RFC 9309 semantics require. **No third-party scraping API was used — in particular, the data were not collected through HasData's Web Scraping API.** HasData publishes the study; the "Data: HasData" credit on charts refers to the publisher, not to the collection method. Challenge pages were not retried through any proxy service; they are recorded as `INDETERMINATE_BLOCKED`.
@@ -99,6 +101,13 @@ All robots.txt and ads.txt files were fetched with **our own direct HTTP client*
 | `INDETERMINATE_BLOCKED` | Bot-challenge page served to our client | Indeterminate |
 
 Denominators for headline metrics contain only determinate outcomes; the number of indeterminate domains is always published alongside.
+
+Fetch outcomes at T2:
+
+- all_news: OK 1296, UNAVAILABLE_4XX 85, CHALLENGE 44, NETWORK_ERROR 41, SOFT_404 16, OK_EMPTY 8, UNREACHABLE_5XX 4, RATE_LIMITED_429 2
+- tier_A: OK 90, CHALLENGE 3, NETWORK_ERROR 2, UNAVAILABLE_4XX 1
+- tier_B: OK 1206, UNAVAILABLE_4XX 84, CHALLENGE 41, NETWORK_ERROR 39, SOFT_404 16, OK_EMPTY 8, UNREACHABLE_5XX 4, RATE_LIMITED_429 2
+- control: OK 6017, NETWORK_ERROR 2082, UNAVAILABLE_4XX 992, CHALLENGE 555, SOFT_404 209, OK_EMPTY 77, UNREACHABLE_5XX 58, RATE_LIMITED_429 10
 
 ## 5. Parsing rules
 
@@ -151,6 +160,10 @@ Wilson 95% intervals for proportions; Newcombe hybrid score interval (method 10)
 
 Sanity benchmarks: control top-1,000 naming of `meta-externalagent` vs knownagents.com (~19%); control top-5,000 `FULL_BLOCK` vs the 7 Sep 2026 Tranco-5k census (17.2%); Tier A US peer training-crawler blocking vs Axios's 102 publishers (~42%, directional). Deviations > 10 pp are investigated in `reports/qa_log.md` before data freeze.
 
+- B1 Control top-1,000: any rule naming meta-externalagent (M2) vs knownagents.com: ours 13.2% (n=684), reference 19.0% → pass
+- B2 Control top-5,000: meta-externalagent FULL_BLOCK (M1) vs 7 Sep 2026 Tranco-5k census: ours 8.4% (n=3545), reference 17.2% → pass
+- B3 Tier A US: FULL_BLOCK of any peer AI-training crawler vs Axios 102 publishers (directional only): ours 83.8% (n=37), reference 42.0% → flag
+
 ## 10. Limitations
 
 - robots.txt is a voluntary convention. Blocking in robots.txt is a request; Meta says `meta-externalfetcher` and `facebookexternalhit` may bypass it in some cases. We do not observe crawler behaviour.
@@ -174,3 +187,82 @@ Sanity benchmarks: control top-1,000 naming of `meta-externalagent` vs knownagen
 - knownagents.com crawler statistics (top 1,000 websites).
 - dev.to census of the Tranco top 5,000, 7 Sep 2026.
 - Axios analysis of 102 US publishers, 17 Oct 2026.
+
+
+## 13. Deviations from the study plan
+
+Decided with the study owner during fieldwork; recorded as they happened.
+
+1. **Fetch engine.** No HasData API access is available, so all fetches use our own direct
+   `httpx` client (spec §6.3 already allows `fetch.robots_engine: direct`; it also exposes the
+   upstream status and final URL that RFC 9309 semantics need). Homepages are rendered with
+   headless Chromium (Playwright). The methodology must say this; outputs must not claim the
+   data was fetched with HasData's API. Third-party fallback is off (`fetch.fallback_engine: none`);
+   challenge pages are recorded as `INDETERMINATE_BLOCKED`.
+2. **Bot identity.** `MetaCrawlerStudy/1.0 (+https://github.com/alexter123123123/research-meta)`.
+   The repo README is the bot-info page (purpose, contact via GitHub issues, opt-out). No email.
+3. **Runner.** Long jobs and the daily monitor run in GitHub Actions; the dev container cannot
+   reach web.archive.org.
+4. **Press Gazette UK list** publishes brand names, not domains; a curated brand→domain map is
+   used (`source_list=pg_uk_top50_*`, mapping recorded in `data/panel/pg_uk_brand_map.csv`).
+5. **Politeness incident.** On 19 Oct 2026 ~17:45 UTC one request was made to
+   `pressgazette.co.uk/?s=...` before its robots.txt (`Disallow: /?s=*`) was read. Sitemaps are
+   used since. Logged in `reports/qa_log.md`.
+6. **Press Gazette fetch method.** The three ranking articles were fetched once with `curl`,
+   using the study UA, before we knew Press Gazette returns 403 to Python HTTP clients. One
+   further curl fetch was made after the 403 was seen. That later fetch is logged in
+   `reports/qa_log.md` and was not repeated. The ranking data itself comes from the public
+   Datawrapper CSVs behind the articles. The article HTML was used only to find the Datawrapper
+   IDs, and that HTML is cached in `data/panel/sources/`. The June 2026 "any language" list
+   could not be located: the sitemap index returned 403. Tier A therefore uses the US, UK and
+   world-English Top 50 lists (September 2026 data).
+7. **Wikidata.** query.wikidata.org's robots.txt disallows `/sparql`, and Wikimedia's UA policy
+   rejected our client. The identical SPARQL was therefore run on QLever's public Wikidata
+   mirror (qlever.dev). Index details are in `data/panel/wikidata_query.sparql`.
+8. **Chain lists.** Wikipedia (`/w/api.php` is disallowed; `/wiki/` pages returned 403) was not
+   used. `owner_group` comes from Wikidata P127/P749 only, so `independent/unknown` is large
+   (~68% of Tier B). The H6 owner-group analysis is limited accordingly.
+9. **Tranco.** robots.txt disallows `/api` and `/list/`, so the latest daily list was used
+   (ID 467YX, published 18 Oct 2026), not a list chosen by date.
+10. **Tier B quality filters** (applied before sampling):
+    - excluded a batch-created content-farm network (owner "VUGA", 27 domains);
+    - excluded foreign-ccTLD editions mislabelled US/UK (e.g. epochtimes.fr/.it/.pl).
+    All exclusions are in `panel_exclusions.csv`.
+11. **Tier A size** is 96 registered domains, below the 120–200 target, because the source
+    lists overlap heavily.
+12. **Credit line.** HasData confirmed (19 Oct 2026) that the "Data: HasData" credit on charts
+    is acceptable, given that the methodology says the data was collected without HasData's API.
+    Spokesperson for the factsheet: Roman Milyushkevich, Co-founder and CTO at HasData.
+13. **T2 start time.** The scheduled 06:00 UTC trigger for T2 did not fire (GitHub dropped the
+    scheduled event). T2 was started manually at 08:31 UTC on 20 Oct 2026, the same day and
+    well inside the 12-hour window. The daily monitor now has an off-the-hour primary schedule
+    (06:07 UTC) and a backup run at 07:37 UTC.
+14. **Wayback coverage.** robots.txt captures inside the baseline windows exist for about 75% of
+    Tier A domains but only about 13% of Tier B domains. Wayback rarely archives small sites'
+    robots.txt. The before/after comparison against 14 Oct (H2) therefore rests on 136 news domains
+    with a genuine T1 capture, mostly large brands. The Common Crawl fallback in the plan was not
+    feasible in the time available: Common Crawl's robots.txt captures are not URL-indexed. The
+    deadline analysis (T2→T3→T4) uses our own daily live snapshots of all 1,496 news domains.
+
+## 14. Data-quality decisions made during QA (before data freeze)
+
+These were made after manual verification (see `reports/qa_log.md`) and before the data freeze.
+None of them changes a pre-registered hypothesis or its decision rule.
+
+1. **Archived error pages are not robots.txt files.** A Wayback capture that is an HTML page or a
+   401/403 response shows the Internet Archive's crawler being turned away, not the site's rules.
+   Such captures are treated as indeterminate (`WAYBACK_HTML` / `WAYBACK_BLOCKED`). Baseline
+   selection takes the latest *valid* capture in the window. Two false "changes" found in
+   manual QA (washingtonpost.com, thetimes.com) were caused by such captures.
+2. **Bot-challenge detection** was extended (e.g. "Verifying your device", "Checking your
+   browser") and applied to every stored body at parse time.
+3. **Carried-forward baselines are excluded from "after 15 Oct" comparisons.** Where a site had no
+   Wayback capture between 2 and 14 Oct, its 1 Oct state is carried forward as T1
+   (`t1_carried`), as the plan specifies. A change against a carried baseline may predate the
+   15 Oct story, so carried rows are excluded from all T1→later change counts (M4, H2). The
+   change against the 1 Oct baseline is still reported separately (T0→T2).
+4. **Archive-restricted domains.** Some domains (e.g. theguardian.com) cannot be queried in the
+   Wayback CDX API (HTTP 403). They are labelled `WAYBACK_RESTRICTED` and have no baseline.
+5. **Persistent fetch failures.** A second fetch pass with a longer timeout was made for transient
+   failures. Sites that keep refusing data-centre traffic or serve bot challenges stay
+   indeterminate; we do not route around them.
