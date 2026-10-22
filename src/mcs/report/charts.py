@@ -123,13 +123,18 @@ def chart_c2(m: dict, out_dir: Path, st: dict) -> list[str]:
     g = tl.get("groups", {}).get("news", {})
     total = g.get("daily_changes", [0] * len(dates))
     cf = g.get("daily_cf_managed", [0] * len(dates))
-    other = [t - c for t, c in zip(total, cf, strict=True)]
+    unc = g.get("daily_uncertain_date", [0] * len(dates))
+    other = [t - c - u for t, c, u in zip(total, cf, unc, strict=True)]
     fig, ax = plt.subplots(figsize=(9, 4.8))
     fig.subplots_adjust(left=0.07, right=0.98, top=0.84, bottom=0.1)
     if dates:
-        ax.bar(dates, other, width=0.8, color=st["accent"], label="Other changes")
-        ax.bar(dates, cf, bottom=other, width=0.8, color=GRAY,
-               label="Inside a Cloudflare-managed block")
+        ax.bar(dates, other, width=0.8, color=st["accent"], label="Publisher changes")
+        ax.bar(dates, unc, bottom=other, width=0.8, color="white", edgecolor=st["accent"],
+               hatch="///", lw=0.6,
+               label=f"First seen this day; actual date uncertain (gap > "
+                     f"{g.get('uncertain_hours', 72)} h since previous observation)")
+        ax.bar(dates, cf, bottom=[o + u for o, u in zip(other, unc, strict=True)], width=0.8,
+               color=GRAY, label="Inside a Cloudflare-managed block")
     ymax = max(total + [1])
     ax.set_ylim(0, ymax * 1.35 + 0.5)
     shown = [e for e in tl.get("events", [])

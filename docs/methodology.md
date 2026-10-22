@@ -104,10 +104,10 @@ Denominators for headline metrics contain only determinate outcomes; the number 
 
 Fetch outcomes at T2:
 
-- all_news: OK 1296, UNAVAILABLE_4XX 85, CHALLENGE 44, NETWORK_ERROR 41, SOFT_404 16, OK_EMPTY 8, UNREACHABLE_5XX 4, RATE_LIMITED_429 2
+- all_news: OK 1296, UNAVAILABLE_4XX 65, CHALLENGE 44, NETWORK_ERROR 41, INCONSISTENT_HTML 21, SOFT_404 15, OK_EMPTY 8, UNREACHABLE_5XX 4, RATE_LIMITED_429 2
 - tier_A: OK 90, CHALLENGE 3, NETWORK_ERROR 2, UNAVAILABLE_4XX 1
-- tier_B: OK 1206, UNAVAILABLE_4XX 84, CHALLENGE 41, NETWORK_ERROR 39, SOFT_404 16, OK_EMPTY 8, UNREACHABLE_5XX 4, RATE_LIMITED_429 2
-- control: OK 6017, NETWORK_ERROR 2082, UNAVAILABLE_4XX 992, CHALLENGE 555, SOFT_404 209, OK_EMPTY 77, UNREACHABLE_5XX 58, RATE_LIMITED_429 10
+- tier_B: OK 1206, UNAVAILABLE_4XX 64, CHALLENGE 41, NETWORK_ERROR 39, INCONSISTENT_HTML 21, SOFT_404 15, OK_EMPTY 8, UNREACHABLE_5XX 4, RATE_LIMITED_429 2
+- control: OK 6017, NETWORK_ERROR 2082, UNAVAILABLE_4XX 982, CHALLENGE 557, SOFT_404 197, OK_EMPTY 77, UNREACHABLE_5XX 58, INCONSISTENT_HTML 20, RATE_LIMITED_429 10
 
 ## 5. Parsing rules
 
@@ -160,8 +160,8 @@ Wilson 95% intervals for proportions; Newcombe hybrid score interval (method 10)
 
 Sanity benchmarks: control top-1,000 naming of `meta-externalagent` vs knownagents.com (~19%); control top-5,000 `FULL_BLOCK` vs the 7 Sep 2026 Tranco-5k census (17.2%); Tier A US peer training-crawler blocking vs Axios's 102 publishers (~42%, directional). Deviations > 10 pp are investigated in `reports/qa_log.md` before data freeze.
 
-- B1 Control top-1,000: any rule naming meta-externalagent (M2) vs knownagents.com: ours 13.2% (n=684), reference 19.0% → pass
-- B2 Control top-5,000: meta-externalagent FULL_BLOCK (M1) vs 7 Sep 2026 Tranco-5k census: ours 8.4% (n=3545), reference 17.2% → pass
+- B1 Control top-1,000: any rule naming meta-externalagent (M2) vs knownagents.com: ours 13.2% (n=683), reference 19.0% → pass
+- B2 Control top-5,000: meta-externalagent FULL_BLOCK (M1) vs 7 Sep 2026 Tranco-5k census: ours 8.4% (n=3533), reference 17.2% → pass
 - B3 Tier A US: FULL_BLOCK of any peer AI-training crawler vs Axios 102 publishers (directional only): ours 83.8% (n=37), reference 42.0% → flag
 
 ## 10. Limitations

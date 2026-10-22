@@ -132,3 +132,16 @@ truncated/generic tokens). None involve a news domain and a Meta token.
     2. The census definition of "blocked" is not documented and may include partial disallows.
   - No parser issue found (manual QA 80/80).
 - **Wayback control sample** complete: 2,000/2,000 domains processed.
+
+## Freeze review fixes (22 Oct 2026, before 18:00 UTC)
+
+1. **Geo-block pages.** On 22 Oct the daily runner was apparently outside the US. About 20 sites of one US chain (hdnews.net, examiner.net, gctelegram.com …) served "you are connecting from a region that is not allowed" HTML. This was read as soft-404 (allow-all) and produced about 20 false "unblocked" changes.
+   - Geo-block wording was added to the challenge markers.
+   - A live HTML or 401/403 response from a site that served a valid robots.txt on another live day is now `INCONSISTENT_HTML` (indeterminate).
+   - Effect: the T2 news denominator goes from 1,405 to 1,384. All headline shares move by < 1 pp; hypothesis outcomes are unchanged.
+2. **One observation per live snapshot.** Retries and late duplicate runs of the same daily label created same-day "flip" changes for sites serving inconsistent files (oann.com, virginiachronicle.com, pressandguide.com). The history now keeps the last fetch per domain and snapshot.
+3. **C2 timeline.** Changes whose previous observation is more than 72 h earlier are shown hatched as "first seen this day; actual date uncertain". The 20 Oct bar is mostly changes first observed at the first live snapshot (T2) and may have happened at any time since the last Wayback capture.
+
+## DATA FREEZE — 22 Oct 2026
+
+The T2 launch package (`reports/metrics_T2.json`, `findings.md`, `factsheet.md`, `charts/`, `docs/methodology.md`) is frozen at the commit carrying this note. Later daily snapshots (D2026…, T3, T4) are reported separately and do not change T2 numbers.

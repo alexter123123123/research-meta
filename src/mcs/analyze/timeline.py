@@ -146,6 +146,11 @@ def build_change_events(history: pd.DataFrame | None, verdicts: pd.DataFrame | N
     return pd.DataFrame(rows, columns=EVENT_COLUMNS)
 
 
+# A change first observed more than 3 days after the previous observation has an uncertain date:
+# it happened somewhere in that gap, not necessarily on the day it was first seen.
+UNCERTAIN_HOURS = 72
+
+
 def daily_timeline(events: pd.DataFrame, domains_by_group: dict[str, set[str]],
                    start: date | str = "2026-09-01", end: date | str | None = None) -> dict:
     """Daily counts of domains with a Meta-related change, per group (e.g. news/control)."""
@@ -167,17 +172,22 @@ def daily_timeline(events: pd.DataFrame, domains_by_group: dict[str, set[str]],
         counts = {d: 0 for d in days}
         cf = {d: 0 for d in days}
         more = {d: 0 for d in days}
+        unc = {d: 0 for d in days}
         if len(sub):
             for day, g in sub.groupby("day"):
                 counts[day] = int(g["domain"].nunique())
                 cf[day] = int(g.loc[g["in_cf_managed_change"], "domain"].nunique())
                 more[day] = int(g.loc[g["direction"] == "more_restrictive", "domain"].nunique())
+                wide = pd.to_numeric(g["bracket_hours"], errors="coerce") > UNCERTAIN_HOURS
+                unc[day] = int(g.loc[wide & ~g["in_cf_managed_change"], "domain"].nunique())
         br = pd.to_numeric(sub["bracket_hours"], errors="coerce").dropna() if len(sub) else []
         out["groups"][name] = {
             "n_domains": len(doms),
             "daily_changes": [counts[d] for d in days],
             "daily_cf_managed": [cf[d] for d in days],
             "daily_more_restrictive": [more[d] for d in days],
+            "daily_uncertain_date": [unc[d] for d in days],
+            "uncertain_hours": UNCERTAIN_HOURS,
             "n_change_events": len(sub),
             "n_domains_changed": int(sub["domain"].nunique()) if len(sub) else 0,
             "median_bracket_hours": float(pd.Series(br).median()) if len(br) else None,

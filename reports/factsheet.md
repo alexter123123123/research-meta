@@ -2,7 +2,7 @@
 
 Snapshot T2. 1496 news domains, 10000 top-10k control domains. All numbers generated from `metrics_T2.json`. Data: HasData.
 
-**Lead:** 39.9% of 1405 news sites (95% CI 37.4–42.5%) explicitly block `meta-externalagent` in robots.txt as of 20 Oct 2026, versus 6.9% of the top-10k general sites (n=7191).
+**Lead:** 40.5% of 1384 news sites (95% CI 38.0–43.1%) explicitly block `meta-externalagent` in robots.txt as of 20 Oct 2026, versus 6.9% of the top-10k general sites (n=7169).
 
 ## Top 8 stats
 
@@ -10,17 +10,17 @@ Snapshot T2. 1496 news domains, 10000 top-10k control domains. All numbers gener
    _In plain English:_ This share of publishers blocking the crawler Meta's documentation describes for AI training still leaves its advertising/business crawler open in robots.txt.
 2. **Among major (Tier A) news brands that FULL_BLOCK `meta-externalagent` in robots.txt, 100.0% (48/48; 95% CI 92.6–100.0%) do not block `meta-externalads`, the crawler Meta describes for advertising and business products.** (n = 48/48)  
    _In plain English:_ Not one of the 48 major news brands that block the crawler Meta's documentation describes for AI training also blocks the one it describes for advertising.
-3. **39.9% (561/1405; 95% CI 37.4–42.5%) of news sites FULL_BLOCK `meta-externalagent` in robots.txt.** (n = 561/1405)  
+3. **40.5% (561/1384; 95% CI 38.0–43.1%) of news sites FULL_BLOCK `meta-externalagent` in robots.txt.** (n = 561/1384)  
    _In plain English:_ This is the share of news sites whose robots.txt asks the crawler Meta's documentation describes for AI training to stay out entirely.
-4. **News sites block `meta-externalagent` in robots.txt 33.0 percentage points more often than top-10k general sites (39.9%, 561/1405 vs 6.9%, 498/7191; difference 95% CI 30.4 to 35.6 pp, Newcombe).** (n = 561/1405)  
+4. **News sites block `meta-externalagent` in robots.txt 33.6 percentage points more often than top-10k general sites (40.5%, 561/1384 vs 6.9%, 498/7169; difference 95% CI 31.0 to 36.3 pp, Newcombe).** (n = 561/1384)  
    _In plain English:_ News sites are 5.8 times as likely as popular websites in general to block the crawler Meta's documentation describes for AI training.
 5. **Meta gap: 15.2% (99/650; 95% CI 12.7–18.2%) of news sites that FULL_BLOCK at least one of gptbot, claudebot, google-extended or ccbot do not FULL_BLOCK `meta-externalagent`.** (n = 99/650)  
    _In plain English:_ This share of publishers blocking other AI companies' training crawlers does not block Meta's.
-6. **50.4% (297/589; 95% CI 46.4–54.4%) of news sites with signals of Meta business-tool use (E1/E2/E2b) do not block `meta-externalagent` in robots.txt.** (n = 297/589)  
+6. **50.2% (294/586; 95% CI 46.1–54.2%) of news sites with signals of Meta business-tool use (E1/E2/E2b) do not block `meta-externalagent` in robots.txt.** (n = 294/586)  
    _In plain English:_ Among sites with public signs of using Meta's business tools, this share does not block the crawler Meta's documentation describes for AI training in robots.txt.
-7. **100.0% (589/589; 95% CI 99.4–100.0%) of news sites with signals of Meta business-tool use (E1/E2/E2b) do not block `meta-externalads`, the crawler Meta describes for advertising and business products.** (n = 589/589)  
+7. **100.0% (586/586; 95% CI 99.3–100.0%) of news sites with signals of Meta business-tool use (E1/E2/E2b) do not block `meta-externalads`, the crawler Meta describes for advertising and business products.** (n = 586/586)  
    _In plain English:_ Among sites with public signs of using Meta's business tools, this share leaves Meta's advertising/business crawler unblocked.
-8. **11.0% (15/136) of news sites with robots.txt at both T1 and T2 changed any Meta crawler rule (12 publisher-authored, 2 via Cloudflare-managed rules).** (n = 15/136)  
+8. **11.5% (15/131) of news sites with robots.txt at both T1 and T2 changed any Meta crawler rule (12 publisher-authored, 2 via Cloudflare-managed rules).** (n = 15/131)  
    _In plain English:_ This is how many publishers changed their Meta rules since the story broke.
 
 ## Charts
