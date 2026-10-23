@@ -1,8 +1,8 @@
 {
-  "snapshot": "D20261022",
-  "snapshot_date": "2026-10-22",
-  "generated_at": "2026-10-22T23:20:46+00:00",
-  "metrics_generated_at": "2026-10-22T23:20:36+00:00",
+  "snapshot": "D20261023",
+  "snapshot_date": "2026-10-23",
+  "generated_at": "2026-10-23T08:15:53+00:00",
+  "metrics_generated_at": "2026-10-23T08:15:43+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -10,38 +10,38 @@
     {
       "id": "agent",
       "label": "of news sites block meta-externalagent in robots.txt",
-      "value_pct": 40.61826024442847,
+      "value_pct": 40.66951566951567,
       "display": "41%",
-      "numerator": 565,
-      "denominator": 1391,
-      "note": "565 of 1391 sites"
+      "numerator": 571,
+      "denominator": 1404,
+      "note": "571 of 1404 sites"
     },
     {
       "id": "ads_gap",
       "label": "of those leave meta-externalads (the crawler Meta describes for advertising and business products) unblocked",
-      "value_pct": 98.05309734513274,
+      "value_pct": 98.07355516637477,
       "display": "98%",
-      "numerator": 554,
-      "denominator": 565,
-      "note": "554 of 565 sites"
+      "numerator": 560,
+      "denominator": 571,
+      "note": "560 of 571 sites"
     },
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 49.5697074010327,
+      "value_pct": 49.9151103565365,
       "display": "50%",
-      "numerator": 288,
-      "denominator": 581,
-      "note": "288 of 581 sites"
+      "numerator": 294,
+      "denominator": 589,
+      "note": "294 of 589 sites"
     },
     {
       "id": "changed",
       "label": "of news sites changed a Meta crawler rule since 14 Oct",
-      "value_pct": 12.781954887218046,
+      "value_pct": 13.138686131386862,
       "display": "13%",
-      "numerator": 17,
-      "denominator": 133,
-      "note": "17 of 133 sites with archived robots.txt"
+      "numerator": 18,
+      "denominator": 137,
+      "note": "18 of 137 sites with archived robots.txt"
     }
   ],
   "c1": {
@@ -57,51 +57,51 @@
       "ccbot"
     ],
     "news": [
-      40.61826024442847,
-      0.7907979870596693,
-      10.927390366642703,
-      13.803019410496047,
+      40.66951566951567,
+      0.7834757834757835,
+      10.754985754985755,
+      13.675213675213675,
       0.0,
-      42.99065420560748,
-      42.415528396836805,
-      38.46153846153846,
-      44.572250179726815
+      44.08831908831909,
+      42.45014245014245,
+      39.52991452991453,
+      45.655270655270655
     ],
     "control": [
-      7.068026260650929,
-      0.09777901941611956,
-      1.843832937561112,
-      3.226707640731946,
-      0.32127392093867857,
-      9.889649392373236,
-      8.534711551892723,
-      7.724542533873446,
-      9.945523117753876
+      7.230271486847658,
+      0.11253340835560557,
+      1.8849345899563934,
+      3.2775355183570123,
+      0.3376002250668167,
+      10.001406667604446,
+      8.693205795470531,
+      7.807005204670136,
+      10.057673371782247
     ],
     "news_frac": [
-      "565/1391",
-      "11/1391",
-      "152/1391",
-      "192/1391",
-      "0/1391",
-      "598/1391",
-      "590/1391",
-      "535/1391",
-      "620/1391"
+      "571/1404",
+      "11/1404",
+      "151/1404",
+      "192/1404",
+      "0/1404",
+      "619/1404",
+      "596/1404",
+      "555/1404",
+      "641/1404"
     ],
     "control_frac": [
-      "506/7159",
-      "7/7159",
-      "132/7159",
-      "231/7159",
-      "23/7159",
-      "708/7159",
-      "611/7159",
-      "553/7159",
-      "712/7159"
+      "514/7109",
+      "8/7109",
+      "134/7109",
+      "233/7109",
+      "24/7109",
+      "711/7109",
+      "618/7109",
+      "555/7109",
+      "715/7109"
     ],
-    "news_n": 1391,
-    "control_n": 7159
+    "news_n": 1404,
+    "control_n": 7109
   },
   "c2": {
     "dates": [
@@ -156,10 +156,11 @@
       "2026-10-19",
       "2026-10-20",
       "2026-10-21",
-      "2026-10-22"
+      "2026-10-22",
+      "2026-10-23"
     ],
     "start": "2026-09-01",
-    "end": "2026-10-22",
+    "end": "2026-10-23",
     "other": [
       0,
       1,
@@ -212,7 +213,8 @@
       0,
       16,
       1,
-      1
+      1,
+      2
     ],
     "cf": [
       0,
@@ -266,7 +268,8 @@
       0,
       2,
       4,
-      2
+      2,
+      3
     ],
     "events": [
       {
@@ -290,10 +293,10 @@
         "note": "per press reports"
       }
     ],
-    "n_events": 106,
-    "n_domains_changed": 50,
+    "n_events": 111,
+    "n_domains_changed": 54,
     "n_domains": 1496,
-    "median_bracket_hours": 55.085277777777776
+    "median_bracket_hours": 44.585
   },
   "table_bots": [
     "meta-externalagent",
@@ -1300,7 +1303,7 @@
       "verdicts": {
         "meta-externalagent": "PARTIAL_BLOCK",
         "meta-externalads": "ALLOWED_DEFAULT",
-        "meta-webindexer": "FULL_BLOCK",
+        "meta-webindexer": "PARTIAL_BLOCK",
         "meta-externalfetcher": "PARTIAL_BLOCK",
         "facebookexternalhit": "ALLOWED_DEFAULT",
         "gptbot": "PARTIAL_BLOCK",
