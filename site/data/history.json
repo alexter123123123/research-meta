@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T13:27:52+00:00",
+  "generated_at": "2026-10-26T08:15:28+00:00",
   "snapshots": [
     {
       "snapshot": "T0",
@@ -120,6 +120,21 @@
       "ads_gap": 564,
       "ads_gap_den": 575,
       "ads_gap_pct": 98.08695652173913
+    },
+    {
+      "snapshot": "D20261026",
+      "date": "2026-10-26",
+      "source": "live",
+      "has_metrics_report": true,
+      "n_determinate": 1387,
+      "n_indeterminate": 109,
+      "agent_full_block": 580,
+      "agent_pct": 41.8168709444845,
+      "ads_full_block": 11,
+      "ads_pct": 0.7930785868781542,
+      "ads_gap": 569,
+      "ads_gap_den": 580,
+      "ads_gap_pct": 98.10344827586206
     }
   ]
 }
