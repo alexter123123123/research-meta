@@ -1,8 +1,8 @@
 {
-  "snapshot": "D20261028",
-  "snapshot_date": "2026-10-28",
-  "generated_at": "2026-10-28T15:14:02+00:00",
-  "metrics_generated_at": "2026-10-28T15:13:51+00:00",
+  "snapshot": "T3",
+  "snapshot_date": "2026-10-29",
+  "generated_at": "2026-10-29T09:06:30+00:00",
+  "metrics_generated_at": "2026-10-29T09:06:12+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -10,38 +10,38 @@
     {
       "id": "agent",
       "label": "of news sites block meta-externalagent in robots.txt",
-      "value_pct": 43.11463590483057,
-      "display": "43%",
-      "numerator": 598,
-      "denominator": 1387,
-      "note": "598 of 1387 sites"
+      "value_pct": 44.09221902017291,
+      "display": "44%",
+      "numerator": 612,
+      "denominator": 1388,
+      "note": "612 of 1388 sites"
     },
     {
       "id": "ads_gap",
       "label": "of those leave meta-externalads (the crawler Meta describes for advertising and business products) unblocked",
-      "value_pct": 98.16053511705685,
+      "value_pct": 98.20261437908496,
       "display": "98%",
-      "numerator": 587,
-      "denominator": 598,
-      "note": "587 of 598 sites"
+      "numerator": 601,
+      "denominator": 612,
+      "note": "601 of 612 sites"
     },
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 47.66839378238342,
-      "display": "48%",
-      "numerator": 276,
-      "denominator": 579,
-      "note": "276 of 579 sites"
+      "value_pct": 47.16006884681583,
+      "display": "47%",
+      "numerator": 274,
+      "denominator": 581,
+      "note": "274 of 581 sites"
     },
     {
       "id": "changed",
       "label": "of news sites changed a Meta crawler rule since 14 Oct",
-      "value_pct": 18.181818181818183,
+      "value_pct": 18.3206106870229,
       "display": "18%",
       "numerator": 24,
-      "denominator": 132,
-      "note": "24 of 132 sites with archived robots.txt"
+      "denominator": 131,
+      "note": "24 of 131 sites with archived robots.txt"
     }
   ],
   "c1": {
@@ -57,51 +57,51 @@
       "ccbot"
     ],
     "news": [
-      43.11463590483057,
-      0.7930785868781542,
-      13.626532083633743,
-      16.58255227108868,
+      44.09221902017291,
+      0.792507204610951,
+      13.688760806916427,
+      16.714697406340058,
       0.0,
-      45.27757750540735,
-      44.70079307858688,
-      41.02379235760635,
-      47.08002883922134
+      46.18155619596542,
+      45.67723342939481,
+      42.002881844380404,
+      48.19884726224784
     ],
     "control": [
-      8.200391827595858,
-      0.12594458438287154,
-      1.9731318219983207,
-      3.27455919395466,
-      0.30786453960257487,
-      10.831234256926953,
-      9.571788413098236,
-      8.746151693254967,
-      11.069129582983487
+      8.859870822802584,
+      0.12636899747262004,
+      1.9797809604043808,
+      3.3277169334456613,
+      0.2948609941027801,
+      11.359168772816625,
+      10.235888795282223,
+      9.365346812693064,
+      11.682111766357764
     ],
     "news_frac": [
-      "598/1387",
-      "11/1387",
-      "189/1387",
-      "230/1387",
-      "0/1387",
-      "628/1387",
-      "620/1387",
-      "569/1387",
-      "653/1387"
+      "612/1388",
+      "11/1388",
+      "190/1388",
+      "232/1388",
+      "0/1388",
+      "641/1388",
+      "634/1388",
+      "583/1388",
+      "669/1388"
     ],
     "control_frac": [
-      "586/7146",
-      "9/7146",
-      "141/7146",
-      "234/7146",
-      "22/7146",
-      "774/7146",
-      "684/7146",
-      "625/7146",
-      "791/7146"
+      "631/7122",
+      "9/7122",
+      "141/7122",
+      "237/7122",
+      "21/7122",
+      "809/7122",
+      "729/7122",
+      "667/7122",
+      "832/7122"
     ],
-    "news_n": 1387,
-    "control_n": 7146
+    "news_n": 1388,
+    "control_n": 7122
   },
   "c2": {
     "dates": [
@@ -162,10 +162,11 @@
       "2026-10-25",
       "2026-10-26",
       "2026-10-27",
-      "2026-10-28"
+      "2026-10-28",
+      "2026-10-29"
     ],
     "start": "2026-09-01",
-    "end": "2026-10-28",
+    "end": "2026-10-29",
     "other": [
       0,
       1,
@@ -224,7 +225,8 @@
       0,
       1,
       3,
-      37
+      37,
+      2
     ],
     "cf": [
       0,
@@ -284,7 +286,8 @@
       1,
       5,
       6,
-      13
+      13,
+      9
     ],
     "events": [
       {
@@ -308,10 +311,10 @@
         "note": "per press reports"
       }
     ],
-    "n_events": 180,
-    "n_domains_changed": 120,
+    "n_events": 191,
+    "n_domains_changed": 130,
     "n_domains": 1496,
-    "median_bracket_hours": 23.554583333333333
+    "median_bracket_hours": 23.55472222222222
   },
   "table_bots": [
     "meta-externalagent",
