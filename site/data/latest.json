@@ -1,8 +1,8 @@
 {
-  "snapshot": "D20261031",
-  "snapshot_date": "2026-10-31",
-  "generated_at": "2026-10-31T15:10:48+00:00",
-  "metrics_generated_at": "2026-10-31T15:10:25+00:00",
+  "snapshot": "D20261101",
+  "snapshot_date": "2026-11-01",
+  "generated_at": "2026-11-01T08:59:12+00:00",
+  "metrics_generated_at": "2026-11-01T08:58:47+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -10,11 +10,11 @@
     {
       "id": "agent",
       "label": "of news sites block meta-externalagent in robots.txt",
-      "value_pct": 45.493257629524486,
+      "value_pct": 45.46099290780142,
       "display": "45%",
       "numerator": 641,
-      "denominator": 1409,
-      "note": "641 of 1409 sites"
+      "denominator": 1410,
+      "note": "641 of 1410 sites"
     },
     {
       "id": "ads_gap",
@@ -28,11 +28,11 @@
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 47.20812182741117,
+      "value_pct": 47.11864406779661,
       "display": "47%",
-      "numerator": 279,
-      "denominator": 591,
-      "note": "279 of 591 sites"
+      "numerator": 278,
+      "denominator": 590,
+      "note": "278 of 590 sites"
     },
     {
       "id": "changed",
@@ -57,51 +57,51 @@
       "ccbot"
     ],
     "news": [
-      45.493257629524486,
-      0.8516678495386799,
-      13.910574875798439,
-      16.67849538679915,
+      45.46099290780142,
+      0.851063829787234,
+      13.900709219858156,
+      16.666666666666668,
       0.0,
-      47.338537970191624,
-      45.77714691270405,
-      43.15117104329312,
-      49.32576295244854
+      47.234042553191486,
+      45.673758865248224,
+      43.191489361702125,
+      49.219858156028366
     ],
     "control": [
-      9.145658263305322,
-      0.15406162464985995,
-      2.044817927170868,
-      3.3893557422969187,
-      0.32212885154061627,
-      11.624649859943977,
-      10.476190476190476,
-      9.607843137254902,
-      11.946778711484594
+      9.150877192982456,
+      0.14035087719298245,
+      2.0350877192982457,
+      3.3684210526315788,
+      0.29473684210526313,
+      11.621052631578948,
+      10.498245614035088,
+      9.628070175438596,
+      11.943859649122807
     ],
     "news_frac": [
-      "641/1409",
-      "12/1409",
-      "196/1409",
-      "235/1409",
-      "0/1409",
-      "667/1409",
-      "645/1409",
-      "608/1409",
-      "695/1409"
+      "641/1410",
+      "12/1410",
+      "196/1410",
+      "235/1410",
+      "0/1410",
+      "666/1410",
+      "644/1410",
+      "609/1410",
+      "694/1410"
     ],
     "control_frac": [
-      "653/7140",
-      "11/7140",
-      "146/7140",
-      "242/7140",
-      "23/7140",
-      "830/7140",
-      "748/7140",
-      "686/7140",
-      "853/7140"
+      "652/7125",
+      "10/7125",
+      "145/7125",
+      "240/7125",
+      "21/7125",
+      "828/7125",
+      "748/7125",
+      "686/7125",
+      "851/7125"
     ],
-    "news_n": 1409,
-    "control_n": 7140
+    "news_n": 1410,
+    "control_n": 7125
   },
   "c2": {
     "dates": [
@@ -165,10 +165,11 @@
       "2026-10-28",
       "2026-10-29",
       "2026-10-30",
-      "2026-10-31"
+      "2026-10-31",
+      "2026-11-01"
     ],
     "start": "2026-09-01",
-    "end": "2026-10-31",
+    "end": "2026-11-01",
     "other": [
       0,
       1,
@@ -230,7 +231,8 @@
       37,
       2,
       9,
-      20
+      20,
+      0
     ],
     "cf": [
       0,
@@ -293,6 +295,7 @@
       13,
       9,
       3,
+      0,
       0
     ],
     "events": [
@@ -815,17 +818,17 @@
       "brand": "Daily Express",
       "country": "GB",
       "verdicts": {
-        "meta-externalagent": "ALLOWED_DEFAULT",
-        "meta-externalads": "ALLOWED_DEFAULT",
-        "meta-webindexer": "ALLOWED_DEFAULT",
-        "meta-externalfetcher": "ALLOWED_DEFAULT",
-        "facebookexternalhit": "ALLOWED_DEFAULT",
-        "gptbot": "FULL_BLOCK",
-        "claudebot": "FULL_BLOCK",
-        "google-extended": "ALLOWED_EXPLICIT",
-        "ccbot": "FULL_BLOCK"
+        "meta-externalagent": "INDETERMINATE",
+        "meta-externalads": "INDETERMINATE",
+        "meta-webindexer": "INDETERMINATE",
+        "meta-externalfetcher": "INDETERMINATE",
+        "facebookexternalhit": "INDETERMINATE",
+        "gptbot": "INDETERMINATE",
+        "claudebot": "INDETERMINATE",
+        "google-extended": "INDETERMINATE",
+        "ccbot": "INDETERMINATE"
       },
-      "changed_since_T1": false
+      "changed_since_T1": null
     },
     {
       "domain": "forbes.com",
