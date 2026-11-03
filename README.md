@@ -17,7 +17,7 @@ MetaCrawlerStudy/1.0 (+https://github.com/alexter123123123/research-meta)
 it came from this study.
 
 **What it fetches**
-- `/robots.txt` (and `/ads.txt`) once a day, 20 Oct – 20 Nov 2026.
+- `/robots.txt` (and `/ads.txt`) once a day, 20 Oct – 3 Nov 2026 (study stopped 3 Nov).
 - On news sites only: your homepage, once. We first check your robots.txt allows us, and we
   skip the homepage if it doesn't.
 

@@ -1,11 +1,7 @@
-# Daily monitor: 21 Oct -> 20 Nov 2026 (extended from 6 Nov). T3 = 29 Oct, T4 = 6 Nov.
+# Daily monitor: ran 21 Oct -> 3 Nov 2026. Stopped early at the owner's request (3 Nov);
+# the schedule was removed. Manual dispatch only.
 name: monitor
 on:
-  schedule:
-    # Off-the-hour primary + a backup 90 min later: GitHub can drop scheduled runs, and
-    # fetch-live is resumable, so the backup only fills gaps if the primary already ran.
-    - cron: "7 6 * 10,11 *"
-    - cron: "37 7 * 10,11 *"
   workflow_dispatch:
     inputs:
       label: { description: "Snapshot label override (e.g. T3)", default: "" }
