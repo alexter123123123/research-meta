@@ -1,8 +1,8 @@
 {
-  "snapshot": "D20261102",
-  "snapshot_date": "2026-11-02",
-  "generated_at": "2026-11-02T18:52:11+00:00",
-  "metrics_generated_at": "2026-11-02T18:51:45+00:00",
+  "snapshot": "D20261103",
+  "snapshot_date": "2026-11-03",
+  "generated_at": "2026-11-03T08:38:26+00:00",
+  "metrics_generated_at": "2026-11-03T08:38:04+00:00",
   "methodology_url": "https://github.com/alexter123123123/research-meta/blob/HEAD/docs/methodology.md",
   "footer": "Data: HasData",
   "min_n": 20,
@@ -10,11 +10,11 @@
     {
       "id": "agent",
       "label": "of news sites block meta-externalagent in robots.txt",
-      "value_pct": 45.893371757925074,
-      "display": "46%",
+      "value_pct": 45.209368346344924,
+      "display": "45%",
       "numerator": 637,
-      "denominator": 1388,
-      "note": "637 of 1388 sites"
+      "denominator": 1409,
+      "note": "637 of 1409 sites"
     },
     {
       "id": "ads_gap",
@@ -28,20 +28,20 @@
     {
       "id": "exposed",
       "label": "of news sites with signals of Meta business-tool use do not block meta-externalagent",
-      "value_pct": 47.10884353741496,
+      "value_pct": 47.28813559322034,
       "display": "47%",
-      "numerator": 277,
-      "denominator": 588,
-      "note": "277 of 588 sites"
+      "numerator": 279,
+      "denominator": 590,
+      "note": "279 of 590 sites"
     },
     {
       "id": "changed",
       "label": "of news sites changed a Meta crawler rule since 14 Oct",
-      "value_pct": 22.058823529411764,
+      "value_pct": 22.463768115942027,
       "display": "22%",
-      "numerator": 30,
-      "denominator": 136,
-      "note": "30 of 136 sites with archived robots.txt"
+      "numerator": 31,
+      "denominator": 138,
+      "note": "31 of 138 sites with archived robots.txt"
     }
   ],
   "c1": {
@@ -57,51 +57,51 @@
       "ccbot"
     ],
     "news": [
-      45.893371757925074,
-      0.8645533141210374,
-      14.121037463976945,
-      16.930835734870318,
+      45.209368346344924,
+      0.8516678495386799,
+      13.910574875798439,
+      16.67849538679915,
       0.0,
-      47.76657060518732,
-      46.18155619596542,
-      43.51585014409222,
-      49.783861671469744
+      47.05464868701207,
+      45.493257629524486,
+      42.867281760113556,
+      49.04187366926899
     ],
     "control": [
-      9.152161706906233,
-      0.1403705783267827,
-      2.0494104435710274,
-      3.382930937675463,
-      0.308815272318922,
-      11.636720943290287,
-      10.485682201010668,
-      9.615384615384615,
-      11.973610331274564
+      9.18767507002801,
+      0.1400560224089636,
+      2.030812324929972,
+      3.361344537815126,
+      0.3081232492997199,
+      11.694677871148459,
+      10.532212885154062,
+      9.69187675070028,
+      11.988795518207283
     ],
     "news_frac": [
-      "637/1388",
-      "12/1388",
-      "196/1388",
-      "235/1388",
-      "0/1388",
-      "663/1388",
-      "641/1388",
-      "604/1388",
-      "691/1388"
+      "637/1409",
+      "12/1409",
+      "196/1409",
+      "235/1409",
+      "0/1409",
+      "663/1409",
+      "641/1409",
+      "604/1409",
+      "691/1409"
     ],
     "control_frac": [
-      "652/7124",
-      "10/7124",
-      "146/7124",
-      "241/7124",
-      "22/7124",
-      "829/7124",
-      "747/7124",
-      "685/7124",
-      "853/7124"
+      "656/7140",
+      "10/7140",
+      "145/7140",
+      "240/7140",
+      "22/7140",
+      "835/7140",
+      "752/7140",
+      "692/7140",
+      "856/7140"
     ],
-    "news_n": 1388,
-    "control_n": 7124
+    "news_n": 1409,
+    "control_n": 7140
   },
   "c2": {
     "dates": [
@@ -167,10 +167,11 @@
       "2026-10-30",
       "2026-10-31",
       "2026-11-01",
-      "2026-11-02"
+      "2026-11-02",
+      "2026-11-03"
     ],
     "start": "2026-09-01",
-    "end": "2026-11-02",
+    "end": "2026-11-03",
     "other": [
       0,
       1,
@@ -233,6 +234,7 @@
       2,
       9,
       20,
+      0,
       0,
       0
     ],
@@ -299,7 +301,8 @@
       3,
       0,
       0,
-      0
+      0,
+      1
     ],
     "events": [
       {
@@ -323,10 +326,10 @@
         "note": "per press reports"
       }
     ],
-    "n_events": 223,
+    "n_events": 224,
     "n_domains_changed": 161,
     "n_domains": 1496,
-    "median_bracket_hours": 23.550555555555555
+    "median_bracket_hours": 23.549999999999997
   },
   "table_bots": [
     "meta-externalagent",
@@ -1797,7 +1800,7 @@
         "facebookexternalhit": "ALLOWED_DEFAULT",
         "gptbot": "FULL_BLOCK",
         "claudebot": "FULL_BLOCK",
-        "google-extended": "FULL_BLOCK",
+        "google-extended": "ALLOWED_EXPLICIT",
         "ccbot": "FULL_BLOCK"
       },
       "changed_since_T1": false
